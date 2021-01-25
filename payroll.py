@@ -5,6 +5,7 @@ PAY_LOGFILE = "paylog.txt"
 
 employees = []
 def load_employees():
+    """Loads employee data into memory and creates an instance of the employee object for each entry"""
     with open("employees.csv", "r") as emp_file:
         first_line = True
         for line in emp_file:
@@ -15,6 +16,7 @@ def load_employees():
             employees.append(Employee(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],int(tmp[7]),float(tmp[8]),float(tmp[9]),float(tmp[10])))
 
 def process_timecards():
+    """Processes time cards for hourly employees"""
     with open("timecards.csv", "r") as time_file:
         for line in time_file:
             emp_time = line[:-1].split(",")
@@ -24,6 +26,7 @@ def process_timecards():
                     emp.classification.add_timecard(float(hours))
 
 def process_receipts():
+    """Processes reciepts for commissioned employees"""
     with open("receipts.csv", "r") as receipts_file:
         for line in receipts_file:
             emp_receipts = line[:-1].split(",")
@@ -33,6 +36,7 @@ def process_receipts():
                     emp.classification.add_receipt(float(receipt))
 
 def run_payroll():
+    """Runs payroll for all employees"""
     if os.path.exists(PAY_LOGFILE): # pay_log_file is a global variable holding ‘payroll.txt’
         os.remove(PAY_LOGFILE)
     for emp in employees:   # employees is the global list of Employee objects
@@ -46,6 +50,9 @@ def find_employee_by_id(id):
             return employee
 
 class Employee():
+    """Defines an Employee object
+    Required Params: emp_id, first_name, last_name, address, city, state, postal_code, classification, salary, commission, hourly
+    """
     def __init__(self, emp_id, first_name, last_name, address, city, state, postal_code, classification, salary, commission, hourly):
         self.emp_id = emp_id
         self.first_name = first_name
@@ -56,21 +63,25 @@ class Employee():
         self.postal_code = postal_code
         if classification == 1:
             self.classification = Salaried(salary)
-        elif classification ==2:
+        elif classification == 2:
             self.classification = Commissioned(salary, commission)
         else:
             self.classification = Hourly(hourly)
     
     def make_hourly(self, hourly_rate):
+        """Sets the Employee classification to hourly"""
         self.classification = Hourly(hourly_rate)
 
     def make_salaried(self, salary):
+        """Sets the Employee classification to salaried"""
         self.classification = Salaried(salary)
 
     def make_commissioned(self, salary, commission_rate):
+        """Sets the Employee classification to commissioned"""
         self.classification = Commissioned(salary, commission_rate)
 
     def issue_payment(self):
+        """Issues payment to employee"""
         pay = self.classification.compute_pay()
         if pay > 0:
             with open(PAY_LOGFILE, "a") as paylog:
@@ -83,6 +94,7 @@ class Classification(ABC):
         pass
 
 class Hourly(Classification):
+    """Defines methods for hourly Employees"""
     def __init__(self, hourly_rate):
         self.hourly_rate = hourly_rate
         self.timecard = []
@@ -96,6 +108,7 @@ class Hourly(Classification):
         return pay
 
 class Salaried(Classification):
+    """Defines methods for salaried Employees"""
     def __init__(self, salary):
         self.salary = salary
     
@@ -103,13 +116,14 @@ class Salaried(Classification):
         return round(self.salary/24, 2)
 
 class Commissioned(Salaried):
+    """Defines methods for commissioned Employees"""
     def __init__(self, salary, commission_rate):
         super().__init__(salary)
         self.commission_rate = commission_rate
         self.receipts = []
 
-    def add_receipt(self, ammount):
-        self.receipts.append(ammount)
+    def add_receipt(self, amount):
+        self.receipts.append(amount)
 
     def compute_pay(self):
         pay = round((sum(self.receipts)*self.commission_rate/100)+self.salary/24, 2)
