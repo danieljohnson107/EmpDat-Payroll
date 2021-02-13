@@ -1,1 +1,200 @@
 # this will hold everyones Low Level psuedo code when we are ready to merge our branches
+
+def secureAccess(self, employeeNum):
+  '''
+  Check security level on profile and return value back of what level the user loggin in has
+  '''
+
+  # pull up employee file based on employeeNum on payroll.py 
+
+  # pull value of security level on employee file
+
+  # if level 1 (admin) return 1
+
+  # else if level 2 (general) return 2
+
+  # else return 3
+
+
+
+
+''' if statement to use at the top of each page class to help define what fields
+should show up or not based on security level
+'''
+ 
+# begin if statement
+
+# call def secureAccess(employeeNum) and pass employee number from login
+
+# if returns 1, user has admin access
+  # set all buttons and fields to state=active
+# if returns 2, user has General access
+  # set active only fields defined in prototype for Gen/Emp for the
+  # class being populated
+
+
+
+
+
+'''class for edit employee profile page'''
+from tkinter import *
+
+class EditEmp(self, employeeNum):
+  '''Show fields of employees, other then user, that was selected
+  by the user to be viewed/edited
+  '''
+  
+  # place functions needed here
+  
+  # function for when Timecards button is pressed
+    # call timecards popup window to find and import file
+  
+  # funtion for when Sales button si pressed
+    # call sales button popup window to finda nd import files
+    
+  # function for when Payroll button is pressed
+    # will reload class for payroll details based on security access
+    
+  # function for when My Profile button is clicked
+    # will reload class for My Profile details based on security access
+  
+  # function for when Enter new Employee is clicked
+    # will reload class for Enter new Employee details based on security access
+    
+  # function fro when Find Employee button is clicked
+    # will reload class for Find Employee results details based on security access
+    
+  # function for when Import txt of new Employees is clicked
+    # call popup window to find and load csv employee file
+    
+  # function for when Save button is clicked
+    # capture the all enabled fields values
+    # override values on employee record with values in all enabled input fields
+    
+  
+  # define window/root here
+  # set size and title
+  
+  # determine security level of user logged in
+  # if admin 
+    # setup labels and buttons for admin
+    # All fields, labels and buttons on prototype as state=Enabled 
+    # row=0 in order left to right columns. 
+      # column=0; button-"Employees" depressed/not state=dissabled
+      # column=1; button-"Timecards" state=Enabled
+      # column=2; button-"Sales" state=Enabled
+      # column=3; button-"Payroll" state=enabled
+      # column=4; button-"My Profile" state=enabled
+    # row=1
+      # column=0; button-"Enter new Employee" state=enabled
+      # column=1; label-"First Name:"
+      # column=2; inputbox-"<emplpoyee.firstName>" state=enabled
+      # column=3; button-"Save" state=enabled
+    # row=2
+      # column=0; button-"Find Employee" state=enabled
+      # column=1; label-"Last Name:"
+      # column=2; inputbox-"<emplpoyee.lastName>" state=enabled
+    # row=3
+      # column=0; button-"Import txt of new Employees" state=enabled
+      # column=1; label-"Address"
+      # column=2; inputbox-"<emplpoyee.address1>" state=enabled
+    # row=4
+      # column=1; label-"Address Line 2"
+      # column=2; inputbox-"<emplpoyee.address2>" state=enabled
+    # row=5
+      # column=1; label-"City"
+      # column=2; inputbox-"<emplpoyee.city>" state=enabled
+    # row=6
+      # column=1; label-"State"
+      # column=2; inputbox-"<emplpoyee.state>" state=enabled
+    # row=7
+      # column=1; label-"Zip"
+      # column=2; inputbox-"<emplpoyee.zip>" state=enabled
+    # row=8
+      # column=1; label-"Phone Number"
+      # column=2; inputbox-"<emplpoyee.phone>" state=enabled
+    # row=9
+      # column=1; label-"Classification"
+      # column=2; inputbox-"<emplpoyee.classification>" state=enabled
+    # row=10
+      # column=1; label-"Employee Number"
+      # column=2; inputbox-"<emplpoyee.employeeNum>" state=enabled
+    # row=11
+      # column=1; label-"Password"
+      # column=2; inputbox-"<emplpoyee.password>" state=enabled
+    # row=12
+      # column=1; label-"Pay Rate"
+      # column=2; inputbox-"<emplpoyee.pay>" state=enabled
+    # row=13
+      # column=1; label-"Department"
+      # column=2; inputbox-"<emplpoyee.department>" state=enabled
+    # row=14
+      # column=1; label-"Paid YTD"
+      # column=2; inputbox-"<emplpoyee.paidYtd>" state=dissabled
+      
+  # if General access
+    # row=0 in order left to right columns. 
+      # column=0; button-"Employees" depressed/not state=dissabled
+      # column=4; button-"My Profile" state=enabled
+    # row=1
+      # column=0; button-"Find Employee" state=enabled
+      # column=1; label-"First Name:"
+      # column=2; inputbox-"<emplpoyee.firstName>" state=dissabled
+      # column=3; button-"Save" state=enabled
+    # row=2
+      # column=1; label-"Last Name:"  
+      # column=2; inputbox-"<emplpoyee.lastName>" state=dissabled
+    # row=3
+      # column=1; label-"Address"
+      # column=2; inputbox-"<emplpoyee.address1>" state=dissabled
+    # row=4
+      # column=1; label-"Address Line 2"
+      # column=2; inputbox-"<emplpoyee.address2>" state=dissabled
+    # row=5
+      # column=1; label-"City"
+      # column=2; inputbox-"<emplpoyee.city>" state=dissabled
+    # row=6
+      # column=1; label-"State"
+      # column=2; inputbox-"<emplpoyee.state>" state=dissabled
+    # row=7
+      # column=1; label-"Zip"
+      # column=2; inputbox-"<emplpoyee.zip>" state=dissabled
+    # row=8
+      # column=1; label-"Phone Number"
+      # column=2; inputbox-"<emplpoyee.phone>" state=dissabled
+    # row=9
+      # column=1; label-"Classification"
+      # column=2; inputbox-"<emplpoyee.classification>" state=enabled
+    # row=10
+      # column=1; label-"Employee Number"
+      # column=2; inputbox-"<emplpoyee.employeeNum>" state=dissabled
+    # row=11
+      # column=1; label-"Password"
+      # column=2; inputbox-"<emplpoyee.password>" state=dissabled
+    # row=12
+      # column=1; label-"Pay Rate"
+      # column=2; inputbox-"<emplpoyee.pay>" state=enabled
+    # row=13 
+      # column=1; label-"Department"
+      # column=2; inputbox-"<emplpoyee.department>" state=enabled
+    # row=14
+      # column=1; label-"Paid YTD"
+      # column=2; inputbox-"<emplpoyee.paidYtd>" state=dissabled
+
+# if Employee access
+    # row=0 in order left to right columns. 
+      # column=0; button-"Employees" depressed/not state=dissabled
+      # column=4; button-"My Profile" state=enabled
+    # row=1
+      # column=0; button-"Find Employee" state=enabled
+      # column=1; label-"First Name:"
+      # column=2; inputbox-"<emplpoyee.firstName>" state=dissabled
+    # row=2
+      # column=1; label-"Last Name:"  
+      # column=2; inputbox-"<emplpoyee.lastName>" state=dissabled
+    # row=3
+      # column=1; label-"Phone Number"
+      # column=2; inputbox-"<emplpoyee.phone>" state=dissabled
+    # row=4 
+      # column=1; label-"Department"
+      # column=2; inputbox-"<emplpoyee.department>" state=dissabled
