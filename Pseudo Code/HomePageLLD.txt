@@ -1,0 +1,130 @@
+"""
+LLD for Payroll page.
+This page handles:
+    Is the landing page for the app
+    Checks the access level for the user
+        Shows different fields/buttons depending on what access level a user has
+"""
+
+"""
+import tkinter
+
+initialize tkinter and assign it to a variable
+
+Class Home
+
+    Initialization method
+
+        # Create the Buttons
+            create button for Employees
+            create button for Enter New Employee
+            create button for Find Employee
+            create button for Import List of New Employees
+            create button for Timecards
+            create button for Sales
+            create button for Payroll
+            create button for My Profile
+            create button for Save
+       
+        # Create the labels
+            Create label "First Name"
+            Create label "Last Name"
+            Create label "Address"
+            Create label "City"
+            Create label "State"
+            Create label "Zip"
+            Create label "Phone Number"
+            Create label "Classification"
+            Create label "Employee Number"
+            Create label "Password"
+            Create label "Pay Rate"
+
+        # Crate Input
+            Create input "First Name"
+            Create input "Last Name"
+            Create input "Address"
+            Create input "City"
+            Create input "State"
+            Create input "Zip"
+            Create input "Phone Number"
+            Create input "Classification"
+            Create input "Employee Number"
+            Create input "Password"
+            Create input "Pay Rate"
+
+        # Place each object on the frame
+            Place Employees button
+            Place Enter New Employee button
+            Place Find Employee button
+            Place Import List of New Employees button
+            Place Timecards button
+            Place Sales button
+            Place Payroll button
+            Place My Profile button
+            Place Save button
+
+            Place label "First Name"
+            Place label "Last Name"
+            Place label "Address"
+            Place label "City"
+            Place label "State"
+            Place label "Zip"
+            Place label "Phone Number"
+            Place label "Classification"
+            Place label "Employee Number"
+            Place label "Password"
+            Place label "Pay Rate"
+
+            Place input "First Name"
+            Place input "Last Name"
+            Place input "Address"
+            Place input "City"
+            Place input "State"
+            Place input "Zip"
+            Place input "Phone Number"
+            Place input "Classification"
+            Place input "Employee Number"
+            Place input "Password"
+            Place input "Pay Rate"
+
+       
+
+        run mainloop from tkinter
+
+
+    Employees Button function
+
+        Takes the user to the Employees page.
+        
+    Enter New Employee button function
+
+        Takes the user to the New Employee page.
+        
+    Find Employee button function
+
+        Takes the user to the Find Employee page.
+        
+    Import List of New Employees button function
+
+        Takes the user to the List of New Employees page.
+        
+    Timecards button function
+
+        Takes the user to the Timecards page.
+        
+    Sales button function
+
+        Takes the user to the Sales page.
+        
+    Payroll button function
+
+        Takes the user to the Payroll page.
+        
+    My Profile button function
+
+        Takes the user to the My Profile page.
+        
+    Save button function
+
+        Saves the information in the input fields on the MyProfile Page
+"""
