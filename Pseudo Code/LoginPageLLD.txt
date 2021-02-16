@@ -1,0 +1,53 @@
+"""
+LLD for Payroll page.
+This page handles:
+    Login for all users
+    Forgotten Passwords
+    Resetting Passwords
+"""
+
+"""
+import tkinter
+
+initialize tkinter and assign it to a variable
+
+Class Login
+
+    Initialization method
+
+        # Create the Buttons
+            create button for Login
+            create button for Forgot Password
+       
+        # Create the labels
+            Create label "Employee Number"
+            Create label "Password"
+
+        # Crate Input
+            Create Input for "Employee Number"
+            Create Input for "Password"
+
+        # Place each object on the frame
+            Place Login Button # This button should be set to disabled until a Employee Number/password is input.
+            Place Forgot Password Button
+            Place Employee Number Label
+            Place Password Label
+            Place Employee Number Input
+            Place Password Input
+       
+
+        run mainloop from tkinter
+
+
+    Login Button function
+
+        Checks if the Employee Number/password combo is valid. If it is, it sends them to the home page.
+
+        If combo is invalid, clear the input Employee Number/password fields and display an error message.
+
+
+    Forgot Password Button function
+
+        Sends user to the page with the password resetting instructions.
+
+"""
