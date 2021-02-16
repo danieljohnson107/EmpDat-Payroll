@@ -1,0 +1,83 @@
+"""
+LLD for Payroll page.
+This page handles:
+    Payroll Processing
+    Importing Timecards
+    Importing Sales
+
+Importing Timecards and Sales will prompt a popup for the file to be imported.
+    (The prototype shows just separate tabs so I need to check on that)
+"""
+
+"""
+import tkinter
+import TimeCards.py
+import Sales.py
+
+initialize tkinter and assign it to a variable
+
+Class PayrollProcessing
+
+    Initialization method
+
+        # Create the Buttons
+        create button for Employees
+        create button for Timecards
+        create button for Sales
+        create button for Payroll
+        create button for Process Payroll
+        create button for Import Timecards
+        create button for Import Sales
+
+        # Create the labels
+        Create label "Will process payroll for current pay cycle"
+        Create label "Takes them to Timecards - page"
+        Create label "Takes them to Sales - page"
+
+        # Place each object on the frame
+        Place Employee Button
+        Place Timecards Button
+        Place Sales Button
+        Place Payroll Button # This button should be set to disabled
+        Place Process Payroll Button
+        Place Employee Button
+        Place Employee Button
+        Place Payroll Label
+        Place Timecards Label
+        Place Sales Label
+
+        run mainloop from tkinter
+
+
+    Employees Button function
+
+        Call to the employees gui page
+
+
+    Timecards / Import Timecards Button function
+
+        Call to the Timecards page
+
+
+    Sales / Import Sales Button function
+
+        Call to the Sales page
+
+
+    Payroll Button function
+
+        Should be disables when on this page
+
+
+    Process Payroll function
+
+        Check global variables to see when the last payroll process was done
+
+        Call the Sales popup and request a file
+        Call the TimeCards popup and request a file
+
+        Store the Sales and TimeCards data in global variables
+
+        Create a Payroll file and give a hyperlink for download
+
+"""
