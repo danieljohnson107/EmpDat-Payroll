@@ -1,0 +1,38 @@
+"""
+Low Level Design
+
+Here we will load all global variable from a JSON file as well as save them.
+This creates a dictionary of data that can be accessed throughout the program.
+"""
+
+
+"""
+import json
+
+class GlobalVariables
+
+    # Create a global variable with the file path
+
+    # Open method for importing json data
+
+        Open the JSON file as read only
+        Verify that there is data in the file
+        Load the data from the JSON file using the JSON library
+        Close the JSON file
+        Convert the JSON data to a dict
+        return the JSON dictionary
+
+    # Close method for exporting new variables
+
+        Open the JSON file with write capabilities
+        convert dict to json data
+        Dump the new dictionary of data
+        close the JSON file
+
+
+To Do:
+ How to handle crashes
+ What Variables?
+    Sales
+    TimeCards
+"""

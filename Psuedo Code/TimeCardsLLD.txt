@@ -1,0 +1,69 @@
+"""
+    LLD For Timecards Page
+
+    This page handles importing timecard times that are either txt or csv
+"""
+
+"""
+import tkinter
+import pandas
+
+
+Declare the timecards class
+
+    Initialization method
+        Clear the global timecards variable
+
+        # The GUI stuff
+        Create a new tkinter window
+
+        create button for Employees
+        create button for Timecards
+        create button for Sales
+        create button for Payroll
+        create button for Import
+
+        create label "Timecard file must be a .txt or.csv file"
+        create label "File for import: "
+
+        create text entry box for file path
+
+        Place Employee Button
+        Place Timecards Button # This button should be set to disabled
+        Place Sales Button
+        Place Payroll Button
+        Place label "Timecard file must be a .txt or.csv file"
+        Place label "File for import: "
+        Place text entry box for file path
+
+        run mainloop from tkinter
+
+
+    Proccess File method (the file name as a passed in var)
+
+        Check to make sure the file is a CSV or TXT
+            if not throw an error to the user
+                Create a place label "Please enter a valid file name"
+                Create Warning popup
+            else if csv
+                call csv method
+            else
+                call txt method
+
+
+    CSV File method (private) (the file name as a passed in var) (Using pandas)
+
+        Attempt to open the file as read
+        catch the error and tell the user to enter a new file
+
+        import the data and assign it to a global variable for use later
+
+
+    TXT File method (private) (the file name as a passed in var) (Using built in methods)
+
+        Attempt to open the file as read
+        catch the error and tell the user to enter a new file
+
+        import the data and assign it to a global variable for use later
+
+"""
