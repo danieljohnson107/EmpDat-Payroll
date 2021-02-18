@@ -46,6 +46,9 @@ class EditEmp(self, employeeNum):
   
   # place functions needed here
   
+  # global function to process data store when program is closed
+    # call global function to process data storage of global variable and employees  
+  
   # function for when Timecards button is pressed
     # call timecards popup window to find and import file
   
@@ -75,7 +78,51 @@ class EditEmp(self, employeeNum):
   # define window/root here
   # set size and title
   
+  # create buttons
+    Employees
+    Timecards
+    Sales
+    Payroll
+    My Profile
+    Enter new employee
+    Find Employee
+    Import txt of new employees
+    Save
+    
+  # create labels
+    Frist Name
+    Last Name
+    Address
+    Address line 2
+    City
+    State
+    Zip
+    Phone
+    Classification
+    Employee Number
+    Password
+    Payrate
+    Department
+    Pay YTD
+    
+  # create input boxes
+    Frist Name
+    Last Name
+    Address
+    Address line 2
+    City
+    State
+    Zip
+    Phone
+    Classification
+    Employee Number
+    Password
+    Payrate
+    Department
+    Pay YTD
+  
   # determine security level of user logged in
+  # set buttons, labels, inputboxes based on access
   # if admin 
     # setup labels and buttons for admin
     # All fields, labels and buttons on prototype as state=Enabled 
@@ -198,3 +245,5 @@ class EditEmp(self, employeeNum):
     # row=4 
       # column=1; label-"Department"
       # column=2; inputbox-"<emplpoyee.department>" state=dissabled
+      
+  # run mainloop of root
