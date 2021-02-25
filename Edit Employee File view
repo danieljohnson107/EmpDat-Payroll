@@ -1,0 +1,228 @@
+from tkinter import *
+# from PIL import imageTk, Image
+
+''' to use images yoy need to install pillow
+install with "pip install pillow" on your python to use
+ImageTk.PhotoImage(Image.open("imagename.png"))
+put image in widget
+then put on page
+'''
+
+''' everything is a widget
+start with a root widget
+this shoudl be first every time you use tkinter'''
+
+root = Tk()
+root.geometry("925x500")
+root.title('Payroll Processing Excellence: Team 5')
+'''define the action the function will take'''
+
+buttonColor = '#A877BA'
+buttonWidth = 20
+buttonHeight = 2
+inputWidth = 160
+inputHeight = 22
+inputEditColor = 'white'
+inputReadColor = 'Gray'
+inputBorderWidth = 1
+
+classificationChoices = [
+    'Hourly',
+    'Salary',
+    'Commission',
+]
+securityAccessChoices = [
+    'Admin',
+    'General Management',
+    'Employee',
+]
+
+classificationChosen = StringVar()
+securityAccessChosen = StringVar()
+
+
+def pay():
+    hello = 'Processing ... ' + e.get()
+    mylabel3 = Label(root, text=hello)
+    mylabel3.place(x=3, y=0)
+
+
+def employees():
+    pass
+
+
+def timecards():
+    pass
+
+
+def sales():
+    pass
+
+
+def myProfile():
+    pass
+
+
+def newEmployee():
+    pass
+
+
+def findEmployee():
+    pass
+
+
+def importEmployee():
+    pass
+
+
+def saveChanges():
+    pass
+
+
+def pay():
+    pass
+
+
+# Object list
+
+''' to create anyting you need to do two things
+first create the item then put it in a location'''
+
+fNameLabel = Label(root, text="First Name:")
+lNameLabel = Label(root, text="Last Name:")
+addressLabel = Label(root, text='Address:')
+addressLineTwoLabel = Label(root, text='Address Line 2:')
+cityLabel = Label(root, text='City:')
+stateLabel = Label(root, text='State:')
+zipCodeLabel = Label(root, text='Zip:')
+phoneLabel = Label(root, text='Phone Number:')
+classificationLabel = Label(root, text='Classification:')
+empNumberLabel = Label(root, text='Employee Number:')
+passwordLabel = Label(root, text='Password:')
+departmentLabel = Label(root, text='Department:')
+payRateLabel = Label(root, text='Pay Rate:')
+payYTDLabel = Label(root, text='Pay YTD:')
+securityAccessLabel = Label(root, text='Security Access:')
+
+spacer = Label(root, text="        ")
+
+# button
+employeesButton = Button(root, text="Employee's",
+                         width=buttonWidth, bg=buttonColor,
+                         height=buttonHeight,
+                         command=employees, state=DISABLED)
+timeCardsButton = Button(root, text='Timecards', width=buttonWidth,
+                         height=buttonHeight, bg=buttonColor,
+                         command=timecards)
+salesButton = Button(root, text='   Sales   ', width=buttonWidth,
+                     height=buttonHeight,
+                     command=sales, bg=buttonColor)
+myProfileButton = Button(root, text='My Profile', width=buttonWidth,
+                         height=buttonHeight,
+                         command=myProfile, bg=buttonColor)
+newEmployeeButton = Button(root, text='Enter New\nEmployee', width=buttonWidth,
+                           height=buttonHeight,
+                           command=newEmployee, bg=buttonColor)
+findEmployeeButton = Button(root, text='Find Employee', width=buttonWidth,
+                            height=buttonHeight,
+                            command=findEmployee, bg=buttonColor)
+importEmployeeButton = Button(root, text='Import txt of\nnew Employees',
+                              width=buttonWidth, height=buttonHeight,
+                              command=importEmployee,
+                              bg=buttonColor)
+saveProfileButton = Button(root, text='Save',
+                           width=buttonWidth, height=buttonHeight,
+                           command=saveChanges, bg=buttonColor)
+payrollButton = Button(root, text="Payroll", width=buttonWidth,
+                       height=buttonHeight, command=pay, bg=buttonColor)
+# bg not working??
+employeesButton.configure(bg='#3D6CBD')
+
+# input box for client data input
+# e.get() will retreive the input from the field
+fNameInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+lNameInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+addressInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+addressTwoInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+cityInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+stateInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+zipInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+phoneInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+classInput = OptionMenu(root, classificationChosen, *classificationChoices)
+empNumInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+passwordInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+departmentInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+payRateInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+payYTDInput = Entry(root, bg=inputEditColor, borderwidth=inputBorderWidth)
+securityInput = OptionMenu(root, securityAccessChosen, *securityAccessChoices)
+
+
+# location of items on the screen
+''' you can put things into specific locations,
+but for now we will pack it in.
+
+we will usually use a place system to define locations of
+items on the interface.
+
+everything is a place with ys up and down and
+xs left to right.
+
+consider this like a table with 0 - N on the locations
+
+You can add these commands to the creation above as well
+if you would like. ie spacer = Label(root, text='').place(x=0,y=0)
+
+'''
+# set all locations on form
+# buttons
+employeesButton.place(x=0, y=0)
+timeCardsButton.place(x=185, y=0)
+salesButton.place(x=370, y=0)
+payrollButton.place(x=555, y=0)
+myProfileButton.place(x=740, y=0)
+newEmployeeButton.place(x=0, y=40)
+findEmployeeButton.place(x=0, y=80)
+importEmployeeButton.place(x=0, y=120)
+saveProfileButton.place(x=520, y=40)
+
+# Labels
+fNameLabel.place(x=200, y=40)
+lNameLabel.place(x=200, y=65)
+addressLabel.place(x=200, y=90)
+addressLineTwoLabel.place(x=200, y=115)
+cityLabel.place(x=200, y=140)
+stateLabel.place(x=200, y=165)
+zipCodeLabel.place(x=200, y=190)
+phoneLabel.place(x=200, y=215)
+classificationLabel.place(x=200, y=240)
+empNumberLabel.place(x=200, y=265)
+passwordLabel.place(x=200, y=290)
+departmentLabel.place(x=200, y=315)
+payRateLabel.place(x=200, y=340)
+payYTDLabel.place(x=200, y=365)
+securityAccessLabel.place(x=200, y=390)
+
+# Inputs
+fNameInput.place(x=340, y=40, width=inputWidth, height=inputHeight)
+lNameInput.place(x=340, y=65, width=inputWidth, height=inputHeight)
+addressInput.place(x=340, y=90, width=inputWidth, height=inputHeight)
+addressTwoInput.place(x=340, y=115, width=inputWidth, height=inputHeight)
+cityInput.place(x=340, y=140, width=inputWidth, height=inputHeight)
+stateInput.place(x=340, y=165, width=inputWidth, height=inputHeight)
+zipInput.place(x=340, y=190, width=inputWidth, height=inputHeight)
+phoneInput.place(x=340, y=215, width=inputWidth, height=inputHeight)
+classInput.place(x=340, y=240, width=inputWidth, height=inputHeight)
+empNumInput.place(x=340, y=265, width=inputWidth, height=inputHeight)
+passwordInput.place(x=340, y=290, width=inputWidth, height=inputHeight)
+departmentInput.place(x=340, y=315, width=inputWidth, height=inputHeight)
+payRateInput.place(x=340, y=340, width=inputWidth, height=inputHeight)
+payYTDInput.place(x=340, y=365, width=inputWidth, height=inputHeight)
+securityInput.place(x=340, y=390, width=inputWidth, height=inputHeight)
+''' last thing is create an event loop to watch
+the interface track location of mouse '''
+
+
+'''get buttons to do something
+create function'''
+
+root.mainloop()
