@@ -7,7 +7,7 @@ import json
 class GlobalVariables:
 
     # Path to the file
-    FILE = "JSON/Global Variables.json"
+    FILE = "JSON/Global.json"
 
     # Empty Initialization
     def __init__(self):
