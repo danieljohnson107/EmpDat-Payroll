@@ -1,4 +1,6 @@
-""" Code """
+"""
+Method for handling global variables saved in a JSON file
+"""
 import json
 
 
