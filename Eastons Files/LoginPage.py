@@ -62,6 +62,7 @@ class LoginPage(Frame):
                 messagebox.showwarning("No Password!", "Please Reset Your Password")
             elif check:
                 messagebox.showinfo("Success!", "Successfully Logged In")
+                self.controller.show_frame("FindEmployee")
             else:
                 messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
 

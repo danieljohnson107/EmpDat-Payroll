@@ -8,6 +8,7 @@ from UserData import *
 from GuiValues import *
 from ChangePassword import *
 from LoginPage import *
+from FindEmployee import *
 
 gv = GuiValues()
 ud = UserData()
@@ -26,7 +27,7 @@ class PayrollProcessingExcellence(Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (ChangePassword, LoginPage):
+        for F in (ChangePassword, LoginPage, FindEmployee):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
