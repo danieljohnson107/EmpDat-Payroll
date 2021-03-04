@@ -3,8 +3,8 @@ from tkinter import *
 # from PIL import imageTk, Image
 from UserData import *
 from GuiValues import *
+import main as m
 
-ud = UserData()
 gv = GuiValues()
 ''' to use images yoy need to install pillow
 install with "pip install pillow" on your python to use
