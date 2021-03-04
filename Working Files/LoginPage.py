@@ -4,10 +4,9 @@ Login Page
 
 from tkinter import *
 from tkinter import messagebox
-from UserData import *
+import main as m
 from GuiValues import *
 
-ud = UserData()
 gv = GuiValues()
 
 
@@ -58,7 +57,7 @@ class LoginPage(Frame):
         password = self.passw_var.get()
 
         # Check to see if the user exists
-        if not ud.user_exists(employee_num):
+        if not m.ud.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist",
                                    "Employee Number Doesn't Exist!")
 
@@ -66,7 +65,7 @@ class LoginPage(Frame):
         if employee_num == "" or password == "":
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
-            check = ud.verify_user(employee_num, password)
+            check = m.ud.verify_user(employee_num, password)
 
             if check == 'None':
                 messagebox.showwarning("No Password!",

@@ -6,8 +6,8 @@ from tkinter import *
 from tkinter import messagebox
 from UserData import *
 from GuiValues import *
+import main as m
 
-ud = UserData()
 gv = GuiValues()
 
 
@@ -55,7 +55,7 @@ class ChangePassword(Frame):
         confirmation = self.confirm_passw_var.get()
 
         # Check to see if the user exists or if one was entered
-        if not ud.user_exists(employee_num):
+        if not m.ud.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Make sure passwords are the same
@@ -66,7 +66,7 @@ class ChangePassword(Frame):
         elif password != confirmation:
             messagebox.showwarning("Unmatched", "Passwords do not match!")
         else:
-            ud.change_field(employee_num, password, 'password')
+            m.ud.change_field(employee_num, password, 'password')
             messagebox.showinfo("Success!", "Password Changed Successfully")
             controller.show_frame("LoginPage")
 
