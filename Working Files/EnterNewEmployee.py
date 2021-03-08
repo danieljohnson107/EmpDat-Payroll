@@ -50,12 +50,7 @@ class EnterNewEmployee(Frame):
         spacer = Label(self, text="        ")
 
         # button
-        employeesButton = Button(self, text="Employee's",
-                                 width=gv.buttonWidth,
-                                 bg=gv.buttonColor,
-                                 height=gv.buttonHeight,
-                                 command=self.employees,
-                                 state=DISABLED)
+        employeesButton = gv.create_button(self, "disabled")
         timeCardsButton = Button(self, text='Timecards',
                                  width=gv.buttonWidth,
                                  height=gv.buttonHeight,

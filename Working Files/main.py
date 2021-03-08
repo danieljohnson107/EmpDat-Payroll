@@ -2,10 +2,6 @@
 Trying to implement stacked frames into our program
 """
 
-from tkinter import *
-from tkinter import messagebox
-from UserData import *
-from GuiValues import *
 from ChangePassword import *
 from LoginPage import *
 from FindEmployee import *

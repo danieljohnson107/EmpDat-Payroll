@@ -58,8 +58,7 @@ class LoginPage(Frame):
 
         # Check to see if the user exists
         if not m.ud.user_exists(employee_num):
-            messagebox.showwarning("Doesn't Exist",
-                                   "Employee Number Doesn't Exist!")
+            messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Create a warning if either field is blank
         if employee_num == "" or password == "":
