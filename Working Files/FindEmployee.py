@@ -3,8 +3,8 @@ from tkinter import *
 # from PIL import imageTk, Image
 from UserData import *
 from GuiValues import *
-import main as m
 
+ud = UserData()
 gv = GuiValues()
 ''' to use images yoy need to install pillow
 install with "pip install pillow" on your python to use
@@ -50,15 +50,40 @@ class FindEmployee(Frame):
         spacer = Label(self, text="        ")
 
         # button
-        employeesButton = gv.create_button(self, "disabled", None, "Employee's")
-        timeCardsButton = gv.create_button(self, "normal", None, "Timecards")
-        salesButton = gv.create_button(self, "normal", None, "Sales")
-        myProfileButton = gv.create_button(self, "normal", None, "My Profile")
-        newEmployeeButton = gv.create_button(self, "normal", None, "Enter New\nEmployee")
-        findEmployeeButton = gv.create_button(self, "normal", None, "Find Employee")
-        importEmployeeButton = gv.create_button(self, "normal", None, "Import txt of\nnew Employees")
-        saveProfileButton = gv.create_button(self, "normal", None, "Save")
-        payrollButton = gv.create_button(self, "normal", None, "Payroll")
+        employeesButton = Button(self, text="Employee's",
+                                 width=gv.buttonWidth, bg=gv.buttonColor,
+                                 height=gv.buttonHeight,
+                                 command=self.employees, state=DISABLED)
+        timeCardsButton = Button(self, text='Timecards', width=gv.buttonWidth,
+                                 height=gv.buttonHeight, bg=gv.buttonColor,
+                                 command=self.timecards)
+        salesButton = Button(self, text='   Sales   ', width=gv.buttonWidth,
+                             height=gv.buttonHeight,
+                             command=self.sales, bg=gv.buttonColor)
+        myProfileButton = Button(self, text='My Profile', width=gv.buttonWidth,
+                                 height=gv.buttonHeight,
+                                 command=self.myProfile, bg=gv.buttonColor)
+        newEmployeeButton = Button(self, text='Enter New\nEmployee',
+                                   width=gv.buttonWidth,
+                                   height=gv.buttonHeight,
+                                   command=self.newEmployee, bg=gv.buttonColor)
+        findEmployeeButton = Button(self, text='Find Employee',
+                                    width=gv.buttonWidth,
+                                    height=gv.buttonHeight,
+                                    command=self.findEmployee,
+                                    bg=gv.buttonColor)
+        importEmployeeButton = Button(self, text='Import txt of\nnew Employees',
+                                      width=gv.buttonWidth,
+                                      height=gv.buttonHeight,
+                                      command=self.importEmployee,
+                                      bg=gv.buttonColor)
+        saveProfileButton = Button(self, text='Save',
+                                   width=gv.buttonWidth,
+                                   height=gv.buttonHeight,
+                                   command=self.saveChanges, bg=gv.buttonColor)
+        payrollButton = Button(self, text="Payroll", width=gv.buttonWidth,
+                               height=gv.buttonHeight, command=self.pay,
+                               bg=gv.buttonColor)
 
         # input box for client data input
         # e.get() will retreive the input from the field

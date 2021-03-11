@@ -2,6 +2,10 @@
 Trying to implement stacked frames into our program
 """
 
+from tkinter import *
+from tkinter import messagebox
+from UserData import *
+from GuiValues import *
 from ChangePassword import *
 from LoginPage import *
 from FindEmployee import *
@@ -10,13 +14,13 @@ from MyProfile import *
 from EnterNewEmployee import *
 
 gv = GuiValues()
+ud = UserData()
 
 
 class PayrollProcessingExcellence(Tk):
 
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
-        self.ud = UserData
         self.geometry("925x500")
         self.title('Payroll Processing Excellence: Team 5')
 

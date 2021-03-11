@@ -3,8 +3,8 @@ from tkinter import *
 # from PIL import imageTk, Image
 from UserData import *
 from GuiValues import *
-import main as m
 
+ud = UserData()
 gv = GuiValues()
 ''' to use images yoy need to install pillow
 install with "pip install pillow" on your python to use
@@ -50,7 +50,12 @@ class EnterNewEmployee(Frame):
         spacer = Label(self, text="        ")
 
         # button
-        employeesButton = gv.create_button(self, "disabled")
+        employeesButton = Button(self, text="Employee's",
+                                 width=gv.buttonWidth,
+                                 bg=gv.buttonColor,
+                                 height=gv.buttonHeight,
+                                 command=self.employees,
+                                 state=DISABLED)
         timeCardsButton = Button(self, text='Timecards',
                                  width=gv.buttonWidth,
                                  height=gv.buttonHeight,

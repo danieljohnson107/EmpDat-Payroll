@@ -3,11 +3,10 @@ Payroll Processing page
 """
 
 from tkinter import *
-from tkinter import *
 from UserData import *
 from GuiValues import *
-import main as m
 
+ud = UserData()
 gv = GuiValues()
 
 # Create our frame
