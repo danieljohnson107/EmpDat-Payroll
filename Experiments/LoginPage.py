@@ -16,7 +16,6 @@ class LoginPage(Frame):
 
         global gv
         gv = GuiValues(self, controller)
-        gv.create_buttons(self)
 
         # Place the labels and buttons
         gv.employee_number_label.place(x=200, y=100)

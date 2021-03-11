@@ -25,8 +25,7 @@ class MyProfile(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
-        gv = GuiValues(parent, controller)
-        gv.create_buttons(self)
+        gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
         # Buttons

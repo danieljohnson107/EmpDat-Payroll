@@ -18,8 +18,7 @@ class ChangePassword(Frame):
         self.controller = controller
 
         global gv
-        gv = GuiValues(parent, controller)
-        gv.create_buttons(self)
+        gv = GuiValues(self, controller)
 
         gv.set_password_button.config(command=self.set_password_pressed)
 

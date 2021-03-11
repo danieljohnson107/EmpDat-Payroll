@@ -7,10 +7,10 @@ from tkinter import *
 
 class GuiValues(Frame):
 
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+    def __init__(self, frame, controller):
+        Frame.__init__(self, frame)
 
-        self.parent = parent
+        self.parent = frame
         self.controller = controller
 
         # Create the standard for buttons
@@ -25,8 +25,6 @@ class GuiValues(Frame):
         self.buttonTextColor = "white"
         self.fontProp = ('calibre', 14, 'normal')
 
-    # Create nav bar stuff here so we don't need it in EVERY file
-    def create_buttons(self, frame):
         # Login page variables
         self.name_var = StringVar()
         self.passw_var = StringVar()
