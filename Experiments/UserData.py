@@ -10,14 +10,19 @@ class UserData:
     # Load the employee csv
     def __init__(self):
         self.employee_data = pd.read_csv("employees.csv")
+        self.employee_number = ""
 
     # Method for setting a new password
     def change_field(self, emp_num, new_value, field):
         self.employee_data.loc[self.employee_data["id"] == emp_num, field] = new_value
         self.employee_data.to_csv("employees.csv")
+        return True
 
     def verify_user(self, emp_num, password):
         read_password = self.employee_data.loc[self.employee_data["id"] == emp_num, "password"]
+
+        # assign the employee number
+        self.employee_number = emp_num
 
         # find the password in the gross csv data type
         for i in read_password:
@@ -38,10 +43,10 @@ class UserData:
 
         # find the value in the gross csv data type
         for i in value:
-            if type(i) != str:
+            if type(i) != str and i < 10 and i not in [1, 2, 3]:
                 continue
             else:
-                value = i
+                value = str(i)
 
         return value
 

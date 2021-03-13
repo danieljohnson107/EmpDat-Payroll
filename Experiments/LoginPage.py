@@ -2,10 +2,9 @@
 Login Page
 """
 
-from tkinter import *
 from tkinter import messagebox
-import main as m
 from GuiValues import *
+import app
 
 
 class LoginPage(Frame):
@@ -34,21 +33,22 @@ class LoginPage(Frame):
         password = gv.passw_var.get()
 
         # Check to see if the user exists
-        if not m.ud.user_exists(employee_num):
+        if not globe.ud.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Create a warning if either field is blank
         if employee_num == "" or password == "":
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
-            check = m.ud.verify_user(employee_num, password)
+            check = globe.ud.verify_user(employee_num, password)
 
             if check == 'None':
                 messagebox.showwarning("No Password!",
                                        "Please Reset Your Password")
             elif check:
                 # messagebox.showinfo("Success!", "Successfully Logged In")
-                self.controller.show_frame("FindEmployee")
+                self.controller.destroy()
+                app.App()
             else:
                 messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
 

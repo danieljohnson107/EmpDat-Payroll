@@ -2,6 +2,10 @@
 Method for handling global variables saved in a JSON file
 """
 import json
+from UserData import *
+
+# Declare variables that can be accessed anywhere
+ud = UserData()
 
 
 class GlobalVariables:

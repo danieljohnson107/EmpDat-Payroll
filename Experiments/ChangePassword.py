@@ -2,13 +2,8 @@
 Chanage password pop up
 """
 
-from tkinter import *
 from tkinter import messagebox
-from UserData import *
 from GuiValues import *
-import main as m
-
-# gv = GuiValues()
 
 
 class ChangePassword(Frame):
@@ -39,7 +34,7 @@ class ChangePassword(Frame):
         confirmation = gv.confirm_passw_var.get()
 
         # Check to see if the user exists or if one was entered
-        if not m.ud.user_exists(employee_num):
+        if not globe.ud.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Make sure passwords are the same
@@ -50,9 +45,11 @@ class ChangePassword(Frame):
         elif password != confirmation:
             messagebox.showwarning("Unmatched", "Passwords do not match!")
         else:
-            m.ud.change_field(employee_num, password, 'password')
-            messagebox.showinfo("Success!", "Password Changed Successfully")
-            self.controller.show_frame("LoginPage")
+            if not globe.ud.change_field(employee_num, password, 'password'):
+                messagebox.showerror("Password Exists!", "Password exists! Please log in to change your password!")
+            else:
+                messagebox.showinfo("Success!", "Password Changed Successfully")
+                self.controller.show_frame("LoginPage")
 
         gv.user_entry.delete(0, 'end')
         gv.set_password_entry.delete(0, 'end')

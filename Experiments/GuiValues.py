@@ -3,6 +3,7 @@ Class file to save all global gui variables
 """
 
 from tkinter import *
+import GlobalVariables as globe
 
 
 class GuiValues(Frame):
@@ -12,6 +13,7 @@ class GuiValues(Frame):
 
         self.parent = frame
         self.controller = controller
+        self.count = 0
 
         # Create the standard for buttons
         self.buttonColor = '#2c71de'
@@ -179,3 +181,43 @@ class GuiValues(Frame):
         self.salesButton.place(x=370, y=0)
         self.payrollButton.place(x=555, y=0)
         self.myProfileButton.place(x=740, y=0)
+
+    def my_profile_values(self):
+        self.controller.show_frame("MyProfile")
+
+        emp_id = globe.ud.employee_number
+
+        # Clear all fields in case of double click
+        self.fNameInput.delete(0, "end")
+        self.fNameInput.delete(0, "end")
+        self.lNameInput.delete(0, "end")
+        self.addressInput.delete(0, "end")
+        self.addressTwoInput.delete(0, "end")
+        self.cityInput.delete(0, "end")
+        self.stateInput.delete(0, "end")
+        self.zipInput.delete(0, "end")
+        self.phoneInput.delete(0, "end")
+        self.classInput.delete(0, "end")
+        self.empNumInput.delete(0, "end")
+        self.passwordInput.delete(0, "end")
+        self.departmentInput.delete(0, "end")
+        self.payRateInput.delete(0, "end")
+        self.payYTDInput.delete(0, "end")
+        self.securityInput.delete(0, "end")
+
+        # Insert values from CSV
+        self.fNameInput.insert(0, globe.ud.read_value(emp_id, "first_name"))
+        self.lNameInput.insert(0, globe.ud.read_value(emp_id, "last_name"))
+        self.addressInput.insert(0, globe.ud.read_value(emp_id, "address"))
+        # self.addressTwoInput.insert(0, ud.read_value(emp_id, ""))
+        self.cityInput.insert(0, globe.ud.read_value(emp_id, "city"))
+        self.stateInput.insert(0, globe.ud.read_value(emp_id, "state"))
+        self.zipInput.insert(0, globe.ud.read_value(emp_id, "zip"))
+        # self.phoneInput.insert(0, ud.read_value(emp_id, ""))
+        self.classInput.insert(0, globe.ud.read_value(emp_id, "classification"))
+        self.empNumInput.insert(0, globe.ud.read_value(emp_id, "id"))
+        self.passwordInput.insert(0, globe.ud.read_value(emp_id, "password"))
+        # self.departmentInput.insert(0, ud.read_value(emp_id, ""))
+        self.payRateInput.insert(0, globe.ud.read_value(emp_id, "hourly"))
+        self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
+        self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))

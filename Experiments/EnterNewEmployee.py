@@ -1,9 +1,7 @@
 from tkinter import *
 
 # from PIL import imageTk, Image
-from UserData import *
 from GuiValues import *
-import main as m
 
 ''' to use images yoy need to install pillow
 install with "pip install pillow" on your python to use
@@ -34,38 +32,38 @@ class EnterNewEmployee(Frame):
         gv.saveProfileButton.place(x=0, y=160)
 
         # Labels
-        gv.fNameLabel.place(x=200, y=40)
-        gv.lNameLabel.place(x=200, y=65)
-        gv.addressLabel.place(x=200, y=90)
-        gv.addressLineTwoLabel.place(x=200, y=115)
-        gv.cityLabel.place(x=200, y=140)
-        gv.stateLabel.place(x=200, y=165)
-        gv.zipCodeLabel.place(x=200, y=190)
-        gv.phoneLabel.place(x=200, y=215)
-        gv.classificationLabel.place(x=200, y=240)
-        gv.empNumberLabel.place(x=200, y=265)
-        gv.passwordLabel.place(x=200, y=290)
-        gv.departmentLabel.place(x=200, y=315)
-        gv.payRateLabel.place(x=200, y=340)
-        gv.payYTDLabel.place(x=200, y=365)
-        gv.securityAccessLabel.place(x=200, y=390)
+        gv.fNameLabel.place(x=200, y=50)
+        gv.lNameLabel.place(x=200, y=75)
+        gv.addressLabel.place(x=200, y=100)
+        gv.addressLineTwoLabel.place(x=200, y=125)
+        gv.cityLabel.place(x=200, y=150)
+        gv.stateLabel.place(x=200, y=175)
+        gv.zipCodeLabel.place(x=200, y=200)
+        gv.phoneLabel.place(x=200, y=225)
+        gv.classificationLabel.place(x=200, y=250)
+        gv.empNumberLabel.place(x=200, y=275)
+        gv.passwordLabel.place(x=200, y=300)
+        gv.departmentLabel.place(x=200, y=325)
+        gv.payRateLabel.place(x=200, y=350)
+        gv.payYTDLabel.place(x=200, y=375)
+        gv.securityAccessLabel.place(x=200, y=400)
 
         # Inputs
-        gv.fNameInput.place(x=340, y=40, width=gv.inputWidth, height=gv.inputHeight)
-        gv.lNameInput.place(x=340, y=65, width=gv.inputWidth, height=gv.inputHeight)
-        gv.addressInput.place(x=340, y=90, width=gv.inputWidth, height=gv.inputHeight)
-        gv.addressTwoInput.place(x=340, y=115, width=gv.inputWidth, height=gv.inputHeight)
-        gv.cityInput.place(x=340, y=140, width=gv.inputWidth, height=gv.inputHeight)
-        gv.stateInput.place(x=340, y=165, width=gv.inputWidth, height=gv.inputHeight)
-        gv.zipInput.place(x=340, y=190, width=gv.inputWidth, height=gv.inputHeight)
-        gv.phoneInput.place(x=340, y=215, width=gv.inputWidth, height=gv.inputHeight)
-        gv.classInput.place(x=340, y=240, width=gv.inputWidth, height=gv.inputHeight)
-        gv.empNumInput.place(x=340, y=265, width=gv.inputWidth, height=gv.inputHeight)
-        gv.passwordInput.place(x=340, y=290, width=gv.inputWidth, height=gv.inputHeight)
-        gv.departmentInput.place(x=340, y=315, width=gv.inputWidth, height=gv.inputHeight)
-        gv.payRateInput.place(x=340, y=340, width=gv.inputWidth, height=gv.inputHeight)
-        gv.payYTDInput.place(x=340, y=365, width=gv.inputWidth, height=gv.inputHeight)
-        gv.securityInput.place(x=340, y=390, width=gv.inputWidth, height=gv.inputHeight)
+        gv.fNameInput.place(x=340, y=50, width=gv.inputWidth, height=gv.inputHeight)
+        gv.lNameInput.place(x=340, y=75, width=gv.inputWidth, height=gv.inputHeight)
+        gv.addressInput.place(x=340, y=100, width=gv.inputWidth, height=gv.inputHeight)
+        gv.addressTwoInput.place(x=340, y=125, width=gv.inputWidth, height=gv.inputHeight)
+        gv.cityInput.place(x=340, y=150, width=gv.inputWidth, height=gv.inputHeight)
+        gv.stateInput.place(x=340, y=175, width=gv.inputWidth, height=gv.inputHeight)
+        gv.zipInput.place(x=340, y=200, width=gv.inputWidth, height=gv.inputHeight)
+        gv.phoneInput.place(x=340, y=225, width=gv.inputWidth, height=gv.inputHeight)
+        gv.classInput.place(x=340, y=250, width=gv.inputWidth, height=gv.inputHeight)
+        gv.empNumInput.place(x=340, y=275, width=gv.inputWidth, height=gv.inputHeight)
+        gv.passwordInput.place(x=340, y=300, width=gv.inputWidth, height=gv.inputHeight)
+        gv.departmentInput.place(x=340, y=325, width=gv.inputWidth, height=gv.inputHeight)
+        gv.payRateInput.place(x=340, y=350, width=gv.inputWidth, height=gv.inputHeight)
+        gv.payYTDInput.place(x=340, y=375, width=gv.inputWidth, height=gv.inputHeight)
+        gv.securityInput.place(x=340, y=400, width=gv.inputWidth, height=gv.inputHeight)
 
     def pay(self):
         self.controller.show_frame("PayrollProcessing")

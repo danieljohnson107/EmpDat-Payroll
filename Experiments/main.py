@@ -4,9 +4,6 @@ Trying to implement stacked frames into our program
 
 from ChangePassword import *
 from LoginPage import *
-from FindEmployee import *
-from PayrollProcessing import *
-from MyProfile import *
 from EnterNewEmployee import *
 
 global frame
@@ -16,7 +13,6 @@ class PayrollProcessingExcellence(Tk):
 
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
-        self.ud = UserData
         self.geometry("925x500")
         self.title('Payroll Processing Excellence: Team 5')
 
@@ -26,8 +22,7 @@ class PayrollProcessingExcellence(Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (ChangePassword, LoginPage, FindEmployee, PayrollProcessing,
-                  MyProfile, EnterNewEmployee):
+        for F in (ChangePassword, LoginPage):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
