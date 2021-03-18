@@ -4,6 +4,8 @@ Class file to save all global gui variables
 
 from tkinter import *
 import GlobalVariables as globe
+from tkinter.filedialog import askopenfilename
+
 
 
 class GuiValues(Frame):
@@ -58,13 +60,13 @@ class GuiValues(Frame):
                                       height=self.buttonHeight,
                                       bg=self.buttonColor,
                                       fg=self.buttonTextColor,
-                                      command=lambda: self.controller.show_frame("FindEmployee"))
+                                      command=lambda: self.openNewWindow("Timecards"))
         self.salesButton = Button(frame, text='Sales',
                                   width=self.buttonWidth,
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
                                   fg=self.buttonTextColor,
-                                  command=lambda: self.controller.show_frame("FindEmployee"))
+                                      command=lambda: self.openNewWindow("Sales"))
         self.myProfileButton = Button(frame, text='My Profile',
                                       width=self.buttonWidth,
                                       height=self.buttonHeight,
@@ -266,3 +268,31 @@ class GuiValues(Frame):
         self.payRateInput.insert(0, globe.ud.read_value(emp_id, "hourly"))
         self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
         self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))
+
+    def openNewWindow(self, title): 
+        master = Tk()
+        
+        master.geometry("800x300") 
+
+        master.title(title) 
+     
+        typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
+        fileInputLabel = Label(master, text="File for import:")
+        inputField= Entry(master, bg=self.inputEditColor, state='disabled',width=50)
+        uploadButton = Button(master, text="Upload", width=self.buttonWidth, bg=self.buttonColor,
+                                 height=self.buttonHeight, command=lambda:[ inputField.config(state='normal'),inputField.delete(0,END), inputField.insert(0, self.getFileName()), inputField.config(state='readonly')]
+        )
+        submitButton = Button(master, text="Submit", width=self.buttonWidth, bg=self.buttonColor,
+                                 height=self.buttonHeight, command=lambda:[master.destroy()]
+        )
+        
+
+       
+        typeLabel.place(x=100, y=50)
+        fileInputLabel.place(x=100, y=100)
+        inputField.place(x=200, y=100)
+        uploadButton.place(x=100, y=150)
+        submitButton.place(x=400, y=150)
+
+    def getFileName(self):
+        return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])

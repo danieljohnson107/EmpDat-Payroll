@@ -3,9 +3,12 @@ from tkinter import *
 # from PIL import imageTk, Image
 from UserData import *
 from GuiValues import *
+from tkinter.filedialog import askopenfilename
+
 
 ud = UserData()
 gv = GuiValues()
+
 ''' to use images yoy need to install pillow
 install with "pip install pillow" on your python to use
 ImageTk.PhotoImage(Image.open("imagename.png"))
@@ -56,10 +59,10 @@ class FindEmployee(Frame):
                                  command=self.employees, state=DISABLED)
         timeCardsButton = Button(self, text='Timecards', width=gv.buttonWidth,
                                  height=gv.buttonHeight, bg=gv.buttonColor,
-                                 command=self.timecards)
+                                 command=lambda: self.openNewWindow('Timecards'))
         salesButton = Button(self, text='   Sales   ', width=gv.buttonWidth,
                              height=gv.buttonHeight,
-                             command=self.sales, bg=gv.buttonColor)
+                             command= lambda: self.openNewWindow('Sales'), bg=gv.buttonColor)
         myProfileButton = Button(self, text='My Profile', width=gv.buttonWidth,
                                  height=gv.buttonHeight,
                                  command=self.myProfile, bg=gv.buttonColor)
@@ -222,6 +225,54 @@ class FindEmployee(Frame):
 
     def saveChanges(self):
         pass
+
+    def getFileName(self):
+        return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
+
+    def setFileName(self,  name):
+        selectedFile = name
+        return n
+
+    def openNewWindow(self, title): 
+        print("HI World")
+        master = Tk() 
+
+    
+  
+        # sets the geometry of main  
+        # root window 
+        master.geometry("925x500") 
+        
+        # Toplevel object which will  
+        # be treated as a new window 
+        # newWindow = Toplevel(master) 
+    
+        # sets the title of the 
+        # Toplevel widget 
+        master.title(title) 
+    
+        # # sets the geometry of toplevel 
+        # newWindow.geometry("200x200") 
+    
+        # A Label widget to show in toplevel 
+
+     
+        timecardLabel = Label(master, text=title+" file must be a .txt or .csv file.")
+        timecardInputLabel = Label(master, text="File for import:")
+        timecardInput= Entry(master, bg=gv.inputEditColor, state='disabled',width=50)
+        timecardSubmitButton = Button(master, text="Import", width=gv.buttonWidth, bg=gv.buttonColor,
+                                 height=gv.buttonHeight, command=lambda:[ timecardInput.config(state='normal'),timecardInput.delete(0,END), timecardInput.insert(0, self.getFileName()), timecardInput.config(state='readonly')]
+        )
+        
+
+       
+        timecardLabel.place(x=200, y=100)
+        timecardInputLabel.place(x=200, y=150)
+        timecardInput.place(x=300, y=150)
+        timecardSubmitButton.place(x=200, y=200)
+
+
+
 
     ''' last thing is create an event loop to watch
 
