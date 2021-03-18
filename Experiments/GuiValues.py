@@ -29,10 +29,24 @@ class GuiValues(Frame):
         self.buttonTextColor = "white"
         self.fontProp = ('calibre', 14, 'normal')
 
-        # Login page variables
+        # Entry variables
         self.name_var = StringVar()
         self.passw_var = StringVar()
         self.confirm_passw_var = StringVar()
+        self.fname_var = StringVar()
+        self.lname_var = StringVar()
+        self.address_var = StringVar()
+        self.address2_var = StringVar()
+        self.city_var = StringVar()
+        self.state_var = StringVar()
+        self.zip_var = StringVar()
+        self.phone_var = StringVar()
+        self.class_var = StringVar()
+        self.emp_num_var = StringVar()
+        self.department_var = StringVar()
+        self.pay_rate_var = StringVar()
+        self.pay_ytd_var = StringVar()
+        self.security_var = StringVar()
 
         # Buttons
         self.employeesButton = Button(frame, text='Employees',
@@ -157,25 +171,58 @@ class GuiValues(Frame):
         self.confirm_password_label = Label(frame, text="Confirm Password", font=self.fontProp)
 
         # Inputs
-        self.fNameInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.lNameInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.addressInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.addressTwoInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.cityInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.stateInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.zipInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.phoneInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.classInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.empNumInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.passwordInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.departmentInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.payRateInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.payYTDInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.securityInput = Entry(frame, bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.user_entry = Entry(frame, textvariable=self.name_var, font=self.fontProp)
-        self.password_entry = Entry(frame, textvariable=self.passw_var, show="*", font=self.fontProp)
-        self.set_password_entry = Entry(frame, textvariable=self.passw_var, show="*", font=self.fontProp)
-        self.confirm_password_entry = Entry(frame, textvariable=self.confirm_passw_var, show="*", font=self.fontProp)
+        self.fNameInput = Entry(frame, textvariable=self.fname_var,
+                                bg=self.inputEditColor,
+                                borderwidth=self.inputBorderWidth)
+        self.lNameInput = Entry(frame, textvariable=self.lname_var,
+                                bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
+        self.addressInput = Entry(frame, textvariable=self.address_var, bg=self.inputEditColor,
+                                  borderwidth=self.inputBorderWidth)
+        self.addressTwoInput = Entry(frame, textvariable=self.address2_var,
+                                     bg=self.inputEditColor,
+                                     borderwidth=self.inputBorderWidth)
+        self.cityInput = Entry(frame, textvariable=self.city_var,
+                               bg=self.inputEditColor,
+                               borderwidth=self.inputBorderWidth)
+        self.stateInput = Entry(frame, textvariable=self.state_var,
+                                bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
+        self.zipInput = Entry(frame, textvariable=self.zip_var, bg=self.inputEditColor,
+                              borderwidth=self.inputBorderWidth)
+        self.phoneInput = Entry(frame, textvariable=self.phone_var,
+                                bg=self.inputEditColor,
+                                borderwidth=self.inputBorderWidth)
+        self.classInput = Entry(frame, textvariable=self.class_var,
+                                bg=self.inputEditColor,
+                                borderwidth=self.inputBorderWidth)
+        self.empNumInput = Entry(frame, textvariable=self.emp_num_var,
+                                 bg=self.inputEditColor,
+                                 borderwidth=self.inputBorderWidth)
+        self.passwordInput = Entry(frame, textvariable=self.passw_var,
+                                   bg=self.inputEditColor,
+                                   borderwidth=self.inputBorderWidth)
+        self.departmentInput = Entry(frame, textvariable=self.department_var,
+                                     bg=self.inputEditColor,
+                                     borderwidth=self.inputBorderWidth)
+        self.payRateInput = Entry(frame, textvariable=self.pay_rate_var,
+                                  bg=self.inputEditColor,
+                                  borderwidth=self.inputBorderWidth)
+        self.payYTDInput = Entry(frame, textvariable=self.pay_ytd_var,
+                                 bg=self.inputEditColor,
+                                 borderwidth=self.inputBorderWidth)
+        self.securityInput = Entry(frame, textvariable=self.security_var,
+                                   bg=self.inputEditColor,
+                                   borderwidth=self.inputBorderWidth)
+        self.user_entry = Entry(frame, textvariable=self.name_var,
+                                font=self.fontProp)
+        self.password_entry = Entry(frame, textvariable=self.passw_var,
+                                    show="*",
+                                    font=self.fontProp)
+        self.set_password_entry = Entry(frame, textvariable=self.passw_var,
+                                        show="*",
+                                        font=self.fontProp)
+        self.confirm_password_entry = Entry(frame, textvariable=self.confirm_passw_var,
+                                            show="*",
+                                            font=self.fontProp)
 
     def create_nav_bar(self):
         self.employeesButton.place(x=0, y=0)
@@ -185,8 +232,6 @@ class GuiValues(Frame):
         self.myProfileButton.place(x=740, y=0)
 
     def my_profile_values(self):
-        self.controller.show_frame("MyProfile")
-
         emp_id = globe.ud.employee_number
 
         # Clear all fields in case of double click
@@ -211,15 +256,15 @@ class GuiValues(Frame):
         self.fNameInput.insert(0, globe.ud.read_value(emp_id, "first_name"))
         self.lNameInput.insert(0, globe.ud.read_value(emp_id, "last_name"))
         self.addressInput.insert(0, globe.ud.read_value(emp_id, "address"))
-        # self.addressTwoInput.insert(0, ud.read_value(emp_id, ""))
+        self.addressTwoInput.insert(0, globe.ud.read_value(emp_id, "address2"))
         self.cityInput.insert(0, globe.ud.read_value(emp_id, "city"))
         self.stateInput.insert(0, globe.ud.read_value(emp_id, "state"))
         self.zipInput.insert(0, globe.ud.read_value(emp_id, "zip"))
-        # self.phoneInput.insert(0, ud.read_value(emp_id, ""))
+        self.phoneInput.insert(0, globe.ud.read_value(emp_id, "phone_number"))
         self.classInput.insert(0, globe.ud.read_value(emp_id, "classification"))
         self.empNumInput.insert(0, globe.ud.read_value(emp_id, "id"))
         self.passwordInput.insert(0, globe.ud.read_value(emp_id, "password"))
-        # self.departmentInput.insert(0, ud.read_value(emp_id, ""))
+        self.departmentInput.insert(0, globe.ud.read_value(emp_id, "department"))
         self.payRateInput.insert(0, globe.ud.read_value(emp_id, "hourly"))
         self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
         self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))

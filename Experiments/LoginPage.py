@@ -43,8 +43,7 @@ class LoginPage(Frame):
             check = globe.ud.verify_user(employee_num, password)
 
             if check == 'None':
-                messagebox.showwarning("No Password!",
-                                       "Please Reset Your Password")
+                messagebox.showwarning("No Password!", "Please Reset Your Password")
             elif check:
                 # messagebox.showinfo("Success!", "Successfully Logged In")
                 self.controller.destroy()
@@ -52,6 +51,9 @@ class LoginPage(Frame):
             else:
                 messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
 
-        # Clear entry boxes
-        gv.user_entry.delete(0, 'end')
-        gv.password_entry.delete(0, 'end')
+        try:
+            # Clear entry boxes
+            gv.user_entry.delete(0, 'end')
+            gv.password_entry.delete(0, 'end')
+        except:
+            print("Error but all is well ;)")
