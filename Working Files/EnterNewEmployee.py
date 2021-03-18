@@ -56,7 +56,7 @@ class EnterNewEmployee(Frame):
                                  height=gv.buttonHeight,
                                  command=self.employees,
                                  state=DISABLED)
-        timeCardsButton = Button(self, text='Timecards',
+        timeCardsButton = Button(self, text='Timecardsards',
                                  width=gv.buttonWidth,
                                  height=gv.buttonHeight,
                                  bg=gv.buttonColor,
