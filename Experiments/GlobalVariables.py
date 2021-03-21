@@ -6,6 +6,8 @@ from UserData import *
 
 # Declare variables that can be accessed anywhere
 ud = UserData()
+salesFile = None
+timecardsFile = None
 
 
 class GlobalVariables:

@@ -5,6 +5,7 @@ Class file to save all global gui variables
 from tkinter import *
 import GlobalVariables as globe
 from tkinter.filedialog import askopenfilename
+import pandas as pd
 
 
 
@@ -283,7 +284,7 @@ class GuiValues(Frame):
                                  height=self.buttonHeight, command=lambda:[ inputField.config(state='normal'),inputField.delete(0,END), inputField.insert(0, self.getFileName()), inputField.config(state='readonly')]
         )
         submitButton = Button(master, text="Submit", width=self.buttonWidth, bg=self.buttonColor,
-                                 height=self.buttonHeight, command=lambda:[master.destroy()]
+                                 height=self.buttonHeight, command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()]
         )
         
 
@@ -296,3 +297,18 @@ class GuiValues(Frame):
 
     def getFileName(self):
         return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
+
+    def uploadFile(self, filePath, fileType):
+        try:
+            uploadedFile = pd.read_csv(filePath)
+            if(fileType == 'Timecards'):
+                globe.timecardsFile = uploadedFile
+                # print(globe.timecardsFile)
+            else:
+                globe.salesFile = uploadedFile
+                # print(globe.salesFile)
+
+            # print('fp', filePath)
+            # print('hi', uploadedFile)
+        except:
+            print("There was an error submitting the file")
