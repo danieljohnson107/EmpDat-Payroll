@@ -4,19 +4,6 @@ from tkinter import *
 from GuiValues import *
 import GlobalVariables as globe
 
-''' to use images yoy need to install pillow
-install with "pip install pillow" on your python to use
-ImageTk.PhotoImage(Image.open("imagename.png"))
-put image in widget
-then put on page
-'''
-
-''' everything is a widget
-start with a self
- widget
-this shoudl be first every time you use tkinter'''
-'''define the action the function will take'''
-
 
 class EnterNewEmployee(Frame):
 
@@ -28,6 +15,11 @@ class EnterNewEmployee(Frame):
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
+        # Disable buttons
+        gv.employeesButton.config(state=DISABLED)
+        gv.newEmployeeButton.config(state=DISABLED)
+
+        # Place Buttons
         gv.newEmployeeButton.place(x=0, y=40)
         gv.findEmployeeButton.place(x=0, y=80)
         gv.importEmployeeButton.place(x=0, y=120)

@@ -48,6 +48,7 @@ class GuiValues(Frame):
         self.pay_rate_var = StringVar()
         self.pay_ytd_var = StringVar()
         self.security_var = StringVar()
+        self.results_var = StringVar()
 
         # Buttons
         self.employeesButton = Button(frame, text='Employees',
@@ -67,7 +68,7 @@ class GuiValues(Frame):
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
                                   fg=self.buttonTextColor,
-                                      command=lambda: self.openNewWindow("Sales"))
+                                  command=lambda: self.openNewWindow("Sales"))
         self.myProfileButton = Button(frame, text='My Profile',
                                       width=self.buttonWidth,
                                       height=self.buttonHeight,
@@ -91,7 +92,7 @@ class GuiValues(Frame):
                                            height=self.buttonHeight,
                                            bg=self.buttonColor,
                                            fg=self.buttonTextColor,
-                                           command=lambda: self.controller.show_frame("FindEmployee"))
+                                           command=lambda: self.openNewWindow("New Employee"))
         self.saveProfileButton = Button(frame, text='Save',
                                         width=self.buttonWidth,
                                         height=self.buttonHeight,
@@ -145,6 +146,16 @@ class GuiValues(Frame):
                                     fg=self.buttonTextColor,
                                     font=self.fontProp,
                                     command=lambda: self.controller.show_frame("LoginPage"))
+        self.search_button = Button(frame, text='Search',
+                                    width=self.buttonWidth,
+                                    height=self.buttonHeight,
+                                    bg=self.buttonColor,
+                                    fg=self.buttonTextColor)
+        self.edit_button = Button(frame, text='Edit',
+                                  width=self.buttonWidth,
+                                  height=self.buttonHeight,
+                                  bg=self.buttonColor,
+                                  fg=self.buttonTextColor)
 
         # Labels
         self.fNameLabel = Label(frame, text="First Name:")
@@ -170,6 +181,7 @@ class GuiValues(Frame):
         self.salesDesc = Label(frame, text="Takes you to import sales reports")
         self.new_password_label = Label(frame, text="New Password", font=self.fontProp)
         self.confirm_password_label = Label(frame, text="Confirm Password", font=self.fontProp)
+        self.results_label = Label(frame, text="Results:", font=self.fontProp)
 
         # Inputs
         self.fNameInput = Entry(frame, textvariable=self.fname_var,
@@ -224,6 +236,8 @@ class GuiValues(Frame):
         self.confirm_password_entry = Entry(frame, textvariable=self.confirm_passw_var,
                                             show="*",
                                             font=self.fontProp)
+        self.results_entry = Entry(frame, bg=self.inputEditColor,
+                                   borderwidth=self.inputBorderWidth)
 
     def create_nav_bar(self):
         self.employeesButton.place(x=0, y=0)
@@ -279,13 +293,19 @@ class GuiValues(Frame):
      
         typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
         fileInputLabel = Label(master, text="File for import:")
-        inputField= Entry(master, bg=self.inputEditColor, state='disabled',width=50)
-        uploadButton = Button(master, text="Upload", width=self.buttonWidth, bg=self.buttonColor,
-                                 height=self.buttonHeight, command=lambda:[ inputField.config(state='normal'),inputField.delete(0,END), inputField.insert(0, self.getFileName()), inputField.config(state='readonly')]
-        )
-        submitButton = Button(master, text="Submit", width=self.buttonWidth, bg=self.buttonColor,
-                                 height=self.buttonHeight, command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()]
-        )
+        inputField= Entry(master, bg=self.inputEditColor, state='disabled', width=50)
+        uploadButton = Button(master, text="Upload",
+                              width=self.buttonWidth,
+                              bg=self.buttonColor,
+                              fg=self.buttonTextColor,
+                              height=self.buttonHeight,
+                              command=lambda:[inputField.config(state='normal'),inputField.delete(0,END), inputField.insert(0, self.getFileName()), inputField.config(state='readonly')])
+        submitButton = Button(master, text="Submit",
+                              width=self.buttonWidth,
+                              bg=self.buttonColor,
+                              fg=self.buttonTextColor,
+                              height=self.buttonHeight,
+                              command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()])
         
 
        
