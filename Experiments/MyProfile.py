@@ -1,6 +1,3 @@
-from tkinter import *
-
-# from PIL import imageTk, Image
 from GuiValues import *
 import GlobalVariables as globe
 from tkinter import messagebox

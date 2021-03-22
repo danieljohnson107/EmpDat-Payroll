@@ -8,7 +8,6 @@ from tkinter.filedialog import askopenfilename
 import pandas as pd
 
 
-
 class GuiValues(Frame):
 
     def __init__(self, frame, controller):
@@ -181,7 +180,7 @@ class GuiValues(Frame):
         self.salesDesc = Label(frame, text="Takes you to import sales reports")
         self.new_password_label = Label(frame, text="New Password", font=self.fontProp)
         self.confirm_password_label = Label(frame, text="Confirm Password", font=self.fontProp)
-        self.results_label = Label(frame, text="Results:", font=self.fontProp)
+        self.results_label = Label(frame, text="Results:")
 
         # Inputs
         self.fNameInput = Entry(frame, textvariable=self.fname_var,

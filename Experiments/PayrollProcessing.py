@@ -2,7 +2,6 @@
 Payroll Processing page
 """
 
-from tkinter import *
 from GuiValues import *
 
 
