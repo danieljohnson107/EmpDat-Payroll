@@ -8,6 +8,7 @@ class EnterNewEmployee(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
+        # initialize gui components and make global
         global gv
         gv = GuiValues(self, controller)
         gv.create_nav_bar()

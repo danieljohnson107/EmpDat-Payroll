@@ -22,6 +22,7 @@ class MyProfile(Frame):
         Frame.__init__(self, parent)
         controller = controller
 
+        # Initialize gui components and make global
         global gv
         gv = GuiValues(self, controller)
         gv.create_nav_bar()

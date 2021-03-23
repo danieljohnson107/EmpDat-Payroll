@@ -13,6 +13,7 @@ class LoginPage(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
+        # Initialize gui components
         global gv
         gv = GuiValues(self, controller)
 

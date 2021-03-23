@@ -7,6 +7,7 @@ class FindEmployee(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
+        # Initialize our gui components
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
