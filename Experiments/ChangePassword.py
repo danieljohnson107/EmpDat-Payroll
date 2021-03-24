@@ -15,7 +15,6 @@ class ChangePassword(Frame):
         global gv
         gv = GuiValues(self, controller)
 
-        # Set the command
         gv.set_password_button.config(command=self.set_password_pressed)
 
         # Place the labels and buttons

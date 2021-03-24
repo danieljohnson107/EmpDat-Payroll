@@ -13,6 +13,18 @@ class GuiValues(Frame):
     def __init__(self, frame, controller):
         Frame.__init__(self, frame)
 
+        #list of options for select lists
+        classifications = [
+            'Hourly',
+            'Salary',
+            'Commission',
+        ]
+        securityAssess = [
+            'Admin',
+            'General Manager',
+            'Employee',
+        ]
+
         self.parent = frame
         self.controller = controller
         self.count = 0
@@ -239,11 +251,15 @@ class GuiValues(Frame):
                                    borderwidth=self.inputBorderWidth)
 
     def create_nav_bar(self):
-        self.employeesButton.place(x=0, y=0)
-        self.timeCardsButton.place(x=185, y=0)
-        self.salesButton.place(x=370, y=0)
-        self.payrollButton.place(x=555, y=0)
-        self.myProfileButton.place(x=740, y=0)
+        if globe.emp_access == 1:
+            self.employeesButton.place(x=0, y=0)
+            self.timeCardsButton.place(x=185, y=0)
+            self.salesButton.place(x=370, y=0)
+            self.payrollButton.place(x=555, y=0)
+            self.myProfileButton.place(x=740, y=0)
+        else:
+            self.employeesButton.place(x=0, y=0)
+            self.myProfileButton.place(x=185, y=0)
 
     def my_profile_values(self):
         emp_id = globe.ud.employee_number
@@ -283,13 +299,13 @@ class GuiValues(Frame):
         self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
         self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))
 
-    def openNewWindow(self, title): 
+    def openNewWindow(self, title):
         master = Tk()
-        
-        master.geometry("800x300") 
 
-        master.title(title) 
-     
+        master.geometry("800x300")
+
+        master.title(title)
+
         typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
         fileInputLabel = Label(master, text="File for import:")
         inputField= Entry(master, bg=self.inputEditColor, state='disabled', width=50)
@@ -305,9 +321,6 @@ class GuiValues(Frame):
                               fg=self.buttonTextColor,
                               height=self.buttonHeight,
                               command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()])
-        
-
-       
         typeLabel.place(x=100, y=50)
         fileInputLabel.place(x=100, y=100)
         inputField.place(x=200, y=100)

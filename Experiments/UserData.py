@@ -3,7 +3,7 @@ Class file to import and edit user data
 """
 
 import pandas as pd
-
+import GlobalVariables as globe
 
 class UserData:
 
@@ -39,6 +39,11 @@ class UserData:
             return True
         else:
             return False
+
+    def access_check(self, emp_num):
+        read_access = self.employee_data.loc[self.employee_data["id"] == emp_num, "access"].values[0]
+        # set global user access variable
+        globe.emp_access = read_access
 
     def read_value(self, emp_num, field):
         value = self.employee_data.loc[self.employee_data["id"] == emp_num, field]

@@ -13,7 +13,6 @@ class LoginPage(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
-        # Initialize gui components
         global gv
         gv = GuiValues(self, controller)
 
@@ -41,16 +40,20 @@ class LoginPage(Frame):
         if employee_num == "" or password == "":
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
-            check = globe.ud.verify_user(employee_num, password)
+            try:
+                check = globe.ud.verify_user(employee_num, password)
 
-            if check == 'None':
-                messagebox.showwarning("No Password!", "Please Reset Your Password")
-            elif check:
-                # messagebox.showinfo("Success!", "Successfully Logged In")
-                self.controller.destroy()
-                app.App()
-            else:
-                messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
+                if check == 'None':
+                    messagebox.showwarning("No Password!", "Please Reset Your Password")
+                elif check:
+                    # messagebox.showinfo("Success!", "Successfully Logged In")
+                    self.controller.destroy()
+                    globe.ud.access_check(employee_num)
+                    app.App()
+                else:
+                    messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
+            except:
+                messagebox.showerror("Error!", "Please Contact your Administrator to set your Password!")
 
         try:
             # Clear entry boxes

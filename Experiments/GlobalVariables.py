@@ -8,6 +8,7 @@ from UserData import *
 ud = UserData()
 salesFile = None
 timecardsFile = None
+emp_access = None
 
 
 class GlobalVariables:
