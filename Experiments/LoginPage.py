@@ -26,6 +26,8 @@ class LoginPage(Frame):
 
         gv.login_button.config(command=self.login_pressed)
 
+        self.controller.bind('<Return>', lambda event: self.login_pressed())
+
     # Create method for logging in
     def login_pressed(self):
 
