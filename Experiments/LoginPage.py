@@ -35,7 +35,7 @@ class LoginPage(Frame):
         password = gv.passw_var.get()
 
         # Check to see if the user exists
-        if not globe.ud.user_exists(employee_num):
+        if not globe.pr.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Create a warning if either field is blank
@@ -43,7 +43,7 @@ class LoginPage(Frame):
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
             try:
-                check = globe.ud.verify_user(employee_num, password)
+                check = globe.pr.authenticate(employee_num, password)
 
                 if check == 'None':
                     messagebox.showwarning("No Password!", "Please Reset Your Password")

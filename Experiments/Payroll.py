@@ -24,6 +24,10 @@ def authenticate(emp_id, password):
     # Find the proper employee object
     for i in employees:
         if i.emp_id == emp_id:
+            # Make sure the password isn't blank
+            if i.password == "None":
+                return i.password
+
             # Check the password
             if i.password == password:
                 return True
@@ -31,6 +35,15 @@ def authenticate(emp_id, password):
                 return False
         else:
             pass
+
+
+def user_exists(emp_id):
+    # Check to see if the employee exists
+    for i in employees:
+        if i.emp_id == emp_id:
+            return True
+
+    return False
 
 
 def process_timecards():
