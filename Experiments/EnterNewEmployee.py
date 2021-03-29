@@ -60,9 +60,7 @@ class EnterNewEmployee(Frame):
         gv.securityInput.place(x=340, y=400, width=gv.inputWidth, height=gv.inputHeight)
 
     def save(self):
-        new_user = [gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
-                    gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(), gv.phone_var.get(),
-                    gv.class_var.get(), gv.passw_var.get(), gv.department_var.get(), gv.pay_rate_var.get(),
-                    gv.pay_ytd_var.get(), gv.security_var.get()]
-
-        globe.ud.new_user(new_user)
+        globe.pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
+                          gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(),
+                          gv.class_var.get(), gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
+                          gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())

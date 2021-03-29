@@ -25,20 +25,17 @@ def authenticate(emp_id, password):
     global current_emp
     current_emp = emp_id
 
-    # Find the proper employee object
-    for i in employees:
-        if i.emp_id == emp_id:
-            # Make sure the password isn't blank
-            if i.password == "None":
-                return i.password
+    employee = find_employee_by_id(emp_id)
 
-            # Check the password
-            if i.password == password:
-                return True
-            else:
-                return False
-        else:
-            pass
+    # Make sure the password isn't blank
+    if employee.password == "None":
+        return employee.password
+
+    # Check the password
+    if employee.password == password:
+        return True
+    else:
+        return False
 
 
 def user_exists(emp_id):
@@ -51,13 +48,13 @@ def user_exists(emp_id):
 
 
 def change_password(emp_id, value):
-    for i in employees:
-        if i.emp_id == emp_id:
-            if i.password != "None":
-                return False
+    employee = find_employee_by_id(emp_id)
 
-            i.password = value
-            return True
+    if employee.password != "None":
+        return False
+
+    employee.password = value
+    return True
 
 
 def process_timecards():
@@ -100,13 +97,10 @@ def find_employee_by_id(id):
 
 def get_profile(emp_id):
 
-    data = []
+    i = find_employee_by_id(emp_id)
 
-    for i in employees:
-        if i.emp_id == emp_id:
-            data = [i.emp_id, i.first_name, i.last_name, i.address, i.address2, i.city, i.state, i.postal_code,
-                    i.class_text, i.salary, i.commission, i.hourly, i.password, i.access, i.phone_number,
-                    i.department]
+    data = [i.emp_id, i.first_name, i.last_name, i.address, i.address2, i.city, i.state, i.postal_code, i.class_text,
+            i.salary, i.commission, i.hourly, i.password, i.access, i.phone_number, i.department]
 
     # Check the data for any none values
     for i in range(len(data)):
@@ -114,6 +108,51 @@ def get_profile(emp_id):
             data[i] = ""
 
     return data
+
+
+def save_profile(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification, salary,
+                 hourly, password, access, phone_number, department):
+
+    employee = find_employee_by_id(emp_id)
+
+    try:
+        # assign the values to the array
+        employee.emp_id = emp_id
+        employee.first_name = first_name
+        employee.last_name = last_name
+        employee.address = address
+        employee.address2 = address2
+        employee.city = city
+        employee.state = state
+        employee.postal_code = postal_code
+        employee.classification = classification
+        employee.salary = salary
+        employee.hourly = hourly
+        employee.password = password
+        employee.access = access
+        employee.phone_number = phone_number
+        employee.department = department
+
+        # Get a text version of the classification
+        if classification == 1:
+            employee.class_text = "Salaried"
+        elif classification == 2:
+            employee.class_text = "Commissioned"
+        else:
+            employee.class_text = "Hourly"
+
+        return True
+    except:
+        return False
+
+
+def new_user(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification, salary,
+             hourly, password, access, phone_number, department, commission=""):
+
+    new_employee = Employee(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification,
+                            salary, commission, hourly, password, access, phone_number, department)
+
+    employees.append(new_employee)
 
 
 class Employee:

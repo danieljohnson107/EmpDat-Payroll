@@ -235,44 +235,13 @@ class MyProfile(Frame):
         else:
             messagebox.showinfo("Error", "You do not have access. If you think you should please contact your system administrator.")
 
-
     def save_profile(self):
 
-        # Grab the new info
-        fname = gv.fname_var.get()
-        lname = gv.lname_var.get()
-        address = gv.address_var.get()
-        address2 = gv.address2_var.get()
-        city = gv.city_var.get()
-        state = gv.state_var.get()
-        zip = gv.zip_var.get()
-        phone = gv.phone_var.get()
-        classification = gv.class_var.get()
-        emp_num = gv.emp_num_var.get()
-        password = gv.passw_var.get()
-        department = gv.department_var.get()
-        pay_rate = gv.pay_rate_var.get()
-        pay_ytd = gv.pay_ytd_var.get()
-        security = gv.security_var.get()
-
         # Set the new values
-        globe.ud.change_field(globe.ud.employee_number, fname, 'first_name')
-        globe.ud.change_field(globe.ud.employee_number, lname, 'last_name')
-        globe.ud.change_field(globe.ud.employee_number, address, 'address')
-        globe.ud.change_field(globe.ud.employee_number, address2, 'address2')
-        globe.ud.change_field(globe.ud.employee_number, city, 'city')
-        globe.ud.change_field(globe.ud.employee_number, state, 'state')
-        globe.ud.change_field(globe.ud.employee_number, zip, 'zip')
-        globe.ud.change_field(globe.ud.employee_number, phone, 'phone_number')
-        globe.ud.change_field(globe.ud.employee_number,
-                              classification, 'classification')
-        globe.ud.change_field(globe.ud.employee_number, password, 'password')
-        globe.ud.change_field(globe.ud.employee_number,
-                              department, 'department')
-        globe.ud.change_field(globe.ud.employee_number, pay_rate, 'hourly')
-        globe.ud.change_field(globe.ud.employee_number, pay_ytd, 'salary')
-        globe.ud.change_field(globe.ud.employee_number, security, 'access')
-        globe.ud.change_field(globe.ud.employee_number, emp_num, 'id')
+        globe.pr.save_profile(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
+                              gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(),
+                              gv.class_var.get(), gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
+                              gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())
 
         # Pop up letting them know that it updated successfully
         messagebox.showinfo("Success!", "Successfully Updated")
