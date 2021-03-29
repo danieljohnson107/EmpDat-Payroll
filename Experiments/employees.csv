@@ -1,5 +1,5 @@
 ,id,first_name,last_name,address,address2,city,state,zip,classification,salary,commission,hourly,password,access,phone_number,department
-0,51-4678119,Nikolai,Russia,1221 W N E,nan,Pripyat,Ukraine,20020,3,200000,34,95.21,123456,1,1231234567,KGB
+0,51-4678119,Nikolai,Russia,1221 W N E,nan,Pripyat,Ukraine,20020,3,200000,34,95.21,None,1,1231234567,KGB
 1,68-9609244,Jed,Netti,85 Coolidge Terrace,,San Antonio,Texas,78255,2,159648.55,47,45.7,123,2,,
 2,47-2771794,Galvan,Solesbury,3 Drewry Junction,,Springfield,Illinois,62794,2,91934.89,39,47.92,None,3,,
 3,11-0469486,Reynard,Lorenzin,3233 Spaight Point,,Houston,Texas,77030,1,87578.56,27,86.84,None,3,,

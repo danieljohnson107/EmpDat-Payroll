@@ -34,7 +34,7 @@ class ChangePassword(Frame):
         confirmation = gv.confirm_passw_var.get()
 
         # Check to see if the user exists or if one was entered
-        if not globe.ud.user_exists(employee_num):
+        if not globe.pr.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Make sure passwords are the same
@@ -45,7 +45,7 @@ class ChangePassword(Frame):
         elif password != confirmation:
             messagebox.showwarning("Unmatched", "Passwords do not match!")
         else:
-            if not globe.ud.change_field(employee_num, password, 'password'):
+            if not globe.pr.change_field(employee_num, password):
                 messagebox.showerror("Password Exists!", "Password exists! Please log in to change your password!")
             else:
                 messagebox.showinfo("Success!", "Password Changed Successfully")

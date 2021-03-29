@@ -46,6 +46,16 @@ def user_exists(emp_id):
     return False
 
 
+def change_field(emp_id, value):
+    for i in employees:
+        if i.emp_id == emp_id:
+            if i.password != "None":
+                return False
+
+            i.password = value
+            return True
+
+
 def process_timecards():
     """Processes time cards for hourly employees"""
     with open("timecards.csv", "r") as time_file:

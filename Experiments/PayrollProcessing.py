@@ -33,7 +33,6 @@ class PayrollProcessing(Frame):
     def process_payroll(self):
         # Process Payroll
         try:
-            g.pr.authenticate("57", "123")
             g.pr.run_payroll()
             messagebox.showinfo("Success!", "Payroll was Successfully Processed. Log file is now available.")
         except:
