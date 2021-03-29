@@ -4,6 +4,7 @@ import os, os.path
 PAY_LOGFILE = "paylog.txt"
 
 employees = []
+global current_emp
 
 
 def load_employees():
@@ -21,6 +22,9 @@ def load_employees():
 
 
 def authenticate(emp_id, password):
+    global current_emp
+    current_emp = emp_id
+
     # Find the proper employee object
     for i in employees:
         if i.emp_id == emp_id:
@@ -46,7 +50,7 @@ def user_exists(emp_id):
     return False
 
 
-def change_field(emp_id, value):
+def change_password(emp_id, value):
     for i in employees:
         if i.emp_id == emp_id:
             if i.password != "None":
@@ -94,6 +98,24 @@ def find_employee_by_id(id):
             return employee
 
 
+def get_profile(emp_id):
+
+    data = []
+
+    for i in employees:
+        if i.emp_id == emp_id:
+            data = [i.emp_id, i.first_name, i.last_name, i.address, i.address2, i.city, i.state, i.postal_code,
+                    i.class_text, i.salary, i.commission, i.hourly, i.password, i.access, i.phone_number,
+                    i.department]
+
+    # Check the data for any none values
+    for i in range(len(data)):
+        if data[i] == 'nan':
+            data[i] = ""
+
+    return data
+
+
 class Employee:
     """Defines an Employee object
     Required Params: emp_id, first_name, last_name, address, address2, city, state, postal_code, classification, salary,
@@ -109,15 +131,23 @@ class Employee:
         self.city = city
         self.state = state
         self.postal_code = postal_code
+        self.classification = classification
+        self.class_text = ""
+        self.salary = salary
+        self.commission = commission
+        self.hourly = hourly
         self.password = password
         self.access = access
         self.phone_number = phone_number
         self.department = department
         if classification == 1:
+            self.class_text = "Salaried"
             self.classification = Salaried(salary)
         elif classification == 2:
+            self.class_text = "Commissioned"
             self.classification = Commissioned(salary, commission)
         else:
+            self.class_text = "Hourly"
             self.classification = Hourly(hourly)
     
     def make_hourly(self, hourly_rate):

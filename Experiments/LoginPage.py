@@ -54,8 +54,8 @@ class LoginPage(Frame):
                     app.App()
                 else:
                     messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
-            except:
-                messagebox.showerror("Error!", "Please Contact your Administrator to set your Password!")
+            except Exception as e:
+                messagebox.showerror("Error!", f"Please Contact your Administrator! {e}")
 
         try:
             # Clear entry boxes

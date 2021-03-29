@@ -45,7 +45,7 @@ class ChangePassword(Frame):
         elif password != confirmation:
             messagebox.showwarning("Unmatched", "Passwords do not match!")
         else:
-            if not globe.pr.change_field(employee_num, password):
+            if not globe.pr.change_password(employee_num, password):
                 messagebox.showerror("Password Exists!", "Password exists! Please log in to change your password!")
             else:
                 messagebox.showinfo("Success!", "Password Changed Successfully")
