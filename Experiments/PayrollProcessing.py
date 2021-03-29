@@ -2,7 +2,9 @@
 Payroll Processing page
 """
 
+from tkinter import messagebox
 from GuiValues import *
+import GlobalVariables as g
 
 
 class PayrollProcessing(Frame):
@@ -26,4 +28,13 @@ class PayrollProcessing(Frame):
 
         gv.importTimecardButton.config(command=lambda: gv.openNewWindow("Timecards"))
         gv.importSalesButton.config(command=lambda: gv.openNewWindow("Sales"))
-        
+        gv.processPayrollButton.config(command=self.process_payroll)
+
+    def process_payroll(self):
+        # Process Payroll
+        try:
+            g.pr.authenticate("57", "123")
+            g.pr.run_payroll()
+            messagebox.showinfo("Success!", "Payroll was Successfully Processed. Log file is now available.")
+        except:
+            messagebox.showinfo("Error!", "There was an Error in Processing Payroll! Please Contact your Administrator")
