@@ -20,6 +20,30 @@ def load_employees():
                                       float(tmp[10]), float(tmp[11]), float(tmp[12]), tmp[13], int(tmp[14]),
                                       tmp[15], tmp[16]))
 
+    # Create the .old file at the same time
+    old = open("employees.csv.old", "w")
+    for i in employees:
+        old.write(f"0,"
+                  f"{i.emp_id},"
+                  f"{i.first_name},"
+                  f"{i.last_name},"
+                  f"{i.address},"
+                  f"{i.address2},"
+                  f"{i.city},"
+                  f"{i.state},"
+                  f"{i.postal_code},"
+                  f"{class_number(i.class_text)},"
+                  f"{i.salary},"
+                  f"{i.commission},"
+                  f"{i.hourly},"
+                  f"{i.password},"
+                  f"{i.access},"
+                  f"{i.phone_number},"
+                  f"{i.department}\n")
+
+    # Close the files
+    old.close()
+
 
 def authenticate(emp_id, password):
     global current_emp
@@ -54,6 +78,7 @@ def change_password(emp_id, value):
         return False
 
     employee.password = value
+    write_out()
     return True
 
 
@@ -141,6 +166,8 @@ def save_profile(emp_id, first_name, last_name, address, address2, city, state, 
         else:
             employee.class_text = "Hourly"
 
+        write_out()
+
         return True
     except:
         return False
@@ -153,7 +180,39 @@ def new_user(emp_id, first_name, last_name, address, address2, city, state, post
                             salary, commission, hourly, password, access, phone_number, department)
 
     employees.append(new_employee)
+    write_out()
 
+
+def write_out():
+    """ Function to write all user data to employees.csv """
+    with open("employees.csv", "w") as new_data:
+        for i in employees:
+            new_data.write(f"0,"
+                           f"{i.emp_id},"
+                           f"{i.first_name},"
+                           f"{i.last_name},"
+                           f"{i.address},"
+                           f"{i.address2},"
+                           f"{i.city},"
+                           f"{i.state},"
+                           f"{i.postal_code},"
+                           f"{class_number(i.class_text)},"
+                           f"{i.salary},"
+                           f"{i.commission},"
+                           f"{i.hourly},"
+                           f"{i.password},"
+                           f"{i.access},"
+                           f"{i.phone_number},"
+                           f"{i.department}\n")
+
+
+def class_number(classification):
+    if classification == "Salaried":
+        return "1"
+    elif classification == "Commissioned":
+        return "2"
+    else:
+        return "3"
 
 class Employee:
     """Defines an Employee object
