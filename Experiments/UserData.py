@@ -52,6 +52,25 @@ class UserData:
 
         return value
 
+    def get_match(self, firstName=None, lastName=None, phoneNumber=None):
+        matchs = []
+        if lastName is not None:
+            for num in self.employee_data.id:
+                match = self.read_value(num, 'last_name')
+                if lastName.lower() in match.lower():
+                    matchs.append(num)
+        elif firstName is not None:
+            for num in self.employee_data.id:
+                match = self.read_value(num, 'first_name')
+                if firstName.lower() in match.lower():
+                    matchs.append(num)
+        elif phoneNumber is not None:
+            for num in self.employee_data.id:
+                match = self.read_value(num, 'phone_number')
+                if phoneNumber.lower() in match.lower():
+                    matchs.append(num)
+        return matchs
+
     def user_exists(self, emp_num):
         # Use the users last name to see if the exist
         last_name = self.employee_data.loc[self.employee_data["id"] == emp_num, 'last_name']

@@ -149,8 +149,9 @@ class GuiValues(Frame):
                                     width=self.buttonWidth,
                                     height=self.buttonHeight,
                                     bg=self.buttonColor,
-                                    fg=self.buttonTextColor)
-        self.edit_button = Button(frame, text='Edit',
+                                    fg=self.buttonTextColor
+                                    )
+        self.edit_button = Button(frame, text='View',
                                   width=self.buttonWidth,
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
@@ -235,8 +236,8 @@ class GuiValues(Frame):
         self.confirm_password_entry = Entry(frame, textvariable=self.confirm_passw_var,
                                             show="*",
                                             font=self.fontProp)
-        self.results_entry = Entry(frame, bg=self.inputEditColor,
-                                   borderwidth=self.inputBorderWidth)
+        self.results_entry = Listbox(frame, bg=self.inputEditColor,
+                                     borderwidth=self.inputBorderWidth)
 
     def create_nav_bar(self):
         self.employeesButton.place(x=0, y=0)
@@ -283,13 +284,13 @@ class GuiValues(Frame):
         self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
         self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))
 
-    def openNewWindow(self, title): 
+    def openNewWindow(self, title):
         master = Tk()
-        
-        master.geometry("800x300") 
 
-        master.title(title) 
-     
+        master.geometry("800x300")
+
+        master.title(title)
+
         typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
         fileInputLabel = Label(master, text="File for import:")
         inputField= Entry(master, bg=self.inputEditColor, state='disabled', width=50)
@@ -305,9 +306,9 @@ class GuiValues(Frame):
                               fg=self.buttonTextColor,
                               height=self.buttonHeight,
                               command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()])
-        
 
-       
+
+
         typeLabel.place(x=100, y=50)
         fileInputLabel.place(x=100, y=100)
         inputField.place(x=200, y=100)
