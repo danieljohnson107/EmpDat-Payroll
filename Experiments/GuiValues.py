@@ -13,6 +13,18 @@ class GuiValues(Frame):
     def __init__(self, frame, controller):
         Frame.__init__(self, frame)
 
+        #list of options for select lists
+        classifications = [
+            'Hourly',
+            'Salary',
+            'Commission',
+        ]
+        securityAssess = [
+            'Admin',
+            'General Manager',
+            'Employee',
+        ]
+
         self.parent = frame
         self.controller = controller
         self.count = 0
@@ -240,14 +252,19 @@ class GuiValues(Frame):
                                      borderwidth=self.inputBorderWidth)
 
     def create_nav_bar(self):
-        self.employeesButton.place(x=0, y=0)
-        self.timeCardsButton.place(x=185, y=0)
-        self.salesButton.place(x=370, y=0)
-        self.payrollButton.place(x=555, y=0)
-        self.myProfileButton.place(x=740, y=0)
+        if globe.emp_access == 1:
+            self.employeesButton.place(x=0, y=0)
+            self.timeCardsButton.place(x=185, y=0)
+            self.salesButton.place(x=370, y=0)
+            self.payrollButton.place(x=555, y=0)
+            self.myProfileButton.place(x=740, y=0)
+        else:
+            self.employeesButton.place(x=0, y=0)
+            self.myProfileButton.place(x=185, y=0)
 
     def my_profile_values(self):
-        emp_id = globe.ud.employee_number
+        emp_id = globe.pr.current_emp
+        user = globe.pr.get_profile(emp_id)
 
         # Clear all fields in case of double click
         self.fNameInput.delete(0, "end")
@@ -268,21 +285,21 @@ class GuiValues(Frame):
         self.securityInput.delete(0, "end")
 
         # Insert values from CSV
-        self.fNameInput.insert(0, globe.ud.read_value(emp_id, "first_name"))
-        self.lNameInput.insert(0, globe.ud.read_value(emp_id, "last_name"))
-        self.addressInput.insert(0, globe.ud.read_value(emp_id, "address"))
-        self.addressTwoInput.insert(0, globe.ud.read_value(emp_id, "address2"))
-        self.cityInput.insert(0, globe.ud.read_value(emp_id, "city"))
-        self.stateInput.insert(0, globe.ud.read_value(emp_id, "state"))
-        self.zipInput.insert(0, globe.ud.read_value(emp_id, "zip"))
-        self.phoneInput.insert(0, globe.ud.read_value(emp_id, "phone_number"))
-        self.classInput.insert(0, globe.ud.read_value(emp_id, "classification"))
-        self.empNumInput.insert(0, globe.ud.read_value(emp_id, "id"))
-        self.passwordInput.insert(0, globe.ud.read_value(emp_id, "password"))
-        self.departmentInput.insert(0, globe.ud.read_value(emp_id, "department"))
-        self.payRateInput.insert(0, globe.ud.read_value(emp_id, "hourly"))
-        self.payYTDInput.insert(0, globe.ud.read_value(emp_id, "salary"))
-        self.securityInput.insert(0, globe.ud.read_value(emp_id, "access"))
+        self.fNameInput.insert(0, user[1])
+        self.lNameInput.insert(0, user[2])
+        self.addressInput.insert(0, user[3])
+        self.addressTwoInput.insert(0, user[4])
+        self.cityInput.insert(0, user[5])
+        self.stateInput.insert(0, user[6])
+        self.zipInput.insert(0, user[7])
+        self.phoneInput.insert(0, user[14])
+        self.classInput.insert(0, user[8])
+        self.empNumInput.insert(0, user[0])
+        self.passwordInput.insert(0, user[12])
+        self.departmentInput.insert(0, user[15])
+        self.payRateInput.insert(0, user[11])
+        self.payYTDInput.insert(0, user[9])
+        self.securityInput.insert(0, user[13])
 
     def openNewWindow(self, title):
         master = Tk()
@@ -306,8 +323,6 @@ class GuiValues(Frame):
                               fg=self.buttonTextColor,
                               height=self.buttonHeight,
                               command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()])
-
-
 
         typeLabel.place(x=100, y=50)
         fileInputLabel.place(x=100, y=100)
