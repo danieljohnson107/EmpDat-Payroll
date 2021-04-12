@@ -213,7 +213,7 @@ def write_out():
     """ Function to write all user data to employees.csv """
     with open("employees.csv", "w") as new_data:
         new_data.write(",id,first_name,last_name,address,address2,city,state,zip,classification,salary,commission,"
-                       "hourly,password,access,phone_number,department")
+                       "hourly,password,access,phone_number,department\n")
         for i in employees:
             new_data.write(f"0,"
                            f"{i.emp_id},"
