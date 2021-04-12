@@ -37,9 +37,7 @@ class LoginPage(Frame):
         # Check to see if the user exists
         if not globe.pr.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
-
-        # Create a warning if either field is blank
-        if employee_num == "" or password == "":
+        elif employee_num == "" or password == "":
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
             try:
@@ -48,7 +46,7 @@ class LoginPage(Frame):
                 if check == 'None':
                     messagebox.showwarning("No Password!", "Please Reset Your Password")
                 elif check:
-                    # messagebox.showinfo("Success!", "Successfully Logged In")
+                    messagebox.showinfo("Success!", "Successfully Logged In")
                     self.controller.destroy()
                     globe.ud.access_check(employee_num)
                     app.App()
