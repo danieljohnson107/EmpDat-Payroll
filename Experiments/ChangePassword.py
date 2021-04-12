@@ -45,7 +45,15 @@ class ChangePassword(Frame):
         elif password != confirmation:
             messagebox.showwarning("Unmatched", "Passwords do not match!")
         else:
-            if not globe.pr.change_password(employee_num, password):
+            changed = globe.pr.change_password(employee_num, password)
+            if type(changed) != bool:
+                if changed == "Fail":
+                    messagebox.showerror("Password Not Strong Enough!", "Password has to have a minimum of:\n"
+                                                                        "1 Upper Case Letter\n"
+                                                                        "1 Special Character\n"
+                                                                        "1 Special Number\n"
+                                                                        "8 Characters Long")
+            elif not changed:
                 messagebox.showerror("Password Exists!", "Password exists! Please log in to change your password!")
             else:
                 messagebox.showinfo("Success!", "Password Changed Successfully")

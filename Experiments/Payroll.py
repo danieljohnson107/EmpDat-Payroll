@@ -72,14 +72,40 @@ def user_exists(emp_id):
 
 
 def change_password(emp_id, value):
+    """ Function to verify and set a new password """
     employee = find_employee_by_id(emp_id)
 
     if employee.password != "None":
         return False
 
-    employee.password = value
-    write_out()
-    return True
+    chars = 0
+    ints = 0
+    spec = 0
+    upper = 0
+    special_chars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "?", "_", "=", ",", "<", ">", "/", "'",
+                     '"', " "]
+
+    # Grab the total amount of each value
+    for i in value:
+        try:
+            int(i)
+            ints += 1
+        except ValueError:
+            if i in special_chars:
+                spec += 1
+            else:
+                chars += 1
+
+                # Check for upper case
+                if i.isupper():
+                    upper += 1
+
+    if len(value) >= 8 and upper >= 1 and spec >= 1 and ints >= 1:
+        employee.password = value
+        write_out()
+        return True
+    else:
+        return "Fail"
 
 
 def process_timecards():
@@ -186,6 +212,8 @@ def new_user(emp_id, first_name, last_name, address, address2, city, state, post
 def write_out():
     """ Function to write all user data to employees.csv """
     with open("employees.csv", "w") as new_data:
+        new_data.write(",id,first_name,last_name,address,address2,city,state,zip,classification,salary,commission,"
+                       "hourly,password,access,phone_number,department")
         for i in employees:
             new_data.write(f"0,"
                            f"{i.emp_id},"
