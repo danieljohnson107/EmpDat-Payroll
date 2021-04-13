@@ -3,12 +3,14 @@ Method for handling global variables saved in a JSON file
 """
 import json
 from UserData import *
+import Payroll as pr
 
 # Declare variables that can be accessed anywhere
 ud = UserData()
 salesFile = None
 timecardsFile = None
-
+emp_access = None
+employees = pr.load_employees()
 
 class GlobalVariables:
 

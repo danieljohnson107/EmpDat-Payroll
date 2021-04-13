@@ -26,6 +26,8 @@ class LoginPage(Frame):
 
         gv.login_button.config(command=self.login_pressed)
 
+        self.controller.bind('<Return>', lambda event: self.login_pressed())
+
     # Create method for logging in
     def login_pressed(self):
 
@@ -33,23 +35,27 @@ class LoginPage(Frame):
         password = gv.passw_var.get()
 
         # Check to see if the user exists
-        if not globe.ud.user_exists(employee_num):
+        if not globe.pr.user_exists(employee_num):
             messagebox.showwarning("Doesn't Exist", "Employee Number Doesn't Exist!")
 
         # Create a warning if either field is blank
         if employee_num == "" or password == "":
             messagebox.showwarning("WARNING", "Employee Number or Password fields cannot be empty!")
         else:
-            check = globe.ud.verify_user(employee_num, password)
+            try:
+                check = globe.pr.authenticate(employee_num, password)
 
-            if check == 'None':
-                messagebox.showwarning("No Password!", "Please Reset Your Password")
-            elif check:
-                # messagebox.showinfo("Success!", "Successfully Logged In")
-                self.controller.destroy()
-                app.App()
-            else:
-                messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
+                if check == 'None':
+                    messagebox.showwarning("No Password!", "Please Reset Your Password")
+                elif check:
+                    # messagebox.showinfo("Success!", "Successfully Logged In")
+                    self.controller.destroy()
+                    globe.ud.access_check(employee_num)
+                    app.App()
+                else:
+                    messagebox.showwarning("Error", "Employee Number or Password are Incorrect")
+            except Exception as e:
+                messagebox.showerror("Error!", f"Please Contact your Administrator! {e}")
 
         try:
             # Clear entry boxes

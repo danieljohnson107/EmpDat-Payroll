@@ -33,9 +33,8 @@ class App(Tk):
             # the one on the top of the stacking order
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("MyProfile")
-
+        self.show_frame("FindEmployee")
+       
     def show_frame(self, page_name):
         # Show a frame for the given page name
         frame = self.frames[page_name]
