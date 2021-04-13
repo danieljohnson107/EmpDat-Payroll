@@ -6,6 +6,7 @@ from FindEmployee import *
 from PayrollProcessing import *
 from MyProfile import *
 from EnterNewEmployee import *
+from EditEmployee import *
 
 global frame
 
