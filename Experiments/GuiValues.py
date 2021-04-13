@@ -167,7 +167,8 @@ class GuiValues(Frame):
                                   width=self.buttonWidth,
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
-                                  fg=self.buttonTextColor)
+                                  fg=self.buttonTextColor,
+                                  command=lambda: self.controller.show_frame("EditEmployee"))
 
         # Labels
         self.fNameLabel = Label(frame, text="First Name:")

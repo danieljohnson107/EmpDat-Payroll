@@ -12,6 +12,7 @@ timecardsFile = None
 emp_access = None
 employees = pr.load_employees()
 
+
 class GlobalVariables:
 
     # Path to the file
