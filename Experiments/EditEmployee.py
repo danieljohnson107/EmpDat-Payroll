@@ -140,7 +140,7 @@ class EditEmployee(Frame):
             # Buttons
 
             # Define save profile button
-            
+
             # Labels
             gv.fNameLabel.place(x=200, y=50)
             gv.lNameLabel.place(x=200, y=75)
@@ -161,7 +161,7 @@ class EditEmployee(Frame):
         else:
             messagebox.showinfo("Error", "You do not have access. If you think you should please contact your system administrator.")
 
-    def save(self):
+    def save_profile(self):
         globe.pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
                           gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(),
                           gv.class_var.get(), gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
