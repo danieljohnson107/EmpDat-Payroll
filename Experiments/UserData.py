@@ -57,17 +57,17 @@ class UserData:
         if lastName is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'last_name')
-                if lastName.lower() in match.lower():
+                if lastName.lower() in match[:len(lastName)].lower():
                     matchs.append(num)
         elif firstName is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'first_name')
-                if firstName.lower() in match.lower():
+                if firstName.lower() in match[:len(firstName)].lower():
                     matchs.append(num)
         elif phoneNumber is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'phone_number')
-                if phoneNumber.lower() in match.lower():
+                if phoneNumber.lower() in match[:len(phoneNumber)].lower():
                     matchs.append(num)
         return matchs
 
