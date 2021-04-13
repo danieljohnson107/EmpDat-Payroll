@@ -11,6 +11,8 @@ class EditEmployee(Frame):
         global gv
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
+        
+        gv.edit_profile_values()
 
         # admin
         if globe.emp_access == 1:
