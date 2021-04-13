@@ -79,7 +79,6 @@ class FindEmployee(Frame):
 
         else:
             messagebox.showwarning("Error", "You are not authorized to be here. You were never here...;)")
-            
 
     def search_pressed(self):
 
@@ -139,4 +138,3 @@ class FindEmployee(Frame):
     def edit_pressed(self):
 
         openThis = gv.results_entry.get(ANCHOR)
-        

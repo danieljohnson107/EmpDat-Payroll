@@ -24,7 +24,7 @@ class App(Tk):
 
         self.frames = {}
         for F in (FindEmployee, PayrollProcessing,
-                  MyProfile, EnterNewEmployee):
+                  MyProfile, EnterNewEmployee, EditEmployee):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -34,7 +34,7 @@ class App(Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
         self.show_frame("FindEmployee")
-       
+
     def show_frame(self, page_name):
         # Show a frame for the given page name
         frame = self.frames[page_name]
