@@ -167,8 +167,7 @@ class GuiValues(Frame):
                                   width=self.buttonWidth,
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
-                                  fg=self.buttonTextColor,
-                                  command=self.edit_pressed)
+                                  fg=self.buttonTextColor)
 
         # Labels
         self.fNameLabel = Label(frame, text="First Name:")
@@ -404,46 +403,48 @@ class GuiValues(Frame):
             self.results_entry.insert(END, item)
 
     def edit_pressed(self):
+        # self.edit_profile_values()
         self.controller.show_frame("EditEmployee")
 
-    def edit_profile_values(self):
-        openThis = self.results_entry.get(ANCHOR)
-        indId = openThis.index('id:')
-        indId += 3
-        searchID = openThis[indId:]
-        user = globe.pr.get_profile(searchID)
+    def edit_profile_values(self, selection=None):
+        if self.results_entry.get(ANCHOR) != '':
+            openThis = self.results_entry.get(ANCHOR)
+            indId = openThis.index('id:')
+            indId += 3
+            searchID = openThis[indId:]
+            user = globe.pr.get_profile(searchID)
 
-        # Clear all fields in case of double click
-        self.fNameInput.delete(0, "end")
-        self.fNameInput.delete(0, "end")
-        self.lNameInput.delete(0, "end")
-        self.addressInput.delete(0, "end")
-        self.addressTwoInput.delete(0, "end")
-        self.cityInput.delete(0, "end")
-        self.stateInput.delete(0, "end")
-        self.zipInput.delete(0, "end")
-        self.phoneInput.delete(0, "end")
-        self.classInput.delete(0, "end")
-        self.empNumInput.delete(0, "end")
-        self.passwordInput.delete(0, "end")
-        self.departmentInput.delete(0, "end")
-        self.payRateInput.delete(0, "end")
-        self.payYTDInput.delete(0, "end")
-        self.securityInput.delete(0, "end")
+            # Clear all fields in case of double click
+            self.fNameInput.delete(0, "end")
+            self.fNameInput.delete(0, "end")
+            self.lNameInput.delete(0, "end")
+            self.addressInput.delete(0, "end")
+            self.addressTwoInput.delete(0, "end")
+            self.cityInput.delete(0, "end")
+            self.stateInput.delete(0, "end")
+            self.zipInput.delete(0, "end")
+            self.phoneInput.delete(0, "end")
+            self.classInput.delete(0, "end")
+            self.empNumInput.delete(0, "end")
+            self.passwordInput.delete(0, "end")
+            self.departmentInput.delete(0, "end")
+            self.payRateInput.delete(0, "end")
+            self.payYTDInput.delete(0, "end")
+            self.securityInput.delete(0, "end")
 
-        # Insert values from CSV
-        self.fNameInput.insert(0, user[1])
-        self.lNameInput.insert(0, user[2])
-        self.addressInput.insert(0, user[3])
-        self.addressTwoInput.insert(0, user[4])
-        self.cityInput.insert(0, user[5])
-        self.stateInput.insert(0, user[6])
-        self.zipInput.insert(0, user[7])
-        self.phoneInput.insert(0, user[14])
-        self.classInput.insert(0, user[8])
-        self.empNumInput.insert(0, user[0])
-        self.passwordInput.insert(0, user[12])
-        self.departmentInput.insert(0, user[15])
-        self.payRateInput.insert(0, user[11])
-        self.payYTDInput.insert(0, user[9])
-        self.securityInput.insert(0, user[13])
+            # Insert values from CSV
+            self.fNameInput.insert(0, user[1])
+            self.lNameInput.insert(0, user[2])
+            self.addressInput.insert(0, user[3])
+            self.addressTwoInput.insert(0, user[4])
+            self.cityInput.insert(0, user[5])
+            self.stateInput.insert(0, user[6])
+            self.zipInput.insert(0, user[7])
+            self.phoneInput.insert(0, user[14])
+            self.classInput.insert(0, user[8])
+            self.empNumInput.insert(0, user[0])
+            self.passwordInput.insert(0, user[12])
+            self.departmentInput.insert(0, user[15])
+            self.payRateInput.insert(0, user[11])
+            self.payYTDInput.insert(0, user[9])
+            self.securityInput.insert(0, user[13])
