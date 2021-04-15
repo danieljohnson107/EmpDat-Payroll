@@ -403,8 +403,8 @@ class GuiValues(Frame):
             self.results_entry.insert(END, item)
 
     def edit_pressed(self):
-        # self.edit_profile_values()
         self.controller.show_frame("EditEmployee")
+        self.edit_profile_values()
 
     def edit_profile_values(self, selection=None):
         if self.results_entry.get(ANCHOR) != '':
