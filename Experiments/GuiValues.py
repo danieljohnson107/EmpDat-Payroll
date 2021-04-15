@@ -169,6 +169,11 @@ class GuiValues(Frame):
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
                                   fg=self.buttonTextColor)
+        self.testing = Button(frame, text='testing',
+                              width=self.buttonWidth,
+                              height=self.buttonHeight,
+                              bg=self.buttonColor,
+                              fg=self.buttonTextColor)
 
         # Labels
         self.fNameLabel = Label(frame, text="First Name:")
