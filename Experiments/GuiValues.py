@@ -422,6 +422,9 @@ class GuiValues(Frame):
         for item in results:
             self.results_entry.insert(END, item)
 
+    def set_anchor(self, selected=None):
+        globe.Anchor = self.results_entry.get(ANCHOR)
+
     def edit_pressed(self):
         self.controller.show_frame("EditEmployee")
         self.edit_profile_values()
@@ -468,3 +471,4 @@ class GuiValues(Frame):
             self.payRateInput.insert(0, user[11])
             self.payYTDInput.insert(0, user[9])
             self.securityInput.insert(0, user[13])
+            self.controller.update()

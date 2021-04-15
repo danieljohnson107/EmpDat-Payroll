@@ -95,12 +95,9 @@ class EditEmployee(Frame):
 
             # Buttons
             gv.saveProfileButton.place(x=0, y=40)
-            gv.testing.place(x=0, y=90)
 
             # Define save profile button
             gv.saveProfileButton.config(command=self.save_profile)
-            gv.testing.config(command=self.refresh)
-
 
             # Labels
             gv.fNameLabel.place(x=200, y=50)
@@ -145,7 +142,7 @@ class EditEmployee(Frame):
             gv.departmentInput.config(state=DISABLED)
 
             # Buttons
-            gv.testing.place(x=0, y=90)
+
             # Define save profile button
 
             # Labels
@@ -167,10 +164,6 @@ class EditEmployee(Frame):
 
         else:
             messagebox.showinfo("Error", "You do not have access. If you think you should please contact your system administrator.")
-
-    def refresh(self):
-        self.controller.show_frame('EditEmployee')
-        gv.edit_profile_values()
 
     def save_profile(self):
         globe.pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
