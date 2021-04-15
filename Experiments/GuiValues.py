@@ -13,7 +13,7 @@ class GuiValues(Frame):
     def __init__(self, frame, controller):
         Frame.__init__(self, frame)
 
-        #list of options for select lists
+        # list of options for select lists
         classifications = [
             'Hourly',
             'Salary',
@@ -122,7 +122,8 @@ class GuiValues(Frame):
                                    bg=self.buttonColor,
                                    fg=self.buttonTextColor,
                                    font=self.fontProp)
-        self.create_password_button = Button(frame, text="Don't Have a Password?",
+        self.create_password_button = Button(frame,
+                                             text="Don't Have a Password?",
                                              width=self.buttonWidth,
                                              height=self.buttonHeight,
                                              bg=self.buttonColor,
@@ -186,13 +187,16 @@ class GuiValues(Frame):
         self.payYTDLabel = Label(frame, text='Pay YTD:')
         self.securityAccessLabel = Label(frame, text='Security Access:')
         self.spacer = Label(frame, text="        ")
-        self.employee_number_label = Label(frame, text="Employee Number", font=self.fontProp)
+        self.employee_number_label = Label(frame, text="Employee Number",
+                                           font=self.fontProp)
         self.password_label = Label(frame, text="Password", font=self.fontProp)
         self.payrollDesc = Label(frame, text="Will process payroll for current pay cycle")
         self.timecardDesc = Label(frame, text="Takes you to import timecards")
         self.salesDesc = Label(frame, text="Takes you to import sales reports")
-        self.new_password_label = Label(frame, text="New Password", font=self.fontProp)
-        self.confirm_password_label = Label(frame, text="Confirm Password", font=self.fontProp)
+        self.new_password_label = Label(frame, text="New Password",
+                                        font=self.fontProp)
+        self.confirm_password_label = Label(frame, text="Confirm Password",
+                                            font=self.fontProp)
         self.results_label = Label(frame, text="Results:")
 
         # Inputs
@@ -200,8 +204,10 @@ class GuiValues(Frame):
                                 bg=self.inputEditColor,
                                 borderwidth=self.inputBorderWidth)
         self.lNameInput = Entry(frame, textvariable=self.lname_var,
-                                bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.addressInput = Entry(frame, textvariable=self.address_var, bg=self.inputEditColor,
+                                bg=self.inputEditColor,
+                                borderwidth=self.inputBorderWidth)
+        self.addressInput = Entry(frame, textvariable=self.address_var,
+                                  bg=self.inputEditColor,
                                   borderwidth=self.inputBorderWidth)
         self.addressTwoInput = Entry(frame, textvariable=self.address2_var,
                                      bg=self.inputEditColor,
@@ -210,8 +216,10 @@ class GuiValues(Frame):
                                bg=self.inputEditColor,
                                borderwidth=self.inputBorderWidth)
         self.stateInput = Entry(frame, textvariable=self.state_var,
-                                bg=self.inputEditColor, borderwidth=self.inputBorderWidth)
-        self.zipInput = Entry(frame, textvariable=self.zip_var, bg=self.inputEditColor,
+                                bg=self.inputEditColor,
+                                borderwidth=self.inputBorderWidth)
+        self.zipInput = Entry(frame, textvariable=self.zip_var,
+                              bg=self.inputEditColor,
                               borderwidth=self.inputBorderWidth)
         self.phoneInput = Entry(frame, textvariable=self.phone_var,
                                 bg=self.inputEditColor,
@@ -245,7 +253,8 @@ class GuiValues(Frame):
         self.set_password_entry = Entry(frame, textvariable=self.passw_var,
                                         show="*",
                                         font=self.fontProp)
-        self.confirm_password_entry = Entry(frame, textvariable=self.confirm_passw_var,
+        self.confirm_password_entry = Entry(frame,
+                                            textvariable=self.confirm_passw_var,
                                             show="*",
                                             font=self.fontProp)
         self.results_entry = Listbox(frame, bg=self.inputEditColor,
@@ -310,7 +319,8 @@ class GuiValues(Frame):
 
         typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
         fileInputLabel = Label(master, text="File for import:")
-        inputField= Entry(master, bg=self.inputEditColor, state='disabled', width=50)
+        inputField = Entry(master, bg=self.inputEditColor, state='disabled',
+                           width=50)
         uploadButton = Button(master, text="Upload",
                               width=self.buttonWidth,
                               bg=self.buttonColor,
@@ -331,7 +341,8 @@ class GuiValues(Frame):
         submitButton.place(x=400, y=150)
 
     def getFileName(self):
-        return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
+        return askopenfilename(filetypes=[("CSV files", "*.csv"),
+                                          ("Text files", "*.txt")])
 
     def uploadFile(self, filePath, fileType):
         try:
@@ -364,7 +375,8 @@ class GuiValues(Frame):
             lastName = globe.ud.read_value(searchNumber, 'last_name')
             userDepartment = globe.ud.read_value(searchNumber, 'department')
 
-            results.append(lastName + ', ' + firstName + ' Dept:' + userDepartment + ' id:' + searchNumber)
+            results.append(lastName + ', ' + firstName + ' Dept:' +
+                           userDepartment + ' id:' + searchNumber)
 
         elif (searchfName != ''):
             firstNameResults = globe.ud.get_match(searchfName)
@@ -373,7 +385,8 @@ class GuiValues(Frame):
                 lastName = globe.ud.read_value(person, 'last_name')
                 userDepartment = globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' + userDepartment + ' id:' + person)
+                results.append(lastName + ', ' + firstName + ' Dept:' +
+                               userDepartment + ' id:' + person)
 
         elif (searchlName != ''):
             lastNameResults = globe.ud.get_match('', searchlName)
@@ -382,7 +395,8 @@ class GuiValues(Frame):
                 lastName = globe.ud.read_value(person, 'last_name')
                 userDepartment = globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' + userDepartment + ' id:' + person)
+                results.append(lastName + ', ' + firstName + ' Dept:' +
+                               userDepartment + ' id:' + person)
 
         elif (searchPhone != ''):
             phoneNumberResults = globe.ud.get_match('', '', searchPhone)
@@ -391,7 +405,8 @@ class GuiValues(Frame):
                 lastName = globe.ud.read_value(person, 'last_name')
                 userDepartment = globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' + userDepartment + ' id:' + person)
+                results.append(lastName + ', ' + firstName + ' Dept:' +
+                               userDepartment + ' id:' + person)
         else:
             messagebox.showwarning('No Values Entered', 'You must enter a value in one of the search boxes to get a search result.')
 

@@ -17,7 +17,7 @@ class FindEmployee(Frame):
             # Disable button
             gv.findEmployeeButton.config(state=DISABLED)
             gv.employeesButton.config(state=DISABLED)
-            gv.edit_button.config(command=lambda: self.controller.show_frame('EditEmployee'))
+            gv.edit_button.config(command=gv.edit_pressed)
             gv.results_entry.bind("<<ListboxSelect>>", gv.edit_profile_values)
 
             # Create buttons
@@ -43,7 +43,7 @@ class FindEmployee(Frame):
         elif globe.emp_access == 2:
             # Disable button
             gv.findEmployeeButton.config(state=DISABLED)
-            gv.edit_button.config(command=lambda: self.controller.show_frame('EditEmployee'))
+            gv.edit_button.config(command=gv.edit_pressed)
             gv.results_entry.bind("<<ListboxSelect>>", gv.edit_profile_values)
 
             # Create buttons
@@ -65,7 +65,7 @@ class FindEmployee(Frame):
         elif globe.emp_access == 3:
             # Disable button
             gv.findEmployeeButton.config(state=DISABLED)
-            gv.edit_button.config(command=lambda: self.controller.show_frame('EditEmployee'))
+            gv.edit_button.config(command=gv.edit_pressed)
             gv.results_entry.bind("<<ListboxSelect>>", gv.edit_profile_values)
 
             # Create buttons
