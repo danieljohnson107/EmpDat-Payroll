@@ -16,8 +16,10 @@ def load_employees():
                 first_line = False
                 continue
             tmp = line[:-1].split(",")
-            employees.append(Employee(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7], int(tmp[8]), int(tmp[9]),
-                                      float(tmp[10]), float(tmp[11]), float(tmp[12]), tmp[13], int(tmp[14]),
+            employees.append(Employee(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5],
+                                      tmp[6], tmp[7], int(tmp[8]), int(tmp[9]),
+                                      float(tmp[10]), float(tmp[11]),
+                                      float(tmp[12]), tmp[13], int(tmp[14]),
                                       tmp[15], tmp[16]))
 
     # Create the .old file at the same time
@@ -275,7 +277,7 @@ class Employee:
         else:
             self.class_text = "Hourly"
             self.classification = Hourly(hourly)
-    
+
     def make_hourly(self, hourly_rate):
         """Sets the Employee classification to hourly"""
         self.classification = Hourly(hourly_rate)
@@ -322,7 +324,7 @@ class Salaried(Classification):
     """Defines methods for salaried Employees"""
     def __init__(self, salary):
         self.salary = salary
-    
+
     def compute_pay(self):
         return round(self.salary/24, 2)
 
