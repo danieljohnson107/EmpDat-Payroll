@@ -11,6 +11,8 @@ salesFile = None
 timecardsFile = None
 emp_access = None
 employees = pr.load_employees()
+Anchor = ''
+
 
 class GlobalVariables:
 
