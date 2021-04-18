@@ -145,6 +145,8 @@ def find_employee_by_id(id):
         if employee.emp_id == id:
             return employee
 
+    return False
+
 
 def get_profile(emp_id):
 

@@ -346,8 +346,7 @@ class GuiValues(Frame):
         submitButton.place(x=400, y=150)
 
     def getFileName(self):
-        return askopenfilename(filetypes=[("CSV files", "*.csv"),
-                                          ("Text files", "*.txt")])
+        return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
 
     def uploadFile(self, filePath, fileType):
         try:
