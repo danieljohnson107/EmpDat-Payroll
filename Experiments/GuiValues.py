@@ -3,9 +3,10 @@ Class file to save all global gui variables
 """
 
 from tkinter import *
-import GlobalVariables as globe
 from tkinter.filedialog import askopenfilename
 import pandas as pd
+import GlobalVariables as globe
+from tkinter import messagebox
 
 
 class GuiValues(Frame):
@@ -85,7 +86,7 @@ class GuiValues(Frame):
                                       height=self.buttonHeight,
                                       bg=self.buttonColor,
                                       fg=self.buttonTextColor,
-                                      command=lambda: self.controller.show_frame("MyProfile"))
+                                      command=self.my_profile_pressed)
         self.newEmployeeButton = Button(frame, text='Enter New\nEmployee',
                                         width=self.buttonWidth,
                                         height=self.buttonHeight,
@@ -115,7 +116,7 @@ class GuiValues(Frame):
                                     height=self.buttonHeight,
                                     bg=self.buttonColor,
                                     fg=self.buttonTextColor,
-                                    command=lambda: self.controller.show_frame("PayrollProcessing"))
+                                    command=self.PayrollProcessingRefresh)
         self.login_button = Button(frame, text="Login",
                                    width=self.buttonWidth,
                                    height=self.buttonHeight,
@@ -168,8 +169,14 @@ class GuiValues(Frame):
                                   width=self.buttonWidth,
                                   height=self.buttonHeight,
                                   bg=self.buttonColor,
-                                  fg=self.buttonTextColor)
+                                  fg=self.buttonTextColor,
+                                  command=self.edit_pressed)
         self.testing = Button(frame, text='testing',
+                              width=self.buttonWidth,
+                              height=self.buttonHeight,
+                              bg=self.buttonColor,
+                              fg=self.buttonTextColor)
+        self.refresh = Button(frame, text='Refresh',
                               width=self.buttonWidth,
                               height=self.buttonHeight,
                               bg=self.buttonColor,
@@ -337,7 +344,7 @@ class GuiValues(Frame):
                               bg=self.buttonColor,
                               fg=self.buttonTextColor,
                               height=self.buttonHeight,
-                              command=lambda:[self.uploadFile(inputField.get(), title), master.destroy()])
+                              command=lambda:[self.uploadFile(inputField.get(), title), master.destroy(), self.PayrollProcessingRefresh()])
 
         typeLabel.place(x=100, y=50)
         fileInputLabel.place(x=100, y=100)
@@ -361,7 +368,7 @@ class GuiValues(Frame):
             # print('fp', filePath)
             # print('hi', uploadedFile)
         except:
-            print("There was an error submitting the file")
+            messagebox.showerror("Error!", "There was an error submitting the file")
 
     def search_pressed(self):
 
@@ -425,49 +432,26 @@ class GuiValues(Frame):
         globe.Anchor = self.results_entry.get(ANCHOR)
 
     def edit_pressed(self):
-        self.controller.show_frame("EditEmployee")
-        self.edit_profile_values()
-
-    def edit_profile_values(self, selection=None):
+        # self.controller.show_frame("EditEmployee")
+        # self.edit_profile_values()
         if self.results_entry.get(ANCHOR) != '':
             openThis = self.results_entry.get(ANCHOR)
             indId = openThis.index('id:')
             indId += 3
             searchID = openThis[indId:]
             user = globe.pr.get_profile(searchID)
+            globe.search_result = user
 
-            # Clear all fields in case of double click
-            self.fNameInput.delete(0, "end")
-            self.fNameInput.delete(0, "end")
-            self.lNameInput.delete(0, "end")
-            self.addressInput.delete(0, "end")
-            self.addressTwoInput.delete(0, "end")
-            self.cityInput.delete(0, "end")
-            self.stateInput.delete(0, "end")
-            self.zipInput.delete(0, "end")
-            self.phoneInput.delete(0, "end")
-            self.classInput.delete(0, "end")
-            self.empNumInput.delete(0, "end")
-            self.passwordInput.delete(0, "end")
-            self.departmentInput.delete(0, "end")
-            self.payRateInput.delete(0, "end")
-            self.payYTDInput.delete(0, "end")
-            self.securityInput.delete(0, "end")
+        self.EditRefresh()
 
-            # Insert values from CSV
-            self.fNameInput.insert(0, user[1])
-            self.lNameInput.insert(0, user[2])
-            self.addressInput.insert(0, user[3])
-            self.addressTwoInput.insert(0, user[4])
-            self.cityInput.insert(0, user[5])
-            self.stateInput.insert(0, user[6])
-            self.zipInput.insert(0, user[7])
-            self.phoneInput.insert(0, user[14])
-            self.classInput.insert(0, user[8])
-            self.empNumInput.insert(0, user[0])
-            self.passwordInput.insert(0, user[12])
-            self.departmentInput.insert(0, user[15])
-            self.payRateInput.insert(0, user[11])
-            self.payYTDInput.insert(0, user[9])
-            self.securityInput.insert(0, user[13])
-            self.controller.update()
+    def PayrollProcessingRefresh(self):
+        self.controller.replace_PayrollProcessing()
+        self.controller.show_frame("PayrollProcessing")
+
+    def EditRefresh(self):
+        self.controller.replace_EditEmployee()
+        self.controller.show_frame("EditEmployee")
+
+    def my_profile_pressed(self):
+        self.controller.replace_my_profile()
+        self.controller.show_frame("MyProfile")

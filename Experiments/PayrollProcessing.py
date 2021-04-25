@@ -5,6 +5,7 @@ Payroll Processing page
 from tkinter import messagebox
 from GuiValues import *
 import GlobalVariables as g
+from app import *
 
 
 class PayrollProcessing(Frame):
@@ -12,11 +13,9 @@ class PayrollProcessing(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
 
+        global gv
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
-
-
-        gv.payrollButton.config(state=DISABLED)
 
         gv.processPayrollButton.place(x=0, y=40)
         gv.importTimecardButton.place(x=0, y=80)
@@ -26,9 +25,15 @@ class PayrollProcessing(Frame):
         gv.timecardDesc.place(x=200, y=90)
         gv.salesDesc.place(x=200, y=130)
 
+        # Disable the process payroll if there aren't the sales and timecards files
+        if g.salesFile is None and g.timecardsFile is None:
+            gv.processPayrollButton.config(state=DISABLED)
+        else:
+            gv.processPayrollButton.config(state=NORMAL)
+
+        gv.processPayrollButton.config(command=self.process_payroll)
         gv.importTimecardButton.config(command=lambda: gv.openNewWindow("Timecards"))
         gv.importSalesButton.config(command=lambda: gv.openNewWindow("Sales"))
-        gv.processPayrollButton.config(command=self.process_payroll)
 
     def process_payroll(self):
         # Process Payroll

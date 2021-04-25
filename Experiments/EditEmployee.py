@@ -4,7 +4,6 @@ from tkinter import messagebox
 
 
 class EditEmployee(Frame):
-
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
@@ -13,7 +12,7 @@ class EditEmployee(Frame):
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
-        gv.edit_profile_values()
+        self.fill_values()
 
         # admin
         if globe.emp_access == 1:
@@ -25,7 +24,8 @@ class EditEmployee(Frame):
 
             # Buttons
             gv.saveProfileButton.place(x=0, y=40)
-            gv.testing.place(x=0, y=90)
+            # gv.refresh.place(x=0, y=80)
+            # gv.refresh.config(command=None)
 
             # Define save profile button
             gv.saveProfileButton.config(command=self.save_profile)
@@ -166,7 +166,48 @@ class EditEmployee(Frame):
             messagebox.showinfo("Error", "You do not have access. If you think you should please contact your system administrator.")
 
     def save_profile(self):
-        globe.pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
-                          gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(),
-                          gv.class_var.get(), gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
-                          gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())
+        # Set the new values
+        globe.pr.save_profile(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(), gv.address_var.get(),
+                              gv.address2_var.get(), gv.city_var.get(), gv.state_var.get(), gv.zip_var.get(),
+                              gv.class_var.get(), gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
+                              gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())
+
+        # Pop up letting them know that it updated successfully
+        messagebox.showinfo("Success!", "Successfully Updated")
+
+    def fill_values(self):
+        if globe.search_result != '':
+            # Clear all fields in case of double click
+            gv.fNameInput.delete(0, "end")
+            gv.fNameInput.delete(0, "end")
+            gv.lNameInput.delete(0, "end")
+            gv.addressInput.delete(0, "end")
+            gv.addressTwoInput.delete(0, "end")
+            gv.cityInput.delete(0, "end")
+            gv.stateInput.delete(0, "end")
+            gv.zipInput.delete(0, "end")
+            gv.phoneInput.delete(0, "end")
+            gv.classInput.delete(0, "end")
+            gv.empNumInput.delete(0, "end")
+            gv.passwordInput.delete(0, "end")
+            gv.departmentInput.delete(0, "end")
+            gv.payRateInput.delete(0, "end")
+            gv.payYTDInput.delete(0, "end")
+            gv.securityInput.delete(0, "end")
+
+            # Insert values from CSV
+            gv.fNameInput.insert(0, globe.search_result[1])
+            gv.lNameInput.insert(0, globe.search_result[2])
+            gv.addressInput.insert(0, globe.search_result[3])
+            gv.addressTwoInput.insert(0, globe.search_result[4])
+            gv.cityInput.insert(0, globe.search_result[5])
+            gv.stateInput.insert(0, globe.search_result[6])
+            gv.zipInput.insert(0, globe.search_result[7])
+            gv.phoneInput.insert(0, globe.search_result[14])
+            gv.classInput.insert(0, globe.search_result[8])
+            gv.empNumInput.insert(0, globe.search_result[0])
+            gv.passwordInput.insert(0, globe.search_result[12])
+            gv.departmentInput.insert(0, globe.search_result[15])
+            gv.payRateInput.insert(0, globe.search_result[11])
+            gv.payYTDInput.insert(0, globe.search_result[9])
+            gv.securityInput.insert(0, globe.search_result[13])

@@ -12,6 +12,7 @@ timecardsFile = None
 emp_access = None
 employees = pr.load_employees()
 Anchor = ''
+search_result = ''
 
 
 class GlobalVariables:

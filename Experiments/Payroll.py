@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import os, os.path
+import GlobalVariables as g
 
 PAY_LOGFILE = "paylog.txt"
 
@@ -110,7 +111,7 @@ def change_password(emp_id, value):
 
 def process_timecards():
     """Processes time cards for hourly employees"""
-    with open("timecards.csv", "r") as time_file:
+    with open(g.timecardsFile, "r") as time_file:
         for line in time_file:
             emp_time = line[:-1].split(",")
             emp = find_employee_by_id(emp_time[0])
@@ -121,7 +122,7 @@ def process_timecards():
 
 def process_receipts():
     """Processes reciepts for commissioned employees"""
-    with open("receipts.csv", "r") as receipts_file:
+    with open(g.salesFile, "r") as receipts_file:
         for line in receipts_file:
             emp_receipts = line[:-1].split(",")
             emp = find_employee_by_id(emp_receipts[0])
@@ -243,6 +244,7 @@ def class_number(classification):
         return "2"
     else:
         return "3"
+
 
 class Employee:
     """Defines an Employee object
