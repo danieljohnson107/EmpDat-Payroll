@@ -25,6 +25,7 @@ class EditEmployee(Frame):
 
             # Buttons
             gv.saveProfileButton.place(x=0, y=40)
+            gv.testing.place(x=0, y=90)
 
             # Define save profile button
             gv.saveProfileButton.config(command=self.save_profile)

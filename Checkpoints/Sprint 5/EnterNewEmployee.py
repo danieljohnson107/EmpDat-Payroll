@@ -9,7 +9,7 @@ class EnterNewEmployee(Frame):
         self.controller = controller
 
         global gv
-        gv = globe.GuiValues(self, controller)
+        gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
         # Disable buttons
