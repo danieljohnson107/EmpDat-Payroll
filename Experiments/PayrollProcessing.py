@@ -26,7 +26,8 @@ class PayrollProcessing(Frame):
         gv.sales_desc.place(x=200, y=130)
 
         # Disable the process payroll if there aren't the sales and timecards files
-        if Globe.sales_file is None and Globe.timecards_file is None:
+        if Globe.sales_file is None and Globe.timecards_file is None or \
+                Globe.timecards_file is None or Globe.sales_file is None:
             gv.process_payroll_button.config(state=DISABLED)
         else:
             gv.process_payroll_button.config(state=NORMAL)
@@ -46,3 +47,8 @@ class PayrollProcessing(Frame):
         except Exception as error:
             messagebox.showinfo("Error!", f"There was an Error in Processing Payroll! "
                                           f"Please Contact your Administrator: {error}")
+
+        # Reset the values and refresh the page
+        Globe.timecards_file = None
+        Globe.sales_file = None
+        gv.payroll_processing_refresh()
