@@ -2,21 +2,23 @@
 Method for handling global variables saved in a JSON file
 """
 import json
-from UserData import *
-import Payroll as pr
+from UserData import UserData
+import Payroll as Pr
 
 # Declare variables that can be accessed anywhere
 ud = UserData()
-salesFile = None
-timecardsFile = None
-emp_access = None
-employees = pr.load_employees()
-Anchor = ''
+sales_file = None
+timecards_file = None
+EMPACCESS = None
+ANCHOR = ''
 search_result = ''
+
+# Load the employees
+Pr.load_employees()
 
 
 class GlobalVariables:
-
+    """Class to store global variables in a JSON"""
     # Path to the file
     FILE = "JSON/Global.json"
 
@@ -24,18 +26,18 @@ class GlobalVariables:
     def __init__(self):
         return
 
-    # Open method used for initially importing global variables
     def open(self):
+        """Method to open the file"""
         # Open the json file specifying utf-8 just in case
         json_file = open(self.FILE, "r")
 
         # Check to see if the file has something in it or return prematurely
         if json_file.read() == '' or json_file.read() is None:
-            return
+            return None
 
         # Load the json data and assign it to global_vars
-        with open(self.FILE) as f:
-            global_vars = json.load(f)
+        with open(self.FILE) as file:
+            global_vars = json.load(file)
 
         # Close the json file
         json_file.close()
@@ -46,9 +48,8 @@ class GlobalVariables:
         # Return the global variables to the caller
         return global_vars
 
-    # Closing method to save any global variables that have been changed
     def close(self, new_dict):
-
+        """Method to save the files"""
         # Open the json file with write privileges
         json_file = open(self.FILE, "w")
 

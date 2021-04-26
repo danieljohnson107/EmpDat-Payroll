@@ -1,10 +1,12 @@
-from GuiValues import *
-import GlobalVariables as globe
-from tkinter import messagebox
+"""Class file for Find Employee frame"""
+
+from tkinter import messagebox, Frame, DISABLED
+from GuiValues import GuiValues
+import GlobalVariables as Globe
 
 
 class FindEmployee(Frame):
-
+    """Class for the find employee frame"""
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
@@ -13,73 +15,73 @@ class FindEmployee(Frame):
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
-        if globe.emp_access == 1:
+        if Globe.EMPACCESS == 1:
             # Disable button
-            gv.findEmployeeButton.config(state=DISABLED)
-            gv.employeesButton.config(state=DISABLED)
+            gv.find_employee_button.config(state=DISABLED)
+            gv.employees_button.config(state=DISABLED)
             gv.results_entry.bind("<<ListboxSelect>>", gv.set_anchor)
 
             # Create buttons
-            gv.newEmployeeButton.place(x=0, y=40)
-            gv.findEmployeeButton.place(x=0, y=80)
-            gv.importEmployeeButton.place(x=0, y=120)
+            gv.new_employee_button.place(x=0, y=40)
+            gv.find_employee_button.place(x=0, y=80)
+            gv.import_employee_button.place(x=0, y=120)
             gv.search_button.place(x=600, y=50)
             gv.edit_button.place(x=600, y=200)
 
             # Labels
-            gv.empNumberLabel.place(x=200, y=50)
-            gv.fNameLabel.place(x=200, y=75)
-            gv.lNameLabel.place(x=200, y=100)
-            gv.phoneLabel.place(x=200, y=125)
+            gv.emp_number_label.place(x=200, y=50)
+            gv.f_name_label.place(x=200, y=75)
+            gv.l_name_label.place(x=200, y=100)
+            gv.phone_label.place(x=200, y=125)
             gv.results_label.place(x=200, y=200)
 
             # Inputs
-            gv.empNumInput.place(x=340, y=50, width=240, height=gv.inputHeight)
-            gv.fNameInput.place(x=340, y=75, width=240, height=gv.inputHeight)
-            gv.lNameInput.place(x=340, y=100, width=240, height=gv.inputHeight)
-            gv.phoneInput.place(x=340, y=125, width=240, height=gv.inputHeight)
+            gv.emp_num_input.place(x=340, y=50, width=240, height=gv.input_height)
+            gv.f_name_input.place(x=340, y=75, width=240, height=gv.input_height)
+            gv.l_name_input.place(x=340, y=100, width=240, height=gv.input_height)
+            gv.phone_input.place(x=340, y=125, width=240, height=gv.input_height)
             gv.results_entry.place(x=340, y=200, width=240, height=100)
-        elif globe.emp_access == 2:
+        elif Globe.EMPACCESS == 2:
             # Disable button
-            gv.findEmployeeButton.config(state=DISABLED)
+            gv.find_employee_button.config(state=DISABLED)
             gv.results_entry.bind("<<ListboxSelect>>", gv.set_anchor)
 
             # Create buttons
-            gv.findEmployeeButton.place(x=0, y=40)
+            gv.find_employee_button.place(x=0, y=40)
             gv.search_button.place(x=600, y=50)
             gv.edit_button.place(x=600, y=200)
 
             # Labels
-            gv.fNameLabel.place(x=200, y=50)
-            gv.lNameLabel.place(x=200, y=75)
-            gv.phoneLabel.place(x=200, y=100)
+            gv.f_name_label.place(x=200, y=50)
+            gv.l_name_label.place(x=200, y=75)
+            gv.phone_label.place(x=200, y=100)
             gv.results_label.place(x=200, y=200)
 
             # Inputs
-            gv.fNameInput.place(x=340, y=50, width=240, height=gv.inputHeight)
-            gv.lNameInput.place(x=340, y=75, width=240, height=gv.inputHeight)
-            gv.phoneInput.place(x=340, y=100, width=240, height=gv.inputHeight)
+            gv.f_name_input.place(x=340, y=50, width=240, height=gv.input_height)
+            gv.l_name_input.place(x=340, y=75, width=240, height=gv.input_height)
+            gv.phone_input.place(x=340, y=100, width=240, height=gv.input_height)
             gv.results_entry.place(x=340, y=200, width=240, height=100)
-        elif globe.emp_access == 3:
+        elif Globe.EMPACCESS == 3:
             # Disable button
-            gv.findEmployeeButton.config(state=DISABLED)
+            gv.find_employee_button.config(state=DISABLED)
             gv.results_entry.bind("<<ListboxSelect>>", gv.set_anchor)
 
             # Create buttons
-            gv.findEmployeeButton.place(x=0, y=80)
+            gv.find_employee_button.place(x=0, y=80)
             gv.search_button.place(x=600, y=50)
             gv.edit_button.place(x=600, y=200)
 
             # Labels
-            gv.fNameLabel.place(x=200, y=50)
-            gv.lNameLabel.place(x=200, y=75)
-            gv.phoneLabel.place(x=200, y=100)
+            gv.f_name_label.place(x=200, y=50)
+            gv.l_name_label.place(x=200, y=75)
+            gv.phone_label.place(x=200, y=100)
             gv.results_label.place(x=200, y=200)
 
             # Inputs
-            gv.fNameInput.place(x=340, y=50, width=240, height=gv.inputHeight)
-            gv.lNameInput.place(x=340, y=75, width=240, height=gv.inputHeight)
-            gv.phoneInput.place(x=340, y=100, width=240, height=gv.inputHeight)
+            gv.f_name_input.place(x=340, y=50, width=240, height=gv.input_height)
+            gv.l_name_input.place(x=340, y=75, width=240, height=gv.input_height)
+            gv.phone_input.place(x=340, y=100, width=240, height=gv.input_height)
             gv.results_entry.place(x=340, y=200, width=240, height=100)
 
         else:

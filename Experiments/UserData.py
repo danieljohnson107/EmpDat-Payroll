@@ -3,24 +3,27 @@ Class file to import and edit user data
 """
 
 import pandas as pd
-import GlobalVariables as globe
+import GlobalVariables as Globe
+
 
 class UserData:
+    """Class that uses pandas for data handling (incomplete)"""
 
-    # Load the employee csv
     def __init__(self):
+        """Load the employees from the CSV"""
         self.employee_data = pd.read_csv("employees.csv", index_col=0)
         self.employee_number = ""
         self.columns = ["id", "first_name", "last_name", "address", "address2", "city", "state", "zip", "classification"
                         , "salary", "commission", "hourly", "password", "access", "phone_number", "department"]
 
-    # Method for setting a new password
     def change_field(self, emp_num, new_value, field):
+        """Method for changing the password"""
         self.employee_data.loc[self.employee_data["id"] == emp_num, field] = new_value
         self.employee_data.to_csv("employees.csv")
         return True
 
     def verify_user(self, emp_num, password):
+        """Method for verifying a password"""
         read_password = self.employee_data.loc[self.employee_data["id"] == emp_num, "password"]
 
         # find the password in the gross csv data type
@@ -41,11 +44,13 @@ class UserData:
             return False
 
     def access_check(self, emp_num):
+        """Method to check an employees access"""
         read_access = self.employee_data.loc[self.employee_data["id"] == emp_num, "access"].values[0]
         # set global user access variable
-        globe.emp_access = read_access
+        Globe.EMPACCESS = read_access
 
     def read_value(self, emp_num, field):
+        """Method to read a value from an employee's data"""
         value = self.employee_data.loc[self.employee_data["id"] == emp_num, field]
 
         # find the value in the gross csv data type
@@ -57,27 +62,28 @@ class UserData:
 
         return value
 
-    def get_match(self, firstName=None, lastName=None, phoneNumber=None):
-        matchs = []
-        if lastName is not None:
+    def get_match(self, first_name=None, last_name=None, phone_number=None):
+        """Method to list matches from a search"""
+        matches = []
+        if last_name is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'last_name')
-                if lastName.lower() in match[:len(lastName)].lower():
-                    matchs.append(num)
-        elif firstName is not None:
+                if last_name.lower() in match[:len(last_name)].lower():
+                    matches.append(num)
+        elif first_name is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'first_name')
-                if firstName.lower() in match[:len(firstName)].lower():
-                    matchs.append(num)
-        elif phoneNumber is not None:
+                if first_name.lower() in match[:len(first_name)].lower():
+                    matches.append(num)
+        elif phone_number is not None:
             for num in self.employee_data.id:
                 match = self.read_value(num, 'phone_number')
-                if phoneNumber.lower() in match[:len(phoneNumber)].lower():
-                    matchs.append(num)
-        return matchs
+                if phone_number.lower() in match[:len(phone_number)].lower():
+                    matches.append(num)
+        return matches
 
     def user_exists(self, emp_num):
-        # Use the users last name to see if the exist
+        """Method to verify if a user exists"""
         last_name = self.employee_data.loc[self.employee_data["id"] == emp_num, 'last_name']
 
         if last_name is None:
@@ -86,6 +92,7 @@ class UserData:
         return True
 
     def new_user(self, user_data):
+        """Method to create a new user"""
         new_user = pd.DataFrame(columns=self.columns)
 
         # Make sure the id doesn't exist or just assign it a number (You get no choice)
@@ -112,24 +119,3 @@ class UserData:
 
         # Reload the dataframe
         self.employee_data = pd.read_csv("employees.csv", index_col=0)
-
-
-"""
-Valid fields are:
-id
-first_name
-last_name
-address
-address2
-city
-state
-zip
-classification
-salary
-commission
-hourly
-password
-access
-phone_number
-department
-"""

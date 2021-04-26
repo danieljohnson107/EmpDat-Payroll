@@ -1,6 +1,8 @@
+"""Payroll file from original 1410 project"""
+
 from abc import ABC, abstractmethod
 import os, os.path
-import GlobalVariables as g
+import GlobalVariables as G
 
 PAY_LOGFILE = "paylog.txt"
 
@@ -17,10 +19,9 @@ def load_employees():
                 first_line = False
                 continue
             tmp = line[:-1].split(",")
-            employees.append(Employee(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7], int(tmp[8]), int(tmp[9]),
-                                      float(tmp[10]), float(tmp[11]), float(tmp[12]), tmp[13], int(tmp[14]),
-                                      tmp[15], tmp[16]))
-
+            employees.append(Employee(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7],
+                                      int(tmp[8]), int(tmp[9]), float(tmp[10]), float(tmp[11]),
+                                      float(tmp[12]), tmp[13], int(tmp[14]), tmp[15], tmp[16]))
     # Create the .old file at the same time
     old = open("employees.csv.old", "w")
     for i in employees:
@@ -47,6 +48,7 @@ def load_employees():
 
 
 def authenticate(emp_id, password):
+    """Class to check password with username"""
     global current_emp
     current_emp = emp_id
 
@@ -57,13 +59,11 @@ def authenticate(emp_id, password):
         return employee.password
 
     # Check the password
-    if employee.password == password:
-        return True
-    else:
-        return False
+    return bool(employee.password == password)
 
 
 def user_exists(emp_id):
+    """Class to see if the user exists"""
     # Check to see if the employee exists
     for i in employees:
         if i.emp_id == emp_id:
@@ -83,8 +83,8 @@ def change_password(emp_id, value):
     ints = 0
     spec = 0
     upper = 0
-    special_chars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "?", "_", "=", ",", "<", ">", "/", "'",
-                     '"', " "]
+    special_chars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-",
+                     "+", "?", "_", "=", ",", "<", ">", "/", "'", '"', " "]
 
     # Grab the total amount of each value
     for i in value:
@@ -105,13 +105,13 @@ def change_password(emp_id, value):
         employee.password = value
         write_out()
         return True
-    else:
-        return "Fail"
+
+    return "Fail"
 
 
 def process_timecards():
     """Processes time cards for hourly employees"""
-    with open(g.timecardsFile, "r") as time_file:
+    with open(G.timecards_file, "r") as time_file:
         for line in time_file:
             emp_time = line[:-1].split(",")
             emp = find_employee_by_id(emp_time[0])
@@ -121,8 +121,8 @@ def process_timecards():
 
 
 def process_receipts():
-    """Processes reciepts for commissioned employees"""
-    with open(g.salesFile, "r") as receipts_file:
+    """Processes receipts for commissioned employees"""
+    with open(G.sales_file, "r") as receipts_file:
         for line in receipts_file:
             emp_receipts = line[:-1].split(",")
             emp = find_employee_by_id(emp_receipts[0])
@@ -142,6 +142,7 @@ def run_payroll():
 
 
 def find_employee_by_id(id):
+    """Finds an employee based on their ID"""
     for employee in employees:
         if employee.emp_id == id:
             return employee
@@ -150,11 +151,12 @@ def find_employee_by_id(id):
 
 
 def get_profile(emp_id):
-
+    """Returns an array of user data"""
     i = find_employee_by_id(emp_id)
 
-    data = [i.emp_id, i.first_name, i.last_name, i.address, i.address2, i.city, i.state, i.postal_code, i.class_text,
-            i.salary, i.commission, i.hourly, i.password, i.access, i.phone_number, i.department]
+    data = [i.emp_id, i.first_name, i.last_name, i.address, i.address2, i.city,
+            i.state, i.postal_code, i.class_text, i.salary, i.commission, i.hourly,
+            i.password, i.access, i.phone_number, i.department]
 
     # Check the data for any none values
     for i in range(len(data)):
@@ -164,9 +166,9 @@ def get_profile(emp_id):
     return data
 
 
-def save_profile(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification, salary,
-                 hourly, password, access, phone_number, department):
-
+def save_profile(emp_id, first_name, last_name, address, address2, city, state, postal_code,
+                 classification, salary, hourly, password, access, phone_number, department):
+    """Saves the users profile then write it out to the DB"""
     employee = find_employee_by_id(emp_id)
 
     try:
@@ -202,11 +204,13 @@ def save_profile(emp_id, first_name, last_name, address, address2, city, state, 
         return False
 
 
-def new_user(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification, salary,
-             hourly, password, access, phone_number, department, commission=""):
-
-    new_employee = Employee(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification,
-                            salary, commission, hourly, password, access, phone_number, department)
+def new_user(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification,
+             salary, hourly, password, access, phone_number, department, commission=""):
+    """Add a new user to the Employee array then write it out to the DB"""
+    new_employee = Employee(emp_id, first_name, last_name, address, address2,
+                            city, state, postal_code, classification, salary,
+                            commission, hourly, password, access, phone_number,
+                            department)
 
     employees.append(new_employee)
     write_out()
@@ -215,7 +219,8 @@ def new_user(emp_id, first_name, last_name, address, address2, city, state, post
 def write_out():
     """ Function to write all user data to employees.csv """
     with open("employees.csv", "w") as new_data:
-        new_data.write(",id,first_name,last_name,address,address2,city,state,zip,classification,salary,commission,"
+        new_data.write(",id,first_name,last_name,address,address2,city,state"
+                       ",zip,classification,salary,commission,"
                        "hourly,password,access,phone_number,department\n")
         for i in employees:
             new_data.write(f"0,"
@@ -238,6 +243,7 @@ def write_out():
 
 
 def class_number(classification):
+    """Give a number based on classification"""
     if classification == "Salaried":
         return "1"
     elif classification == "Commissioned":
@@ -279,7 +285,7 @@ class Employee:
         else:
             self.class_text = "Hourly"
             self.classification = Hourly(hourly)
-    
+
     def make_hourly(self, hourly_rate):
         """Sets the Employee classification to hourly"""
         self.classification = Hourly(hourly_rate)
@@ -302,8 +308,9 @@ class Employee:
 
 
 class Classification(ABC):
-    @abstractmethod
+    """Empty Class"""
     def compute_pay(self):
+        """Empty Method"""
         pass
 
 
@@ -326,7 +333,7 @@ class Salaried(Classification):
     """Defines methods for salaried Employees"""
     def __init__(self, salary):
         self.salary = salary
-    
+
     def compute_pay(self):
         return round(self.salary/24, 2)
 

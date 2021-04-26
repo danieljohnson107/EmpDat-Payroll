@@ -2,15 +2,14 @@
 Class file to save all global gui variables
 """
 
-from tkinter import *
+from tkinter import messagebox, Frame, Button, Entry, Label, StringVar, END, ANCHOR, Tk, Listbox
 from tkinter.filedialog import askopenfilename
 import pandas as pd
-import GlobalVariables as globe
-from tkinter import messagebox
+import GlobalVariables as Globe
 
 
 class GuiValues(Frame):
-
+    """Class to HOLD EVERYTHING GUI"""
     def __init__(self, frame, controller):
         Frame.__init__(self, frame)
 
@@ -20,7 +19,7 @@ class GuiValues(Frame):
             'Salary',
             'Commission',
         ]
-        securityAssess = [
+        security_access = [
             'Admin',
             'General Manager',
             'Employee',
@@ -31,16 +30,16 @@ class GuiValues(Frame):
         self.count = 0
 
         # Create the standard for buttons
-        self.buttonColor = '#2c71de'
-        self.buttonWidth = 20
-        self.buttonHeight = 2
-        self.inputWidth = 380
-        self.inputHeight = 22
-        self.inputEditColor = 'white'
-        self.inputReadColor = 'Gray'
-        self.inputBorderWidth = 1
-        self.buttonTextColor = "white"
-        self.fontProp = ('calibre', 14, 'normal')
+        self.button_color = '#2c71de'
+        self.button_width = 20
+        self.button_height = 2
+        self.input_width = 380
+        self.input_height = 22
+        self.input_edit_color = 'white'
+        self.input_read_color = 'Gray'
+        self.input_border_width = 1
+        self.button_text_color = "white"
+        self.font_prop = ('calibre', 14, 'normal')
 
         # Entry variables
         self.name_var = StringVar()
@@ -63,307 +62,321 @@ class GuiValues(Frame):
         self.results_var = StringVar()
 
         # Buttons
-        self.employeesButton = Button(frame, text='Employees',
-                                      width=self.buttonWidth,
-                                      height=self.buttonHeight,
-                                      bg=self.buttonColor,
-                                      fg=self.buttonTextColor,
-                                      command=lambda: self.controller.show_frame("FindEmployee"))
-        self.timeCardsButton = Button(frame, text='Timecards',
-                                      width=self.buttonWidth,
-                                      height=self.buttonHeight,
-                                      bg=self.buttonColor,
-                                      fg=self.buttonTextColor,
-                                      command=lambda: self.openNewWindow("Timecards"))
-        self.salesButton = Button(frame, text='Sales',
-                                  width=self.buttonWidth,
-                                  height=self.buttonHeight,
-                                  bg=self.buttonColor,
-                                  fg=self.buttonTextColor,
-                                  command=lambda: self.openNewWindow("Sales"))
-        self.myProfileButton = Button(frame, text='My Profile',
-                                      width=self.buttonWidth,
-                                      height=self.buttonHeight,
-                                      bg=self.buttonColor,
-                                      fg=self.buttonTextColor,
-                                      command=self.my_profile_pressed)
-        self.newEmployeeButton = Button(frame, text='Enter New\nEmployee',
-                                        width=self.buttonWidth,
-                                        height=self.buttonHeight,
-                                        bg=self.buttonColor,
-                                        fg=self.buttonTextColor,
-                                        command=lambda: self.controller.show_frame("EnterNewEmployee"))
-        self.findEmployeeButton = Button(frame, text='Find Employee',
-                                         width=self.buttonWidth,
-                                         height=self.buttonHeight,
-                                         bg=self.buttonColor,
-                                         fg=self.buttonTextColor,
-                                         command=lambda: self.controller.show_frame("FindEmployee"))
-        self.importEmployeeButton = Button(frame, text='Import txt of\nnew Employees',
-                                           width=self.buttonWidth,
-                                           height=self.buttonHeight,
-                                           bg=self.buttonColor,
-                                           fg=self.buttonTextColor,
-                                           command=lambda: self.openNewWindow("New Employee"))
-        self.saveProfileButton = Button(frame, text='Save',
-                                        width=self.buttonWidth,
-                                        height=self.buttonHeight,
-                                        bg=self.buttonColor,
-                                        fg=self.buttonTextColor,
-                                        command=lambda: self.controller.show_frame("FindEmployee"))
-        self.payrollButton = Button(frame, text="Payroll",
-                                    width=self.buttonWidth,
-                                    height=self.buttonHeight,
-                                    bg=self.buttonColor,
-                                    fg=self.buttonTextColor,
-                                    command=self.PayrollProcessingRefresh)
+        self.employees_button = Button(frame, text='Employees',
+                                       width=self.button_width,
+                                       height=self.button_height,
+                                       bg=self.button_color,
+                                       fg=self.button_text_color,
+                                       command=lambda: self.controller.show_frame("FindEmployee"))
+        self.time_cards_button = Button(frame, text='Timecards',
+                                        width=self.button_width,
+                                        height=self.button_height,
+                                        bg=self.button_color,
+                                        fg=self.button_text_color,
+                                        command=lambda: self.open_new_window("Timecards"))
+        self.sales_button = Button(frame, text='Sales',
+                                   width=self.button_width,
+                                   height=self.button_height,
+                                   bg=self.button_color,
+                                   fg=self.button_text_color,
+                                   command=lambda: self.open_new_window("Sales"))
+        self.my_profile_button = Button(frame, text='My Profile',
+                                        width=self.button_width,
+                                        height=self.button_height,
+                                        bg=self.button_color,
+                                        fg=self.button_text_color,
+                                        command=self.my_profile_pressed)
+        self.new_employee_button = Button(frame, text='Enter New\nEmployee',
+                                          width=self.button_width,
+                                          height=self.button_height,
+                                          bg=self.button_color,
+                                          fg=self.button_text_color,
+                                          command=lambda: self.controller.show_frame("EnterNewEmployee"))
+        self.find_employee_button = Button(frame, text='Find Employee',
+                                           width=self.button_width,
+                                           height=self.button_height,
+                                           bg=self.button_color,
+                                           fg=self.button_text_color,
+                                           command=lambda: self.controller.show_frame("FindEmployee"))
+        self.import_employee_button = Button(frame, text='Import txt of\nnew Employees',
+                                             width=self.button_width,
+                                             height=self.button_height,
+                                             bg=self.button_color,
+                                             fg=self.button_text_color,
+                                             command=lambda: self.open_new_window("New Employee"))
+        self.save_profile_button = Button(frame, text='Save',
+                                          width=self.button_width,
+                                          height=self.button_height,
+                                          bg=self.button_color,
+                                          fg=self.button_text_color,
+                                          command=lambda: self.controller.show_frame("FindEmployee"))
+        self.payroll_button = Button(frame, text="Payroll",
+                                     width=self.button_width,
+                                     height=self.button_height,
+                                     bg=self.button_color,
+                                     fg=self.button_text_color,
+                                     command=self.payroll_processing_refresh)
         self.login_button = Button(frame, text="Login",
-                                   width=self.buttonWidth,
-                                   height=self.buttonHeight,
-                                   bg=self.buttonColor,
-                                   fg=self.buttonTextColor,
-                                   font=self.fontProp)
+                                   width=self.button_width,
+                                   height=self.button_height,
+                                   bg=self.button_color,
+                                   fg=self.button_text_color,
+                                   font=self.font_prop)
         self.create_password_button = Button(frame,
                                              text="Don't Have a Password?",
-                                             width=self.buttonWidth,
-                                             height=self.buttonHeight,
-                                             bg=self.buttonColor,
-                                             fg=self.buttonTextColor,
-                                             font=self.fontProp,
+                                             width=self.button_width,
+                                             height=self.button_height,
+                                             bg=self.button_color,
+                                             fg=self.button_text_color,
+                                             font=self.font_prop,
                                              command=lambda: self.controller.show_frame("ChangePassword"))
-        self.processPayrollButton = Button(frame, text='Process Payroll',
-                                           width=self.buttonWidth,
-                                           height=self.buttonHeight,
-                                           bg=self.buttonColor,
-                                           fg=self.buttonTextColor)
-        self.importTimecardButton = Button(frame, text='Import Timecards',
-                                           width=self.buttonWidth,
-                                           height=self.buttonHeight,
-                                           bg=self.buttonColor,
-                                           fg=self.buttonTextColor)
-        self.importSalesButton = Button(frame, text='Import Sales',
-                                        width=self.buttonWidth,
-                                        height=self.buttonHeight,
-                                        bg=self.buttonColor,
-                                        fg=self.buttonTextColor)
+        self.process_payroll_button = Button(frame, text='Process Payroll',
+                                             width=self.button_width,
+                                             height=self.button_height,
+                                             bg=self.button_color,
+                                             fg=self.button_text_color)
+        self.import_timecard_button = Button(frame, text='Import Timecards',
+                                             width=self.button_width,
+                                             height=self.button_height,
+                                             bg=self.button_color,
+                                             fg=self.button_text_color)
+        self.import_sales_button = Button(frame, text='Import Sales',
+                                          width=self.button_width,
+                                          height=self.button_height,
+                                          bg=self.button_color,
+                                          fg=self.button_text_color)
         self.set_password_button = Button(frame, text="Set Password",
-                                          width=self.buttonWidth,
-                                          height=self.buttonHeight,
-                                          bg=self.buttonColor,
-                                          fg=self.buttonTextColor,
-                                          font=self.fontProp)
+                                          width=self.button_width,
+                                          height=self.button_height,
+                                          bg=self.button_color,
+                                          fg=self.button_text_color,
+                                          font=self.font_prop)
         self.cancel_button = Button(frame, text="Cancel",
-                                    width=self.buttonWidth,
-                                    height=self.buttonHeight,
-                                    bg=self.buttonColor,
-                                    fg=self.buttonTextColor,
-                                    font=self.fontProp,
+                                    width=self.button_width,
+                                    height=self.button_height,
+                                    bg=self.button_color,
+                                    fg=self.button_text_color,
+                                    font=self.font_prop,
                                     command=lambda: self.controller.show_frame("LoginPage"))
         self.search_button = Button(frame, text='Search',
-                                    width=self.buttonWidth,
-                                    height=self.buttonHeight,
-                                    bg=self.buttonColor,
-                                    fg=self.buttonTextColor,
+                                    width=self.button_width,
+                                    height=self.button_height,
+                                    bg=self.button_color,
+                                    fg=self.button_text_color,
                                     command=self.search_pressed)
         self.edit_button = Button(frame, text='View',
-                                  width=self.buttonWidth,
-                                  height=self.buttonHeight,
-                                  bg=self.buttonColor,
-                                  fg=self.buttonTextColor,
+                                  width=self.button_width,
+                                  height=self.button_height,
+                                  bg=self.button_color,
+                                  fg=self.button_text_color,
                                   command=self.edit_pressed)
         self.testing = Button(frame, text='testing',
-                              width=self.buttonWidth,
-                              height=self.buttonHeight,
-                              bg=self.buttonColor,
-                              fg=self.buttonTextColor)
+                              width=self.button_width,
+                              height=self.button_height,
+                              bg=self.button_color,
+                              fg=self.button_text_color)
         self.refresh = Button(frame, text='Refresh',
-                              width=self.buttonWidth,
-                              height=self.buttonHeight,
-                              bg=self.buttonColor,
-                              fg=self.buttonTextColor)
+                              width=self.button_width,
+                              height=self.button_height,
+                              bg=self.button_color,
+                              fg=self.button_text_color)
 
         # Labels
-        self.fNameLabel = Label(frame, text="First Name:")
-        self.lNameLabel = Label(frame, text="Last Name:")
-        self.addressLabel = Label(frame, text='Address:')
-        self.addressLineTwoLabel = Label(frame, text='Address Line 2:')
-        self.cityLabel = Label(frame, text='City:')
-        self.stateLabel = Label(frame, text='State:')
-        self.zipCodeLabel = Label(frame, text='Zip:')
-        self.phoneLabel = Label(frame, text='Phone Number:')
-        self.classificationLabel = Label(frame, text='Classification:')
-        self.empNumberLabel = Label(frame, text='Employee Number:')
-        self.passwordLabel = Label(frame, text='Password:')
-        self.departmentLabel = Label(frame, text='Department:')
-        self.payRateLabel = Label(frame, text='Pay Rate:')
-        self.payYTDLabel = Label(frame, text='Pay YTD:')
-        self.securityAccessLabel = Label(frame, text='Security Access:')
+        self.f_name_label = Label(frame, text="First Name:")
+        self.l_name_label = Label(frame, text="Last Name:")
+        self.address_label = Label(frame, text='Address:')
+        self.address_line_two_label = Label(frame, text='Address Line 2:')
+        self.city_label = Label(frame, text='City:')
+        self.state_label = Label(frame, text='State:')
+        self.zip_code_label = Label(frame, text='Zip:')
+        self.phone_label = Label(frame, text='Phone Number:')
+        self.classification_label = Label(frame, text='Classification:')
+        self.emp_number_label = Label(frame, text='Employee Number:')
+        self.password_label_user = Label(frame, text='Password:')
+        self.department_label = Label(frame, text='Department:')
+        self.pay_rate_label = Label(frame, text='Pay Rate:')
+        self.pay_ytd_label = Label(frame, text='Pay YTD:')
+        self.security_access_label = Label(frame, text='Security Access:')
         self.spacer = Label(frame, text="        ")
         self.employee_number_label = Label(frame, text="Employee Number",
-                                           font=self.fontProp)
-        self.password_label = Label(frame, text="Password", font=self.fontProp)
-        self.payrollDesc = Label(frame, text="Will process payroll for current pay cycle")
-        self.timecardDesc = Label(frame, text="Takes you to import timecards")
-        self.salesDesc = Label(frame, text="Takes you to import sales reports")
+                                           font=self.font_prop)
+        self.password_label = Label(frame, text="Password", font=self.font_prop)
+        self.payroll_desc = Label(frame, text="Will process payroll for current pay cycle")
+        self.timecard_desc = Label(frame, text="Takes you to import timecards")
+        self.sales_desc = Label(frame, text="Takes you to import sales reports")
         self.new_password_label = Label(frame, text="New Password",
-                                        font=self.fontProp)
+                                        font=self.font_prop)
         self.confirm_password_label = Label(frame, text="Confirm Password",
-                                            font=self.fontProp)
+                                            font=self.font_prop)
         self.results_label = Label(frame, text="Results:")
 
         # Inputs
-        self.fNameInput = Entry(frame, textvariable=self.fname_var,
-                                bg=self.inputEditColor,
-                                borderwidth=self.inputBorderWidth)
-        self.lNameInput = Entry(frame, textvariable=self.lname_var,
-                                bg=self.inputEditColor,
-                                borderwidth=self.inputBorderWidth)
-        self.addressInput = Entry(frame, textvariable=self.address_var,
-                                  bg=self.inputEditColor,
-                                  borderwidth=self.inputBorderWidth)
-        self.addressTwoInput = Entry(frame, textvariable=self.address2_var,
-                                     bg=self.inputEditColor,
-                                     borderwidth=self.inputBorderWidth)
-        self.cityInput = Entry(frame, textvariable=self.city_var,
-                               bg=self.inputEditColor,
-                               borderwidth=self.inputBorderWidth)
-        self.stateInput = Entry(frame, textvariable=self.state_var,
-                                bg=self.inputEditColor,
-                                borderwidth=self.inputBorderWidth)
-        self.zipInput = Entry(frame, textvariable=self.zip_var,
-                              bg=self.inputEditColor,
-                              borderwidth=self.inputBorderWidth)
-        self.phoneInput = Entry(frame, textvariable=self.phone_var,
-                                bg=self.inputEditColor,
-                                borderwidth=self.inputBorderWidth)
-        self.classInput = Entry(frame, textvariable=self.class_var,
-                                bg=self.inputEditColor,
-                                borderwidth=self.inputBorderWidth)
-        self.empNumInput = Entry(frame, textvariable=self.emp_num_var,
-                                 bg=self.inputEditColor,
-                                 borderwidth=self.inputBorderWidth)
-        self.passwordInput = Entry(frame, textvariable=self.passw_var,
-                                   bg=self.inputEditColor,
-                                   borderwidth=self.inputBorderWidth)
-        self.departmentInput = Entry(frame, textvariable=self.department_var,
-                                     bg=self.inputEditColor,
-                                     borderwidth=self.inputBorderWidth)
-        self.payRateInput = Entry(frame, textvariable=self.pay_rate_var,
-                                  bg=self.inputEditColor,
-                                  borderwidth=self.inputBorderWidth)
-        self.payYTDInput = Entry(frame, textvariable=self.pay_ytd_var,
-                                 bg=self.inputEditColor,
-                                 borderwidth=self.inputBorderWidth)
-        self.securityInput = Entry(frame, textvariable=self.security_var,
-                                   bg=self.inputEditColor,
-                                   borderwidth=self.inputBorderWidth)
+        self.f_name_input = Entry(frame, textvariable=self.fname_var,
+                                  bg=self.input_edit_color,
+                                  borderwidth=self.input_border_width)
+        self.l_name_input = Entry(frame, textvariable=self.lname_var,
+                                  bg=self.input_edit_color,
+                                  borderwidth=self.input_border_width)
+        self.address_input = Entry(frame, textvariable=self.address_var,
+                                   bg=self.input_edit_color,
+                                   borderwidth=self.input_border_width)
+        self.address_two_input = Entry(frame, textvariable=self.address2_var,
+                                       bg=self.input_edit_color,
+                                       borderwidth=self.input_border_width)
+        self.city_input = Entry(frame, textvariable=self.city_var,
+                                bg=self.input_edit_color,
+                                borderwidth=self.input_border_width)
+        self.state_input = Entry(frame, textvariable=self.state_var,
+                                 bg=self.input_edit_color,
+                                 borderwidth=self.input_border_width)
+        self.zip_input = Entry(frame, textvariable=self.zip_var,
+                               bg=self.input_edit_color,
+                               borderwidth=self.input_border_width)
+        self.phone_input = Entry(frame, textvariable=self.phone_var,
+                                 bg=self.input_edit_color,
+                                 borderwidth=self.input_border_width)
+        self.class_input = Entry(frame, textvariable=self.class_var,
+                                 bg=self.input_edit_color,
+                                 borderwidth=self.input_border_width)
+        self.emp_num_input = Entry(frame, textvariable=self.emp_num_var,
+                                   bg=self.input_edit_color,
+                                   borderwidth=self.input_border_width)
+        self.password_input = Entry(frame, textvariable=self.passw_var,
+                                    bg=self.input_edit_color,
+                                    borderwidth=self.input_border_width)
+        self.department_input = Entry(frame, textvariable=self.department_var,
+                                      bg=self.input_edit_color,
+                                      borderwidth=self.input_border_width)
+        self.pay_rate_input = Entry(frame, textvariable=self.pay_rate_var,
+                                    bg=self.input_edit_color,
+                                    borderwidth=self.input_border_width)
+        self.pay_ytd_input = Entry(frame, textvariable=self.pay_ytd_var,
+                                   bg=self.input_edit_color,
+                                   borderwidth=self.input_border_width)
+        self.security_input = Entry(frame, textvariable=self.security_var,
+                                    bg=self.input_edit_color,
+                                    borderwidth=self.input_border_width)
         self.user_entry = Entry(frame, textvariable=self.name_var,
-                                font=self.fontProp)
+                                font=self.font_prop)
         self.password_entry = Entry(frame, textvariable=self.passw_var,
                                     show="*",
-                                    font=self.fontProp)
+                                    font=self.font_prop)
         self.set_password_entry = Entry(frame, textvariable=self.passw_var,
                                         show="*",
-                                        font=self.fontProp)
+                                        font=self.font_prop)
         self.confirm_password_entry = Entry(frame,
                                             textvariable=self.confirm_passw_var,
                                             show="*",
-                                            font=self.fontProp)
-        self.results_entry = Listbox(frame, bg=self.inputEditColor,
-                                     borderwidth=self.inputBorderWidth)
+                                            font=self.font_prop)
+        self.results_entry = Listbox(frame, bg=self.input_edit_color,
+                                     borderwidth=self.input_border_width)
 
     def create_nav_bar(self):
-        if globe.emp_access == 1:
-            self.employeesButton.place(x=0, y=0)
-            self.timeCardsButton.place(x=185, y=0)
-            self.salesButton.place(x=370, y=0)
-            self.payrollButton.place(x=555, y=0)
-            self.myProfileButton.place(x=740, y=0)
+        """Class to create the navbar for eachpage"""
+        if Globe.EMPACCESS == 1:
+            self.employees_button.place(x=0, y=0)
+            self.time_cards_button.place(x=185, y=0)
+            self.sales_button.place(x=370, y=0)
+            self.payroll_button.place(x=555, y=0)
+            self.my_profile_button.place(x=740, y=0)
         else:
-            self.employeesButton.place(x=0, y=0)
-            self.myProfileButton.place(x=185, y=0)
+            self.employees_button.place(x=0, y=0)
+            self.my_profile_button.place(x=185, y=0)
 
     def my_profile_values(self):
-        emp_id = globe.pr.current_emp
-        user = globe.pr.get_profile(emp_id)
+        """Method for filling the values on My Profile"""
+        emp_id = Globe.Pr.current_emp
+        user = Globe.Pr.get_profile(emp_id)
 
         # Clear all fields in case of double click
-        self.fNameInput.delete(0, "end")
-        self.fNameInput.delete(0, "end")
-        self.lNameInput.delete(0, "end")
-        self.addressInput.delete(0, "end")
-        self.addressTwoInput.delete(0, "end")
-        self.cityInput.delete(0, "end")
-        self.stateInput.delete(0, "end")
-        self.zipInput.delete(0, "end")
-        self.phoneInput.delete(0, "end")
-        self.classInput.delete(0, "end")
-        self.empNumInput.delete(0, "end")
-        self.passwordInput.delete(0, "end")
-        self.departmentInput.delete(0, "end")
-        self.payRateInput.delete(0, "end")
-        self.payYTDInput.delete(0, "end")
-        self.securityInput.delete(0, "end")
+        self.f_name_input.delete(0, "end")
+        self.f_name_input.delete(0, "end")
+        self.l_name_input.delete(0, "end")
+        self.address_input.delete(0, "end")
+        self.address_two_input.delete(0, "end")
+        self.city_input.delete(0, "end")
+        self.state_input.delete(0, "end")
+        self.zip_input.delete(0, "end")
+        self.phone_input.delete(0, "end")
+        self.class_input.delete(0, "end")
+        self.emp_num_input.delete(0, "end")
+        self.password_input.delete(0, "end")
+        self.department_input.delete(0, "end")
+        self.pay_rate_input.delete(0, "end")
+        self.pay_ytd_input.delete(0, "end")
+        self.security_input.delete(0, "end")
 
         # Insert values from CSV
-        self.fNameInput.insert(0, user[1])
-        self.lNameInput.insert(0, user[2])
-        self.addressInput.insert(0, user[3])
-        self.addressTwoInput.insert(0, user[4])
-        self.cityInput.insert(0, user[5])
-        self.stateInput.insert(0, user[6])
-        self.zipInput.insert(0, user[7])
-        self.phoneInput.insert(0, user[14])
-        self.classInput.insert(0, user[8])
-        self.empNumInput.insert(0, user[0])
-        self.passwordInput.insert(0, user[12])
-        self.departmentInput.insert(0, user[15])
-        self.payRateInput.insert(0, user[11])
-        self.payYTDInput.insert(0, user[9])
-        self.securityInput.insert(0, user[13])
+        self.f_name_input.insert(0, user[1])
+        self.l_name_input.insert(0, user[2])
+        self.address_input.insert(0, user[3])
+        self.address_two_input.insert(0, user[4])
+        self.city_input.insert(0, user[5])
+        self.state_input.insert(0, user[6])
+        self.zip_input.insert(0, user[7])
+        self.phone_input.insert(0, user[14])
+        self.class_input.insert(0, user[8])
+        self.emp_num_input.insert(0, user[0])
+        self.password_input.insert(0, user[12])
+        self.department_input.insert(0, user[15])
+        self.pay_rate_input.insert(0, user[11])
+        self.pay_ytd_input.insert(0, user[9])
+        self.security_input.insert(0, user[13])
 
-    def openNewWindow(self, title):
+    def open_new_window(self, title):
+        """Pop up for importing files"""
         master = Tk()
 
         master.geometry("800x300")
 
         master.title(title)
 
-        typeLabel = Label(master, text=title+" file must be a .txt or .csv file.")
-        fileInputLabel = Label(master, text="File for import:")
-        inputField = Entry(master, bg=self.inputEditColor, state='disabled',
-                           width=50)
-        uploadButton = Button(master, text="Upload",
-                              width=self.buttonWidth,
-                              bg=self.buttonColor,
-                              fg=self.buttonTextColor,
-                              height=self.buttonHeight,
-                              command=lambda:[inputField.config(state='normal'),inputField.delete(0,END), inputField.insert(0, self.getFileName()), inputField.config(state='readonly')])
-        submitButton = Button(master, text="Submit",
-                              width=self.buttonWidth,
-                              bg=self.buttonColor,
-                              fg=self.buttonTextColor,
-                              height=self.buttonHeight,
-                              command=lambda:[self.uploadFile(inputField.get(), title), master.destroy(), self.PayrollProcessingRefresh()])
+        type_label = Label(master, text=title + " file must be a .txt or .csv file.")
+        file_input_label = Label(master, text="File for import:")
+        input_field = Entry(master,
+                            bg=self.input_edit_color,
+                            state='disabled',
+                            width=50)
+        upload_button = Button(master, text="Upload",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [input_field.config(state='normal'),
+                                                input_field.delete(0, END),
+                                                input_field.insert(0, self.get_file_name()),
+                                                input_field.config(state='readonly')])
+        submit_button = Button(master, text="Submit",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [self.upload_file(input_field.get(), title),
+                                                master.destroy(),
+                                                self.payroll_processing_refresh()])
 
-        typeLabel.place(x=100, y=50)
-        fileInputLabel.place(x=100, y=100)
-        inputField.place(x=200, y=100)
-        uploadButton.place(x=100, y=150)
-        submitButton.place(x=400, y=150)
+        type_label.place(x=100, y=50)
+        file_input_label.place(x=100, y=100)
+        input_field.place(x=200, y=100)
+        upload_button.place(x=100, y=150)
+        submit_button.place(x=400, y=150)
 
-    def getFileName(self):
+    @staticmethod
+    def get_file_name():
+        """Method to get the file name of the uploaded file"""
         return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
 
-    def uploadFile(self, filePath, fileType):
+    @staticmethod
+    def upload_file(file_path, file_type):
+        """Method to read the uploaded file"""
         try:
-            uploadedFile = pd.read_csv(filePath)
-            if(fileType == 'Timecards'):
-                globe.timecardsFile = uploadedFile
-                # print(globe.timecardsFile)
+            uploaded_file = pd.read_csv(file_path)
+            if file_type == 'Timecards':
+                Globe.timecards_file = uploaded_file
+                # print(Globe.timecardsFile)
             else:
-                globe.salesFile = uploadedFile
-                # print(globe.salesFile)
+                Globe.sales_file = uploaded_file
+                # print(Globe.salesFile)
 
             # print('fp', filePath)
             # print('hi', uploadedFile)
@@ -371,55 +384,56 @@ class GuiValues(Frame):
             messagebox.showerror("Error!", "There was an error submitting the file")
 
     def search_pressed(self):
-
-        searchNumber = self.empNumInput.get()
-        searchfName = self.fNameInput.get()
-        searchlName = self.lNameInput.get()
-        searchPhone = self.phoneInput.get()
+        """Method to invoke search when the button is pressed"""
+        search_number = self.emp_num_input.get()
+        search_f_name = self.f_name_input.get()
+        search_l_name = self.l_name_input.get()
+        search_phone = self.phone_input.get()
 
         results = []
         results.clear()
         self.results_entry.delete(0, END)
 
-        if (searchNumber != ''):
-            firstName = globe.ud.read_value(searchNumber, 'first_name')
-            lastName = globe.ud.read_value(searchNumber, 'last_name')
-            userDepartment = globe.ud.read_value(searchNumber, 'department')
+        if search_number != '':
+            first_name = Globe.ud.read_value(search_number, 'first_name')
+            last_name = Globe.ud.read_value(search_number, 'last_name')
+            user_department = Globe.ud.read_value(search_number, 'department')
 
-            results.append(lastName + ', ' + firstName + ' Dept:' +
-                           userDepartment + ' id:' + searchNumber)
+            results.append(last_name + ', ' + first_name + ' Dept:' +
+                           user_department + ' id:' + search_number)
 
-        elif (searchfName != ''):
-            firstNameResults = globe.ud.get_match(searchfName)
-            for person in firstNameResults:
-                firstName = globe.ud.read_value(person, 'first_name')
-                lastName = globe.ud.read_value(person, 'last_name')
-                userDepartment = globe.ud.read_value(person, 'department')
+        elif search_f_name != '':
+            first_name_results = Globe.ud.get_match(search_f_name)
+            for person in first_name_results:
+                first_name = Globe.ud.read_value(person, 'first_name')
+                last_name = Globe.ud.read_value(person, 'last_name')
+                user_department = Globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' +
-                               userDepartment + ' id:' + person)
+                results.append(last_name + ', ' + first_name + ' Dept:' +
+                               user_department + ' id:' + person)
 
-        elif (searchlName != ''):
-            lastNameResults = globe.ud.get_match('', searchlName)
-            for person in lastNameResults:
-                firstName = globe.ud.read_value(person, 'first_name')
-                lastName = globe.ud.read_value(person, 'last_name')
-                userDepartment = globe.ud.read_value(person, 'department')
+        elif search_l_name != '':
+            last_name_results = Globe.ud.get_match('', search_l_name)
+            for person in last_name_results:
+                first_name = Globe.ud.read_value(person, 'first_name')
+                last_name = Globe.ud.read_value(person, 'last_name')
+                user_department = Globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' +
-                               userDepartment + ' id:' + person)
+                results.append(last_name + ', ' + first_name + ' Dept:' +
+                               user_department + ' id:' + person)
 
-        elif (searchPhone != ''):
-            phoneNumberResults = globe.ud.get_match('', '', searchPhone)
-            for person in phoneNumberResults:
-                firstName = globe.ud.read_value(person, 'first_name')
-                lastName = globe.ud.read_value(person, 'last_name')
-                userDepartment = globe.ud.read_value(person, 'department')
+        elif search_phone != '':
+            phone_number_results = Globe.ud.get_match('', '', search_phone)
+            for person in phone_number_results:
+                first_name = Globe.ud.read_value(person, 'first_name')
+                last_name = Globe.ud.read_value(person, 'last_name')
+                user_department = Globe.ud.read_value(person, 'department')
 
-                results.append(lastName + ', ' + firstName + ' Dept:' +
-                               userDepartment + ' id:' + person)
+                results.append(last_name + ', ' + first_name + ' Dept:' +
+                               user_department + ' id:' + person)
         else:
-            messagebox.showwarning('No Values Entered', 'You must enter a value in one of the search boxes to get a search result.')
+            messagebox.showwarning('No Values Entered',
+                                   'You must enter a value in one of the search boxes to get a search result.')
 
         results.sort()
         if len(results) == 0:
@@ -429,29 +443,32 @@ class GuiValues(Frame):
             self.results_entry.insert(END, item)
 
     def set_anchor(self, selected=None):
-        globe.Anchor = self.results_entry.get(ANCHOR)
+        Globe.ANCHOR = self.results_entry.get(ANCHOR)
 
     def edit_pressed(self):
         # self.controller.show_frame("EditEmployee")
         # self.edit_profile_values()
         if self.results_entry.get(ANCHOR) != '':
-            openThis = self.results_entry.get(ANCHOR)
-            indId = openThis.index('id:')
-            indId += 3
-            searchID = openThis[indId:]
-            user = globe.pr.get_profile(searchID)
-            globe.search_result = user
+            open_this = self.results_entry.get(ANCHOR)
+            ind_id = open_this.index('id:')
+            ind_id += 3
+            search_id = open_this[ind_id:]
+            user = Globe.Pr.get_profile(search_id)
+            Globe.search_result = user
 
-        self.EditRefresh()
+        self.edit_refresh()
 
-    def PayrollProcessingRefresh(self):
-        self.controller.replace_PayrollProcessing()
+    def payroll_processing_refresh(self):
+        """Method to refresh payroll processing when files are uploaded"""
+        self.controller.replace_payroll_processing()
         self.controller.show_frame("PayrollProcessing")
 
-    def EditRefresh(self):
-        self.controller.replace_EditEmployee()
+    def edit_refresh(self):
+        """Method to refresh the edit page to fill in the values of the search result"""
+        self.controller.replace_edit_employee()
         self.controller.show_frame("EditEmployee")
 
     def my_profile_pressed(self):
+        """Method to refresh my profile when it's pressed"""
         self.controller.replace_my_profile()
         self.controller.show_frame("MyProfile")

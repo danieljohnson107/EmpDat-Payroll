@@ -2,13 +2,13 @@
 Payroll Processing page
 """
 
-from tkinter import messagebox
-from GuiValues import *
-import GlobalVariables as g
-from app import *
+from tkinter import messagebox, Frame, DISABLED, NORMAL
+from GuiValues import GuiValues
+import GlobalVariables as Globe
 
 
 class PayrollProcessing(Frame):
+    """Class for Payroll Processing frame"""
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
@@ -17,28 +17,32 @@ class PayrollProcessing(Frame):
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
-        gv.processPayrollButton.place(x=0, y=40)
-        gv.importTimecardButton.place(x=0, y=80)
-        gv.importSalesButton.place(x=0, y=120)
+        gv.process_payroll_button.place(x=0, y=40)
+        gv.import_timecard_button.place(x=0, y=80)
+        gv.import_sales_button.place(x=0, y=120)
 
-        gv.payrollDesc.place(x=200, y=50)
-        gv.timecardDesc.place(x=200, y=90)
-        gv.salesDesc.place(x=200, y=130)
+        gv.payroll_desc.place(x=200, y=50)
+        gv.timecard_desc.place(x=200, y=90)
+        gv.sales_desc.place(x=200, y=130)
 
         # Disable the process payroll if there aren't the sales and timecards files
-        if g.salesFile is None and g.timecardsFile is None:
-            gv.processPayrollButton.config(state=DISABLED)
+        if Globe.sales_file is None and Globe.timecards_file is None:
+            gv.process_payroll_button.config(state=DISABLED)
         else:
-            gv.processPayrollButton.config(state=NORMAL)
+            gv.process_payroll_button.config(state=NORMAL)
 
-        gv.processPayrollButton.config(command=self.process_payroll)
-        gv.importTimecardButton.config(command=lambda: gv.openNewWindow("Timecards"))
-        gv.importSalesButton.config(command=lambda: gv.openNewWindow("Sales"))
+        gv.process_payroll_button.config(command=self.process_payroll)
+        gv.import_timecard_button.config(command=lambda: gv.open_new_window("Timecards"))
+        gv.import_sales_button.config(command=lambda: gv.open_new_window("Sales"))
 
-    def process_payroll(self):
+    @staticmethod
+    def process_payroll():
+        """Method for Process button press"""
         # Process Payroll
         try:
-            g.pr.run_payroll()
-            messagebox.showinfo("Success!", "Payroll was Successfully Processed. Log file is now available.")
-        except:
-            messagebox.showinfo("Error!", "There was an Error in Processing Payroll! Please Contact your Administrator")
+            Globe.Pr.run_payroll()
+            messagebox.showinfo("Success!", "Payroll was Successfully Processed. "
+                                            "Log file is now available.")
+        except Exception as error:
+            messagebox.showinfo("Error!", f"There was an Error in Processing Payroll! "
+                                          f"Please Contact your Administrator: {error}")

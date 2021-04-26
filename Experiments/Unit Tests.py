@@ -78,7 +78,7 @@ def user_data_tests():
     # Access Check
     try:
         g.ud.access_check("557")
-        assert g.emp_access in [1, 2, 3]
+        assert g.EMPACCESS in [1, 2, 3]
         passed += 1
     except AssertionError:
         failed += 1

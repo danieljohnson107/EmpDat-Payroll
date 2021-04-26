@@ -1,5 +1,5 @@
 ,id,first_name,last_name,address,address2,city,state,zip,classification,salary,commission,hourly,password,access,phone_number,department
-0,557,Nikolai,Turgenev,1221 W N E,,Moscow,Russia,20020,3,159648.55,34.0,95.21,Password123!,1,1231234567,Propaganda
+0,557,Nikolai,Turgenev,1221 W N E,,Sochi,Russia,20020,3,159648.55,34.0,95.21,Password123!,1,1231234567,Propaganda
 0,68,Jed,Netti,85 Coolidge Terrace,,San Antonio,Texas,78255,3,159648.55,47.0,45.7,None,2,,Marketing
 0,47-2771794,Galvan,Solesbury,3 Drewry Junction,,Springfield,Illinois,62794,2,91934.89,39.0,47.92,None,3,,
 0,11-0469486,Reynard,Lorenzin,3233 Spaight Point,,Houston,Texas,77030,1,87578.56,27.0,86.84,None,3,,

@@ -1,16 +1,13 @@
 """
-Trying to implement stacked frames into our program
+Payroll Processing Excellence main file
 """
-
-from ChangePassword import *
-from LoginPage import *
-from EnterNewEmployee import *
-
-global frame
+from tkinter import Tk, Frame
+from ChangePassword import ChangePassword
+from LoginPage import LoginPage
 
 
 class PayrollProcessingExcellence(Tk):
-
+    """Main file for Logging in and Starting the program"""
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         self.geometry("925x500")
@@ -35,6 +32,7 @@ class PayrollProcessingExcellence(Tk):
         self.show_frame("LoginPage")
 
     def show_frame(self, page_name):
+        """Method to change frames"""
         # Show a frame for the given page name
         frame = self.frames[page_name]
         frame.tkraise()
