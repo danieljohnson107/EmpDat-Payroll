@@ -84,3 +84,5 @@ class FindEmployee(Frame):
 
         else:
             messagebox.showwarning("Error", "You are not authorized to be here. You were never here...;)")
+
+        self.controller.bind('<Return>', lambda event: gv.search_pressed())
