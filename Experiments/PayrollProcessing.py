@@ -2,7 +2,7 @@
 Payroll Processing page
 """
 
-from tkinter import messagebox, Frame, DISABLED, NORMAL
+from tkinter import messagebox, Frame, DISABLED, NORMAL, filedialog
 from GuiValues import GuiValues
 import GlobalVariables as Globe
 
@@ -32,7 +32,7 @@ class PayrollProcessing(Frame):
         else:
             gv.process_payroll_button.config(state=NORMAL)
 
-        gv.process_payroll_button.config(command=self.process_payroll)
+        gv.process_payroll_button.config(command=lambda: gv.save_log("Log"))
         gv.import_timecard_button.config(command=lambda: gv.open_new_window("Timecards"))
         gv.import_sales_button.config(command=lambda: gv.open_new_window("Sales"))
 

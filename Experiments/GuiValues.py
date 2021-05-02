@@ -3,7 +3,7 @@ Class file to save all global gui variables
 """
 
 from tkinter import messagebox, Frame, Button, Entry, Label, StringVar, END, ANCHOR, Tk, Listbox
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askopenfilename, asksaveasfilename
 import pandas as pd
 import GlobalVariables as Globe
 
@@ -382,7 +382,7 @@ class GuiValues(Frame):
                                height=self.button_height,
                                command=lambda: [input_field.config(state='normal'),
                                                 input_field.delete(0, END),
-                                                input_field.insert(0, self.get_file_name()),
+                                                input_field.insert(0, self.set_file_name()),
                                                 input_field.config(state='readonly')])
         submit_button = Button(master, text="Submit",
                                width=self.button_width,
@@ -398,10 +398,67 @@ class GuiValues(Frame):
         upload_button.place(x=100, y=150)
         submit_button.place(x=400, y=150)
 
+    def save_log(self, title):
+        """Pop up for importing employees file"""
+        master = Tk()
+
+        master.geometry("800x300")
+
+        master.title(title)
+
+        type_label = Label(master, text=f"Where would you like to save your {title}?")
+        file_input_label = Label(master, text="Location to save log:")
+        input_field = Entry(master,
+                            bg=self.input_edit_color,
+                            state='disabled',
+                            width=50)
+        upload_button = Button(master, text="Set Location",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [input_field.config(state='normal'),
+                                                input_field.delete(0, END),
+                                                input_field.insert(0, self.set_file_name()),
+                                                input_field.config(state='readonly')])
+        submit_button = Button(master, text="Submit",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [self.assign_file(input_field.get()), master.destroy()])
+
+        type_label.place(x=100, y=45)
+        file_input_label.place(x=100, y=100)
+        input_field.place(x=230, y=100)
+        upload_button.place(x=100, y=150)
+        submit_button.place(x=400, y=150)
+
+    def assign_file(self, new_file):
+        Globe.Pr.pay_logfile = new_file
+        # Process Payroll
+        try:
+            Globe.Pr.run_payroll()
+            messagebox.showinfo("Success!", "Payroll was Successfully Processed.")
+        except Exception as error:
+            messagebox.showinfo("Error!", f"There was an Error in Processing Payroll! "
+                                          f"Please Contact your Administrator: {error}")
+
+        # Reset the values and refresh the page
+        Globe.timecards_file = None
+        Globe.sales_file = None
+        self.payroll_processing_refresh()
+
     @staticmethod
     def get_file_name():
         """Method to get the file name of the uploaded file"""
         return askopenfilename(filetypes=[("CSV files", "*.csv"), ("Text files", "*.txt")])
+
+    @staticmethod
+    def set_file_name():
+        """Method to set and save the log file"""
+        return asksaveasfilename(defaultextension='.txt',
+                                 initialfile="Paylog.txt")
 
     @staticmethod
     def upload_file(file_path, file_type):

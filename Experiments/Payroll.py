@@ -4,7 +4,8 @@ from abc import ABC, abstractmethod
 import os, os.path
 import GlobalVariables as G
 
-PAY_LOGFILE = "paylog.txt"
+global pay_logfile
+pay_logfile = "paylog.txt"
 
 employees = []
 global current_emp
@@ -160,8 +161,8 @@ def process_receipts():
 
 def run_payroll():
     """Runs payroll for all employees"""
-    if os.path.exists(PAY_LOGFILE): # pay_log_file is a global variable holding ‘payroll.txt’
-        os.remove(PAY_LOGFILE)
+    if os.path.exists(pay_logfile): # pay_logfile is a global variable holding ‘payroll.txt’
+        os.remove(pay_logfile)
     for emp in employees:   # employees is the global list of Employee objects
         emp.issue_payment() # issue_payment calls a method in the classification
                             # object to compute the pay, which in turn invokes
@@ -329,7 +330,7 @@ class Employee:
         """Issues payment to employee"""
         pay = self.classification.compute_pay()
         if pay > 0:
-            with open(PAY_LOGFILE, "a") as paylog:
+            with open(pay_logfile, "a") as paylog:
                 print("Mailing", f"{pay:.2f}", "to", self.first_name, self.last_name,
                 "at", self.address, self.city, self.state, self.postal_code, file=paylog)
 
