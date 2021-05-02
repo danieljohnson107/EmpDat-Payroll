@@ -205,7 +205,7 @@ def save_profile(emp_id, first_name, last_name, address, address2, city, state, 
 
 
 def new_user(emp_id, first_name, last_name, address, address2, city, state, postal_code, classification,
-             salary, hourly, password, access, phone_number, department, commission=""):
+             salary, hourly, password, access, phone_number, department, commission="0.0"):
     """Add a new user to the Employee array then write it out to the DB"""
     new_employee = Employee(emp_id, first_name, last_name, address, address2,
                             city, state, postal_code, classification, salary,

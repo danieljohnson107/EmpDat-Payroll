@@ -1,3 +1,4 @@
+import tkinter.messagebox
 from tkinter import Frame, DISABLED
 from GuiValues import GuiValues
 import GlobalVariables as Globe
@@ -63,8 +64,13 @@ class EnterNewEmployee(Frame):
     @staticmethod
     def save():
         """Method to save the new employee to the DB"""
-        Globe.Pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(),
-                          gv.address_var.get(), gv.address2_var.get(), gv.city_var.get(),
-                          gv.state_var.get(), gv.zip_var.get(), gv.class_var.get(),
-                          gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
-                          gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())
+        try:
+            Globe.Pr.new_user(gv.emp_num_var.get(), gv.fname_var.get(), gv.lname_var.get(),
+                              gv.address_var.get(), gv.address2_var.get(), gv.city_var.get(),
+                              gv.state_var.get(), gv.zip_var.get(), gv.class_var.get(),
+                              gv.pay_ytd_var.get(), gv.pay_rate_var.get(), gv.passw_var.get(),
+                              gv.security_var.get(), gv.phone_var.get(), gv.department_var.get())
+            tkinter.messagebox.showinfo("Success!", "User was successfully added to database!")
+        except:
+            tkinter.messagebox.showerror("Not Added!", "The user could not be add to the database!\n"
+                                                       "Check your values then try again.")
