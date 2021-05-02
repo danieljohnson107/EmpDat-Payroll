@@ -15,6 +15,11 @@ class EditEmployee(Frame):
         gv = GuiValues(self, controller)
         gv.create_nav_bar()
 
+        # Change the command for the buttons
+        gv.employees_button.config(command=lambda: self.clear_edit_employee("FindEmployee"))
+        gv.payroll_button.config(command=lambda: self.clear_edit_employee("PayrollProcessing"))
+        gv.my_profile_button.config(command=lambda: self.clear_edit_employee("MyProfile"))
+
         self.fill_values()
 
         # admin
@@ -220,3 +225,29 @@ class EditEmployee(Frame):
             gv.pay_rate_input.insert(0, globe.search_result[11])
             gv.pay_ytd_input.insert(0, globe.search_result[9])
             gv.security_input.insert(0, globe.search_result[13])
+
+    def clear_edit_employee(self, page_name):
+        """Function to clear edit employee then change the page"""
+        # Clear the search result value
+        globe.search_result = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+
+        # Clear the fields
+        gv.f_name_input.delete(0, "end")
+        gv.f_name_input.delete(0, "end")
+        gv.l_name_input.delete(0, "end")
+        gv.address_input.delete(0, "end")
+        gv.address_two_input.delete(0, "end")
+        gv.city_input.delete(0, "end")
+        gv.state_input.delete(0, "end")
+        gv.zip_input.delete(0, "end")
+        gv.phone_input.delete(0, "end")
+        gv.class_input.delete(0, "end")
+        gv.emp_num_input.delete(0, "end")
+        gv.password_input.delete(0, "end")
+        gv.department_input.delete(0, "end")
+        gv.pay_rate_input.delete(0, "end")
+        gv.pay_ytd_input.delete(0, "end")
+        gv.security_input.delete(0, "end")
+
+        # Change the frame
+        self.controller.show_frame(page_name)
