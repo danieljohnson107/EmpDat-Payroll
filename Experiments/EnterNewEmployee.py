@@ -21,7 +21,7 @@ class EnterNewEmployee(Frame):
         gv.new_employee_button.place(x=0, y=40)
         gv.find_employee_button.place(x=0, y=80)
         gv.import_employee_button.place(x=0, y=120)
-        gv.save_profile_button.place(x=0, y=160)
+        gv.save_profile_button.place(x=740, y=50)
 
         # assign the proper stuff to the thing
         gv.save_profile_button.config(command=self.save)
