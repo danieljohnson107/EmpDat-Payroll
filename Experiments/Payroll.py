@@ -1,5 +1,5 @@
 """Payroll file from original 1410 project"""
-
+import tkinter.messagebox
 from abc import ABC, abstractmethod
 import os, os.path
 import GlobalVariables as G
@@ -45,6 +45,33 @@ def load_employees():
 
     # Close the files
     old.close()
+
+
+def new_employees(file):
+    """Function to import a CSV of new employee's"""
+    # employee variable
+    new = []
+
+    try:
+        with open(file, "r") as emp_file:
+            first_line = True
+            for line in emp_file:
+                if first_line:
+                    first_line = False
+                    continue
+                tmp = line[:-1].split(",")
+                if not user_exists(tmp[1]):
+                    new_employee = Employee(tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7],
+                                            int(tmp[8]), int(tmp[9]), float(tmp[10]), float(tmp[11]),
+                                            float(tmp[12]), tmp[13], int(tmp[14]), tmp[15], tmp[16])
+                    employees.append(new_employee)
+                    new.append(f"{tmp[2]} {tmp[3]}")
+
+        tkinter.messagebox.showinfo("Success!", f"The following employee's have been added:\n{new}")
+    except Exception as e:
+        tkinter.messagebox.showerror("Error!", f"There was an error importing the employee's! {e}")
+
+    write_out()
 
 
 def authenticate(emp_id, password):

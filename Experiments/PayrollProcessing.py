@@ -42,8 +42,7 @@ class PayrollProcessing(Frame):
         # Process Payroll
         try:
             Globe.Pr.run_payroll()
-            messagebox.showinfo("Success!", "Payroll was Successfully Processed. "
-                                            "Log file is now available.")
+            messagebox.showinfo("Success!", "Payroll was Successfully Processed.")
         except Exception as error:
             messagebox.showinfo("Error!", f"There was an Error in Processing Payroll! "
                                           f"Please Contact your Administrator: {error}")

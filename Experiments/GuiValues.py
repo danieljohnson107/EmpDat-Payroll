@@ -103,7 +103,7 @@ class GuiValues(Frame):
                                              height=self.button_height,
                                              bg=self.button_color,
                                              fg=self.button_text_color,
-                                             command=lambda: self.open_new_window("New Employee"))
+                                             command=lambda: self.import_employees("New Employee"))
         self.save_profile_button = Button(frame, text='Save',
                                           width=self.button_width,
                                           height=self.button_height,
@@ -354,6 +354,43 @@ class GuiValues(Frame):
                                command=lambda: [self.upload_file(input_field.get(), title),
                                                 master.destroy(),
                                                 self.payroll_processing_refresh()])
+
+        type_label.place(x=100, y=50)
+        file_input_label.place(x=100, y=100)
+        input_field.place(x=200, y=100)
+        upload_button.place(x=100, y=150)
+        submit_button.place(x=400, y=150)
+
+    def import_employees(self, title):
+        """Pop up for importing employees file"""
+        master = Tk()
+
+        master.geometry("800x300")
+
+        master.title(title)
+
+        type_label = Label(master, text=title + " file must be a .txt or .csv file.")
+        file_input_label = Label(master, text="File for import:")
+        input_field = Entry(master,
+                            bg=self.input_edit_color,
+                            state='disabled',
+                            width=50)
+        upload_button = Button(master, text="Locate File",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [input_field.config(state='normal'),
+                                                input_field.delete(0, END),
+                                                input_field.insert(0, self.get_file_name()),
+                                                input_field.config(state='readonly')])
+        submit_button = Button(master, text="Submit",
+                               width=self.button_width,
+                               bg=self.button_color,
+                               fg=self.button_text_color,
+                               height=self.button_height,
+                               command=lambda: [Globe.Pr.new_employees(input_field.get()),
+                                                master.destroy()])
 
         type_label.place(x=100, y=50)
         file_input_label.place(x=100, y=100)
