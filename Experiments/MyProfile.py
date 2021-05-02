@@ -97,7 +97,7 @@ class MyProfile(Frame):
             gv.pay_rate_input.config(state=DISABLED)
 
             # Buttons
-            gv.save_profile_button.place(x=0, y=40)
+            gv.save_profile_button.place(x=740, y=50)
 
             # Define save profile button
             gv.save_profile_button.config(command=self.save_profile)
@@ -166,7 +166,7 @@ class MyProfile(Frame):
             gv.security_input.config(state=DISABLED)
 
             # Buttons
-            gv.save_profile_button.place(x=0, y=40)
+            gv.save_profile_button.place(x=740, y=50)
 
             # Define save profile button
             gv.save_profile_button.config(command=self.save_profile)
