@@ -382,7 +382,7 @@ class GuiValues(Frame):
                                height=self.button_height,
                                command=lambda: [input_field.config(state='normal'),
                                                 input_field.delete(0, END),
-                                                input_field.insert(0, self.set_file_name()),
+                                                input_field.insert(0, self.get_file_name()),
                                                 input_field.config(state='readonly')])
         submit_button = Button(master, text="Submit",
                                width=self.button_width,
